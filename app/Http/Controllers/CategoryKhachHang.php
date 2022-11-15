@@ -21,31 +21,31 @@ class CategoryKhachHang extends Controller
     public function show_quanly(){
         return view('khachhang_layout');
     }
-    // public function quanly(Request $request){
-    //     $khachhang_email = $request->khachhang_email;
-    //     $khachhang_password = ($request->khachhang_password);
+    public function quanly(Request $request){
+        $khachhang_email = $request->khachhang_email;
+        $khachhang_password = ($request->khachhang_password);
 
-    //     $result=  DB::table('tbl_khachhang')->where('khachhang_email',$khachhang_email)->where('khachhang_password',$khachhang_password)->first();
+        $result=  DB::table('nguoidung')->where('Email',$khachhang_email)->where('Matkhau',$khachhang_password)->first();
         
-    //     if($result){
-    //         Session::put('khachhang_name',$result->khachhang_name);
-    //         Session::put('khachhang_id',$result->khachhang_id);
-    //         Session::put('category_image',$result->category_image);
-    //         Session::put('id',$result->id);
-    //         return Redirect::to('/khachhang-quan-ly');
-    //     }else{
-    //         // Session::put('message','Tài khoản hoặc mật khẩu không đúng');
-    //         Session::flash('error', 'Tài khoản hoặc mật khẩu không đúng!');
-    //         return Redirect::to('/loginkh');
-    //     } 
-    // }
-    // public function logout(){
-    //     Session::put('khachhang_name',null);
-    //     Session::put('khachhang_id',null);
-    //     Session::put('khachhang_phone',null);
-    //     Session::put('id',null);
-    //     return Redirect::to('/loginkh');
-    // }
+        if($result){
+            Session::put('Hoten',$result->Hoten);
+            Session::put('Manguoidung',$result->Manguoidung);
+            Session::put('Anh',$result->Anh);
+            // Session::put('id',$result->id);
+            return Redirect::to('/khachhang-quan-ly');
+        }else{
+            // Session::put('message','Tài khoản hoặc mật khẩu không đúng');
+            Session::flash('error', 'Tài khoản hoặc mật khẩu không đúng!');
+            return Redirect::to('/loginkh');
+        } 
+    }
+    public function logout(){
+        Session::put('Hoten',null);
+        Session::put('Manguoidung',null);
+        Session::put('Anh',null);
+        // Session::put('id',null);
+        return Redirect::to('/loginkh');
+    }
 
     public function save_category_khachhang(Request $request){
         // Retrieve the validated input data...
@@ -58,12 +58,12 @@ class CategoryKhachHang extends Controller
             $data['Manguoidung'] = $name_khachhang;
         }
         $data['Email'] = $request->khachhang_email;
-        $data['password'] = $request->password;
+        $data['Matkhau'] = $request->password;
         $data['Hoten'] = $request->khachhang_name;
         $data['SDT'] = $request->khachhang_phone;
-        $data['Ngaysinh'] = '';
+        $data['Ngaysinh'] = $request->khachhang_birth;
         $data['CCCD'] = '';
-        $data['Gioitinh'] = '';
+        $data['Gioitinh'] = $request->khachhang_gioitinh;
         
         $textData = "KH";
         $get_khachhang_id = $request->input('category_khachhang_vaitro', $textData);;
@@ -83,7 +83,7 @@ class CategoryKhachHang extends Controller
         return Redirect::to('loginkh');
     }
     public function edit_khachhang_info($khachhang_info_id){
-        $edit_khachhang_info = DB::table('tbl_khachhang')->where('id',$khachhang_info_id)->get();
+        $edit_khachhang_info = DB::table('nguoidung')->where('Manguoidung',$khachhang_info_id)->get();
         $manage_khachhang_info = view('khachhang.edit_khachhang_info')->with('edit_khachhang_info',$edit_khachhang_info);
         return view('khachhang_layout')->with('edit_khachhang_info',$manage_khachhang_info);
     }
@@ -92,7 +92,7 @@ class CategoryKhachHang extends Controller
         $data['khachhang_name'] = $request->khachhang_name;
         $data['khachhang_phone'] = $request->khachhang_phone;
         $data['category_image'] = $request->category_image;
-        DB::table('tbl_khachhang')->where('id',$khachhang_info_id)->update($data);
+        DB::table('nguoidung')->where('id',$khachhang_info_id)->update($data);
         Session::flash('success','Cập nhật thành công');
         return Redirect::to('edit-khachhang-info/'.$khachhang_info_id);
     }

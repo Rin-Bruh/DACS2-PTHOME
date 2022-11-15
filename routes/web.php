@@ -21,7 +21,7 @@ Route::get('/home','App\Http\Controllers\HomeController@index');
 Route::get('/loginkh','App\Http\Controllers\HomeController@loginkh');
 Route::get('/loginct','App\Http\Controllers\HomeController@loginct');
 
-//Danh mục sản phẩm
+//Danh mục 
 // Route::get('/danh-muc-phong-tro/{category_id}','App\Http\Controllers\CategoryChuTro@show_category_home');
 // Route::get('/chi-tiet-phong-tro/{phongtro_id}','App\Http\Controllers\CategoryChuTro@details_phongtro');
 

@@ -59,6 +59,18 @@
                                     <label for="email">SĐT</label>
                                     <input value="{{old('khachhang_phone')}}"name="khachhang_phone" type="text" class="form-control" >
                                 </div>
+                                <div class="form-group">
+                                    <label for="email">Ngày sinh</label>
+                                    <input value="{{old('khachhang_phone')}}"name="khachhang_birth" type="date" class="form-control" >
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Giới tính</label>
+                                    
+                                    <select name="khachhang_gioitinh">
+                                        <option value="0">Nam</option>
+                                            <option value="1">Nữ</option>
+                                    </select>
+                                </div>
                                 <div class="text-center">
                                     <button type="submit" class="btn btn-default">Đăng kí</button>
                                 </div>

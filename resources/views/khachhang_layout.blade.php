@@ -141,7 +141,7 @@
               <ul class="menu-sub">
                 <li class="menu-item">
                   <?php
-                  $id = Session::get('id');
+                  $id = Session::get('Manguoidung');
                   ?>
                   <a href="{{URL::to('/edit-khachhang-info/'.$id)}}" class="menu-link">
                     <div data-i18n="Without menu">Thông tin người dùng</div>
@@ -259,10 +259,10 @@
                   <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
                     <div class="avatar avatar-online">
                         <?php
-                            $image = Session::get('category_image');
+                            $image = Session::get('Anh');
 // echo"$image";
                         ?>
-                      <img src="public/uploads/khachhang/{{$image}}" alt class="w-px-40 h-auto rounded-circle" />
+                      <img src="{{URL::to('public/uploads/khachhang/'.$image)}}" alt class="w-px-40 h-auto rounded-circle" />
                     </div>
                   </a>
                   <ul class="dropdown-menu dropdown-menu-end">
@@ -271,20 +271,20 @@
                         <div class="d-flex">
                           <div class="flex-shrink-0 me-3">
                             <div class="avatar avatar-online">
-                              <img src="public/uploads/khachhang/{{$image}}" alt class="w-px-40 h-auto rounded-circle" />
+                              <img src="{{URL::to('public/uploads/khachhang/'.$image)}}" alt class="w-px-40 h-auto rounded-circle" />
                             </div>
                           </div>
                           <div class="flex-grow-1">
                             <span class="fw-semibold d-block">
                             <?php
-                                            $name = Session::get('khachhang_name');
+                                            $name = Session::get('Hoten');
                                             if($name){
                                                 echo $name;
                                             }
                                         ?>
                             </span>
                             <small class="text-muted"><span>Mã thành viên:</span> <span style="font-weight: 700;"><?php
-                                    $id = Session::get('khachhang_id');
+                                    $id = Session::get('Manguoidung');
                                     if($id){
                                         echo $id;
                                     }

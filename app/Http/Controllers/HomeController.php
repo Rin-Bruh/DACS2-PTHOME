@@ -29,12 +29,12 @@ class HomeController extends Controller
         
     //     return view('pages.properties')->with('category',$cate_phong)->with('all_phong',$all_phong);
     // }
-    // public function loginkh(){ 
-    //     return view('pages.register_login.loginkh');
-    // }
-    // public function loginct(){ 
-    //     return view('pages.register_login.loginct');
-    // }
+    public function loginkh(){ 
+        return view('pages.register_login.loginkh');
+    }
+    public function loginct(){ 
+        return view('pages.register_login.loginct');
+    }
     // public function search(Request $request){
     //     $keywords = $request->keywords_submit;
     //     $cate_phong = DB::table('tbl_category_danhmuc')->where('category_status','1')->orderby('category_id','asc')->get();
