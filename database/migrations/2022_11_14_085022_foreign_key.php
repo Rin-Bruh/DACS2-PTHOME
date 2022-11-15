@@ -36,6 +36,7 @@ return new class extends Migration
              $table->foreign('MANGUOIDUNG')->references('MANGUOIDUNG')->on('NGUOIDUNG');
              $table->foreign('MAHOPDONG')->references('MAHOPDONG')->on('HOPDONG');
              $table->foreign('MAKHU')->references('MAKHU')->on('KHU');
+             $table->foreign('MADANHMUC')->references('MADANHMUC')->on('DANHMUC');
          });
  
          Schema::table('KHU', function (Blueprint $table){

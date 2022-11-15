@@ -18,6 +18,7 @@ return new class extends Migration
             
             $tbl->String('Manguoidung',20)->primary();
             $tbl->String('Email',50);
+            $tbl->String('Matkhau',50);
             $tbl->String('SDT',10);
             $tbl->String('Hoten',50);
             $tbl->dateTime('Ngaysinh');
@@ -101,7 +102,11 @@ return new class extends Migration
             $tbl->String('Mahopdong',20);
             $tbl->String('Manguoidung',20);
         });
-
+        Schema::create('Danhmuc', function (Blueprint $tbl){
+            $tbl->String('Madanhmuc',20)->primary();
+            $tbl->String('Tendanhmuc',20);
+            $tbl->tinyInteger('Trangthai');
+        });
 
         Schema::create('Khu', function (Blueprint $tbl){
             
