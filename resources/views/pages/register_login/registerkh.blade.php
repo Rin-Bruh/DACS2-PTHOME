@@ -41,7 +41,7 @@
                             {{ csrf_field() }}
                             <div class="form-group">
                                     <label for="name">Email</label>
-                                    <input value="{{old('khachhang_email')}}" name="khachhang_email" type="text" class="form-control" >
+                                    <input value="{{old('Email')}}" name="khachhang_email" type="text" class="form-control" >
                                 </div>
                                 <div class="form-group">
                                     <label for="password">Password</label>
@@ -53,15 +53,15 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="name">Name</label>
-                                    <input value="{{old('khachhang_name')}}" name="khachhang_name" type="text" class="form-control" >
+                                    <input value="{{old('Hoten')}}" name="khachhang_name" type="text" class="form-control" >
                                 </div>
                                 <div class="form-group">
                                     <label for="email">SĐT</label>
-                                    <input value="{{old('khachhang_phone')}}"name="khachhang_phone" type="text" class="form-control" >
+                                    <input value="{{old('SDT')}}"name="khachhang_phone" type="text" class="form-control" >
                                 </div>
                                 <div class="form-group">
                                     <label for="email">Ngày sinh</label>
-                                    <input value="{{old('khachhang_phone')}}"name="khachhang_birth" type="date" class="form-control" >
+                                    <input value="{{old('Ngaysinh')}}"name="khachhang_birth" type="date" class="form-control" >
                                 </div>
                                 <div class="form-group">
                                     <label for="email">Giới tính</label>

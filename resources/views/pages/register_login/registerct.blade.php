@@ -37,29 +37,39 @@
                                 </div>
                             @endif
                             <h2>Bạn đang đăng kí với tư cách là chủ cho thuê</h2> 
-                            <form action="{{URL::to('/save-category-chutro')}}" method="post" enctype="multipart/form-data">
+                            <form action="{{URL::to('/save-chutro')}}" method="post" enctype="multipart/form-data">
                             {{ csrf_field() }}
-                                <div class="form-group">
+                            <div class="form-group">
                                     <label for="name">Email</label>
-                                    <input value="{{old('chutro_email')}}" name="chutro_email" type="text" class="form-control"  >
+                                    <input value="{{old('Email')}}" name="khachhang_email" type="text" class="form-control" >
                                 </div>
                                 <div class="form-group">
                                     <label for="password">Password</label>
-                                    <input name="password" type="password" class="form-control"  >
-                                    <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
+                                    <input name="password" type="password" class="form-control" >
                                 </div>
                                 <div class="form-group">
                                     <label for="password">Nhập lại Password</label>
-                                    <input name="password_confirmation" type="password" class="form-control"  >
-                                    <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
+                                    <input name="password_confirmation" type="password" class="form-control" >
                                 </div>
                                 <div class="form-group">
                                     <label for="name">Name</label>
-                                    <input value="{{old('chutro_name')}}" name="chutro_name" type="text" class="form-control"  >
+                                    <input value="{{old('Hoten')}}" name="khachhang_name" type="text" class="form-control" >
                                 </div>
                                 <div class="form-group">
-                                    <label for="phone">SĐT</label>
-                                    <input value="{{old('chutro_phone')}}"name="chutro_phone" type="text" class="form-control"  >
+                                    <label for="email">SĐT</label>
+                                    <input value="{{old('SDT')}}"name="khachhang_phone" type="text" class="form-control" >
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Ngày sinh</label>
+                                    <input value="{{old('Ngaysinh')}}"name="khachhang_birth" type="date" class="form-control" >
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Giới tính</label>
+                                    
+                                    <select name="khachhang_gioitinh">
+                                        <option value="0">Nam</option>
+                                            <option value="1">Nữ</option>
+                                    </select>
                                 </div>
                                 <div class="text-center">
                                     <button type="submit" class="btn btn-default">Đăng kí</button>

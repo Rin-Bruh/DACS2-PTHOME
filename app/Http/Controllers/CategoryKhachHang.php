@@ -31,10 +31,8 @@ class CategoryKhachHang extends Controller
             Session::put('Hoten',$result->Hoten);
             Session::put('Manguoidung',$result->Manguoidung);
             Session::put('Anh',$result->Anh);
-            // Session::put('id',$result->id);
             return Redirect::to('/khachhang-quan-ly');
         }else{
-            // Session::put('message','Tài khoản hoặc mật khẩu không đúng');
             Session::flash('error', 'Tài khoản hoặc mật khẩu không đúng!');
             return Redirect::to('/loginkh');
         } 
@@ -43,7 +41,6 @@ class CategoryKhachHang extends Controller
         Session::put('Hoten',null);
         Session::put('Manguoidung',null);
         Session::put('Anh',null);
-        // Session::put('id',null);
         return Redirect::to('/loginkh');
     }
 
@@ -99,13 +96,13 @@ class CategoryKhachHang extends Controller
             $data['CCCD'] = '';
         }
         $data['Gioitinh'] = $request->Gioitinh;
-        $data['Anh'] = $request->Anh;
+        // $data['Anh'] = $request->Anh;
         $get_image = $request->file('Anh');
         if($get_image){
             $get_name_image = $get_image->getClientOriginalName();
             $name_image = current(explode('.',$get_name_image));
             $new_image = $name_image.'.'.$get_image->getClientOriginalExtension();
-            $get_image->move('public/uploads/phongct',$new_image);
+            $get_image->move('public/uploads/khachhang',$new_image);
             $data['Anh'] = $new_image;
             DB::table('nguoidung')->where('Manguoidung',$khachhang_info_id)->update($data);
         Session::flash('success','Cập nhật thành công');

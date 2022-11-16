@@ -36,15 +36,15 @@ Route::post('/save-category-khachhang','App\Http\Controllers\CategoryKhachHang@s
 Route::get('/edit-khachhang-info/{khachhang_info_id}','App\Http\Controllers\CategoryKhachHang@edit_khachhang_info');
 Route::post('/update-khachhang-info/{khachhang_info_id}','App\Http\Controllers\CategoryKhachHang@update_khachhang_info'); 
 
-//chutro
-// Route::get('/chutro-quan-ly','App\Http\Controllers\CategoryChuTro@show_quanly');
-// Route::get('/logoutct','App\Http\Controllers\CategoryChuTro@logout');
-// Route::post('/chutro-quan-ly','App\Http\Controllers\CategoryChuTro@quanly');
+// chuthue
+Route::get('/chutro-quan-ly','App\Http\Controllers\CategoryChuThue@show_quanly');
+Route::get('/logoutct','App\Http\Controllers\CategoryChuThue@logout');
+Route::post('/chutro-quan-ly','App\Http\Controllers\CategoryChuThue@quanly');
 
-// Route::get('/registerct','App\Http\Controllers\CategoryChuTro@registerct');
-// Route::post('/save-category-chutro','App\Http\Controllers\CategoryChuTro@save_category_chutro');
-// Route::get('/edit-chutro-info/{chutro_info_id}','App\Http\Controllers\CategoryChuTro@edit_chutro_info');
-// Route::post('/update-chutro-info/{chutro_info_id}','App\Http\Controllers\CategoryChuTro@update_chutro_info'); 
+Route::get('/registerct','App\Http\Controllers\CategoryChuThue@registerct');
+Route::post('/save-chutro','App\Http\Controllers\CategoryChuThue@save_chutro');
+Route::get('/edit-chutro-info/{chutro_info_id}','App\Http\Controllers\CategoryChuThue@edit_chutro_info');
+Route::post('/update-chutro-info/{chutro_info_id}','App\Http\Controllers\CategoryChuThue@update_chutro_info'); 
 
 // Route::get('/all-category-khu','App\Http\Controllers\CategoryChuTro@all_category_khu');
 // Route::get('/add-category-khu','App\Http\Controllers\CategoryChuTro@add_category_khu');
