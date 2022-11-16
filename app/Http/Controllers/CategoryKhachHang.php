@@ -89,11 +89,37 @@ class CategoryKhachHang extends Controller
     }
     public function update_khachhang_info(Request $request, $khachhang_info_id){
         $data = array();
-        $data['khachhang_name'] = $request->khachhang_name;
-        $data['khachhang_phone'] = $request->khachhang_phone;
-        $data['category_image'] = $request->category_image;
-        DB::table('nguoidung')->where('id',$khachhang_info_id)->update($data);
+        $data['Hoten'] = $request->Hoten;
+        $data['SDT'] = $request->SDT;
+        $data['Ngaysinh'] = $request->Ngaysinh;
+        $get_cccd = $request->CCCD;
+        if($get_cccd){
+        $data['CCCD'] = $get_cccd;
+        } else {
+            $data['CCCD'] = '';
+        }
+        $data['Gioitinh'] = $request->Gioitinh;
+        $data['Anh'] = $request->Anh;
+        $get_image = $request->file('Anh');
+        if($get_image){
+            $get_name_image = $get_image->getClientOriginalName();
+            $name_image = current(explode('.',$get_name_image));
+            $new_image = $name_image.'.'.$get_image->getClientOriginalExtension();
+            $get_image->move('public/uploads/phongct',$new_image);
+            $data['Anh'] = $new_image;
+            DB::table('nguoidung')->where('Manguoidung',$khachhang_info_id)->update($data);
         Session::flash('success','Cập nhật thành công');
         return Redirect::to('edit-khachhang-info/'.$khachhang_info_id);
+        }
+        $info = pathinfo(storage_path().'/uploads/khachhang/listing-agent.jpg');
+        $get_image2 = $info['basename'];
+        if($get_image2){
+            $data['Anh'] = $get_image2;
+            
+        DB::table('nguoidung')->where('Manguoidung',$khachhang_info_id)->update($data);
+        Session::flash('success','Cập nhật thành công');
+        return Redirect::to('edit-khachhang-info/'.$khachhang_info_id);
+        }
     }
+    
 }

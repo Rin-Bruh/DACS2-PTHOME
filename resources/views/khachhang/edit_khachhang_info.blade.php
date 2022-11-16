@@ -22,7 +22,7 @@
                                 <div class="card mb-4">
                                     <!-- <h5 class="card-header">Form Controls</h5> -->
                                     <div class="card-body">
-                                    <form action="{{URL::to('/update-khachhang-info/'.$edit_value->Manguoidung)}}" method="post">
+                                    <form action="{{URL::to('/update-khachhang-info/'.$edit_value->Manguoidung)}}" method="post" enctype="multipart/form-data">
                                         {{ csrf_field() }}
                                         <div class="mb-3">
                                         @if ( Session::has('success') )
@@ -103,24 +103,17 @@
                                         </div>
                                         <div class="mb-3">
                                             <label for="defaultSelect" class="form-label">Giới tính</label>
-                                            <select id="defaultSelect" class="form-select">
-                                            <?php
-                                                if($edit_value->Gioitinh==0){
-                                            ?>
-                                            <option value="0">Nam</option>
-                                            <?php
-                                  }else{
-                              ?>
-                                            <option value="1">Nữ</option>
-                                            <?php        
-                                  }   
-                              ?>
+                                            <select id="defaultSelect" class="form-select" name="Gioitinh">
+                                            
+                                            <option value="0" <?php if($edit_value->Gioitinh==0) echo "selected=\"selected\"";  ?>>Nam</option>
+                                            
+                                            <option value="1" <?php if($edit_value->Gioitinh==1) echo "selected=\"selected\"";  ?>>Nữ</option>
                                             
                                             </select>
                                         </div>
                                         <div class="mb-3">
                                           <label for="formFile" class="form-label">Ảnh đại diện</label>
-                                          <input name="Anh" class="form-control" accept="image/*" type="file" id="file-input"/>
+                                          <input name="Anh" class="form-control" accept="image/*" type="file" id="file-input" value="{{$edit_value->Anh}}"/>
                                           <div class="mb-3">
                                           </div>
                                           <img class="preview-img" id="img-preview" src="{{URL::to('public/uploads/khachhang/'.$edit_value->Anh)}}" />
