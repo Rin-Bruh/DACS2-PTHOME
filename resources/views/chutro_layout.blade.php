@@ -163,7 +163,7 @@
 
               <ul class="menu-sub">
                 <li class="menu-item">
-                  <a href="{{URL::to('/all-category-khu')}}" class="menu-link">
+                  <a href="{{URL::to('/all-khu')}}" class="menu-link">
                     <div data-i18n="Without menu">Danh sách khu cho thuê</div>
                   </a>
                 </li>

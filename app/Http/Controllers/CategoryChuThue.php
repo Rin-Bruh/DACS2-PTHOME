@@ -107,7 +107,7 @@ class CategoryChuThue extends Controller
         Session::flash('success','Cập nhật thành công');
         return Redirect::to('edit-chutro-info/'.$chutro_info_id);
         }
-        $info = pathinfo(storage_path().'/uploads/khachhang/listing-agent.jpg');
+        $info = pathinfo(storage_path().'/uploads/chutro/listing-agent.jpg');
         $get_image2 = $info['basename'];
         if($get_image2){
             $data['Anh'] = $get_image2;
@@ -117,53 +117,83 @@ class CategoryChuThue extends Controller
         return Redirect::to('edit-chutro-info/'.$chutro_info_id);
         }
     }
-    // public function all_category_khu(){
-    //     $id = Session::get('chutro_id');
+    public function all_khu(){
+        $id = Session::get('Manguoidung');
         
-    //     $all_category_khu = DB::table('tbl_category_khu')->where('chutro_id',$id)->get();
-    //     $manage_category_khu = view('chutro.all_category_khu')->with('all_category_khu',$all_category_khu);
+        $all_khu = DB::table('khu')->where('Machuthue',$id)->get();
+        $manage_khu = view('chuthue.all_khu')->with('all_khu',$all_khu);
         
-    //     $result=  DB::table('tbl_category_khu')->where('chutro_id',$id)->first();
-    //     if($result){    
-    //         Session::put('khu_id',$result->khu_id);
-    //     }
-    //     return view('chutro_layout')->with('all_category_khu',$manage_category_khu);
-    // }
-    // public function add_category_khu(){
-    //     return view('chutro.add_category_khu');
-    // }
-    // public function save_category_khu(Request $request){
-    //     $data = array();
-    //     $data['category_name'] = $request->category_khu_name;
-    //     $data['category_desc'] = $request->category_khu_desc;
-    //     $data['chutro_id'] = $request->chutro_id;
-        
-        
-    //     DB::table('tbl_category_khu')->insert($data);
-    //     Session::flash('success', 'Thêm '. $data['category_name'] .' thành công!');
-    //     return Redirect::to('add-category-khu');
-    // }
-    // public function edit_category_khu($category_khu_id){
-    //     $edit_category_khu = DB::table('tbl_category_khu')->where('category_id',$category_khu_id)->get();
-    //     $manage_category_khu = view('chutro.edit_category_khu')->with('edit_category_khu',$edit_category_khu);
-    //     return view('chutro_layout')->with('edit_category_khu',$manage_category_khu);
-    // }
-    // public function update_category_khu(Request $request, $category_khu_id){
-    //     $data = array();
-    //     $data['category_name'] = $request->category_khu_name;
-    //     $data['category_desc'] = $request->category_khu_desc;
-    //     DB::table('tbl_category_khu')->where('category_id',$category_khu_id)->update($data);
-    //     Session::flash('success','Cập nhật thành công');
-    //     return Redirect::to('edit-category-khu/'.$category_khu_id);
-    // }
-    // public function delete_category_khu($category_khu_id){
-    //     DB::table('tbl_category_khu')->where('category_id',$category_khu_id)->delete();
-    //     Session::flash('success','Xóa thành công');
-    //     return Redirect::to('all-category-khu');
-    // }
-    // public function all_category_phongct($khupt_id){
+        $result=  DB::table('khu')->where('Machuthue',$id)->first();
+        if($result){    
+            Session::put('Makhu',$result->Makhu);
+        }
+        return view('chutro_layout')->with('all_khu',$manage_khu);
+    }
+    public function add_khu(){
+        return view('chuthue.add_khu');
+    }
+    public function save_khu(Request $request){
+        $data = array();
+        $textData = "K";
+        // $get_khu_id = $request->input('khu_id', $textData);;
+        if($textData){
+            $khu_id = $textData.rand(0,99999);
+            $data['Makhu'] = $khu_id;
+        }
+        $data['Tenkhu'] = $request->Tenkhu;
+        $data['Diachi'] = $request->Diachi;
+        $data['Trangthai'] = $request->Trangthai;
+        $data['Maloaikhu'] = $request->Maloaikhu;
+        $data['Machuthue'] = $request->Manguoidung;
+        $get_image = $request->file('Anh');
+        if($get_image){
+            $get_name_image = $get_image->getClientOriginalName();
+            $name_image = current(explode('.',$get_name_image));
+            $new_image = $name_image.'.'.$get_image->getClientOriginalExtension();
+            $get_image->move('public/uploads/khu',$new_image);
+            $data['Anh'] = $new_image;
+            DB::table('khu')->insert($data);
+        Session::flash('success','Thêm '. $data['Tenkhu'] .' thành công!');
+        return Redirect::to('add-khu');
+        }
+        DB::table('khu')->insert($data);
+        Session::flash('success','Thêm '. $data['Tenkhu'] .' thành công!');
+        return Redirect::to('add-khu');
+    }
+    public function edit_khu($khu_id){
+        $edit_khu = DB::table('khu')->where('Makhu',$khu_id)->get();
+        $manage_khu = view('chuthue.edit_khu')->with('edit_khu',$edit_khu);
+        return view('chutro_layout')->with('edit_khu',$manage_khu);
+    }
+    public function update_khu(Request $request, $khu_id){
+        $data = array();
+        $data['Tenkhu'] = $request->Tenkhu;
+        $data['Diachi'] = $request->Diachi;
+        $data['Trangthai'] = $request->Trangthai;
+        $data['Maloaikhu'] = $request->Maloaikhu;
+        $get_image = $request->file('Anh');
+        if($get_image){
+            $get_name_image = $get_image->getClientOriginalName();
+            $name_image = current(explode('.',$get_name_image));
+            $new_image = $name_image.'.'.$get_image->getClientOriginalExtension();
+            $get_image->move('public/uploads/khu',$new_image);
+            $data['Anh'] = $new_image;
+        DB::table('khu')->where('Makhu',$khu_id)->update($data);
+        Session::flash('success','Cập nhật thành công');
+        return Redirect::to('edit-khu/'.$khu_id);
+        }
+        DB::table('khu')->where('Makhu',$khu_id)->update($data);
+        Session::flash('success','Cập nhật thành công');
+        return Redirect::to('edit-khu/'.$khu_id);
+    }
+    public function delete_khu($khu_id){
+        DB::table('khu')->where('Makhu',$khu_id)->delete();
+        Session::flash('success','Xóa thành công');
+        return Redirect::to('all-khu');
+    }
+    // public function all_phongct($khupt_id){
     //     // $id = Session::get('khu_id');
-    //     $result=  DB::table('tbl_category_khu')->where('khu_id',$khupt_id)->first();
+    //     $result=  DB::table('khu')->where('khu_id',$khupt_id)->first();
     //     if($result){    
     //         Session::put('khu_id',$result->khu_id);
     //     }

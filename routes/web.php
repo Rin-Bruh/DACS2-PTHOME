@@ -46,12 +46,12 @@ Route::post('/save-chutro','App\Http\Controllers\CategoryChuThue@save_chutro');
 Route::get('/edit-chutro-info/{chutro_info_id}','App\Http\Controllers\CategoryChuThue@edit_chutro_info');
 Route::post('/update-chutro-info/{chutro_info_id}','App\Http\Controllers\CategoryChuThue@update_chutro_info'); 
 
-// Route::get('/all-category-khu','App\Http\Controllers\CategoryChuTro@all_category_khu');
-// Route::get('/add-category-khu','App\Http\Controllers\CategoryChuTro@add_category_khu');
-// Route::post('/save-category-khu','App\Http\Controllers\CategoryChuTro@save_category_khu');
-// Route::get('/edit-category-khu/{category_khu_id}','App\Http\Controllers\CategoryChuTro@edit_category_khu');
-// Route::post('/update-category-khu/{category_khu_id}','App\Http\Controllers\CategoryChuTro@update_category_khu');
-// Route::get('/delete-category-khu/{category_khu_id}','App\Http\Controllers\CategoryChuTro@delete_category_khu');
+Route::get('/all-khu','App\Http\Controllers\CategoryChuThue@all_khu');
+Route::get('/add-khu','App\Http\Controllers\CategoryChuThue@add_khu');
+Route::post('/save-khu','App\Http\Controllers\CategoryChuThue@save_khu');
+Route::get('/edit-khu/{khu_id}','App\Http\Controllers\CategoryChuThue@edit_khu');
+Route::post('/update-khu/{khu_id}','App\Http\Controllers\CategoryChuThue@update_khu');
+Route::get('/delete-khu/{khu_id}','App\Http\Controllers\CategoryChuThue@delete_khu');
 
 // Route::get('/all-category-phongct/{khupt_id}','App\Http\Controllers\CategoryChuTro@all_category_phongct');
 // Route::get('/add-category-phongct','App\Http\Controllers\CategoryChuTro@add_category_phongct');
