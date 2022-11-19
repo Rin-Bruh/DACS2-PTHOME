@@ -98,10 +98,12 @@ return new class extends Migration
             $tbl->text('Anh');
             $tbl->boolean('Dangchiase');
             $tbl->tinyInteger('Gioihannguoi');
+            $tbl->tinyInteger('Trangthai');
             $tbl->integer('Songuoihientai');
-            $tbl->String('Mahopdong',20);
-            $tbl->String('Manguoidung',20);
+            
+            
         });
+        
         Schema::create('Danhmuc', function (Blueprint $tbl){
             $tbl->String('Madanhmuc',20)->primary();
             $tbl->String('Tendanhmuc',20);
@@ -132,6 +134,8 @@ return new class extends Migration
             $tbl->dateTime('Ngayki');
             $tbl->tinyInteger('Trangthai');
             $tbl->dateTime('Ngaybatdau');
+            $tbl->String('Maphongthue',20);
+            $tbl->String('Manguoidung',20);
         });
 
 
