@@ -11,8 +11,8 @@ return new class extends Migration
      *
      * @return void
      */
-    public function up()
-    {   // INSERT TABLE VAITRO
+    public function up(){   
+        // INSERT TABLE VAITRO
         DB::table('vaitro')->insert(
             array(
                 'Mavaitro' => 'AD',
@@ -135,8 +135,6 @@ return new class extends Migration
 
         // thêm khu 
 
-
-
         DB::table('Khu')->insert(
             array(
                 'Makhu' => 'K36676',
@@ -149,7 +147,46 @@ return new class extends Migration
             )
         );
 
+        // insert table thêm phòng
+        DB::table('Phongthue')->insert(
+            array(
+                'Maphongthue' => 'P1',
+                'Tenphong' => 'P101',
+                'Tieude'=> 'Phòng trọ....',
+                'Mota' => '',
+                'Madanhmuc' => 'DM47',
+                'Makhu' => 'K36676',
+                'Gia' => '1800000',
+                'Dientich' => '30',
+                'Anh' => 'anh478.jpg',
+                'Dangchiase' => 0,
+                'Gioihannguoi' => 3,
+                'Trangthai' => 0,
+                'Songuoihientai' => 0
+            )
+        );
 
+        BD::table('Phongthue')->insert(
+            array(
+                'Maphongthue' => 'P2',
+                'Tenphong' => 'P102',
+                'Tieude'=> 'Phòng trọ....',
+                'Mota' => '',
+                'Madanhmuc' => 'DM47',
+                'Makhu' => 'K36676',
+                'Gia' => '2300000',
+                'Dientich' => '20.5',
+                'Anh' => 'anh478.jpg',
+                'Dangchiase' => 0,
+                'Gioihannguoi' => 2,
+                'Trangthai' => 0,
+                'Songuoihientai' => 0
+            )
+        );
+
+        
+        
+        
     }
 
     /**

@@ -17,7 +17,7 @@ return new class extends Migration
 
         // Create a new migration
         Schema::create('Nguoidung', function (Blueprint $tbl){
-            
+            // $tbl->Integer('STT')->primary();
             $tbl->String('Manguoidung',20)->primary();
             $tbl->String('Email',50);
             $tbl->String('Matkhau',50);
@@ -39,7 +39,7 @@ return new class extends Migration
 
 
         Schema::create('Khoanthanhtoan', function (Blueprint $tbl){
-            
+            // $tbl->Integer('STT')->primary();
             $tbl->String('Makhoan',20)->primary();
             $tbl->String('Mahopdong',20);
             $tbl->String('Makhoanthanhtoan',20);
@@ -61,7 +61,7 @@ return new class extends Migration
 
 
         Schema::create('Thongbao' ,function (Blueprint $tbl){
-            
+            // $tbl->Integer('STT')->primary();
             $tbl->String('Mathongbao',20)->primary();
             $tbl->text('Noidung');
             $tbl->String('Tieude',250);
@@ -88,7 +88,7 @@ return new class extends Migration
 
 
         Schema::create('Phongthue', function (Blueprint $tbl){
-            
+            // $tbl->Integer('STT')->primary();
             $tbl->String('Maphongthue',20)->primary();
             $tbl->String('Tenphong',250);
             $tbl->String('Tieude',250);
@@ -103,7 +103,7 @@ return new class extends Migration
             $tbl->tinyInteger('Trangthai');
             $tbl->integer('Songuoihientai');
             
-            
+
         });
         
         Schema::create('Danhmuc', function (Blueprint $tbl){
@@ -113,7 +113,7 @@ return new class extends Migration
         });
 
         Schema::create('Khu', function (Blueprint $tbl){
-            
+            // $tbl->Integer('STT')->primary();
             $tbl->String('Makhu',20)->primary();
             $tbl->String('Tenkhu',250);
             $tbl->String('Diachi',250);
@@ -131,7 +131,7 @@ return new class extends Migration
         });
 
         Schema::create('Hopdong', function (Blueprint $tbl){
-            
+            // $tbl->Integer('STT')->primary();
             $tbl->String('Mahopdong',20)->primary();
             $tbl->dateTime('Ngayki');
             $tbl->tinyInteger('Trangthai');
@@ -142,7 +142,7 @@ return new class extends Migration
 
 
         Schema::create('Vande', function (Blueprint $tbl){
-            
+            // $tbl->Integer('STT')->primary();
             $tbl->String('Mavande',20)->primary();
             $tbl->String('Masuco',20);
             $tbl->text('Mota');
@@ -154,7 +154,7 @@ return new class extends Migration
 
 
         Schema::create('Suco', function (Blueprint $tbl){
-            
+            // $tbl->Integer('STT')->primary();
             $tbl->String('Masuco',20)->primary();
             $tbl->String('Tensuco',250);
             $tbl->tinyInteger('Trangthai');
