@@ -2,6 +2,12 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\CategoryChuTro;
+use App\Http\Controllers\CategoryKhachHang;
+use App\Http\Controllers\CategoryChuThue;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CategoryDanhMuc;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,71 +19,72 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/','App\Http\Controllers\HomeController@index');
-Route::get('/home','App\Http\Controllers\HomeController@index');
-// Route::get('/properties','App\Http\Controllers\HomeController@properties');
-// Route::post('/search','App\Http\Controllers\HomeController@search');
 
-Route::get('/loginkh','App\Http\Controllers\HomeController@loginkh');
-Route::get('/loginct','App\Http\Controllers\HomeController@loginct');
+
+Route::get('/', [HomeController::class,'index']);
+Route::get('/home',[HomeController::class,'index']);
+// Route::get('/properties',[HomeController::class,'properties']);
+// Route::post('/search',[HomeController::class,'search');
+
+Route::get('/loginkh',[HomeController::class,'loginkh']);
+Route::get('/loginct',[HomeController::class,'loginct']);
 
 //Danh mục 
-// Route::get('/danh-muc-phong-tro/{category_id}','App\Http\Controllers\CategoryChuTro@show_category_home');
-// Route::get('/chi-tiet-phong-tro/{phongtro_id}','App\Http\Controllers\CategoryChuTro@details_phongtro');
+// Route::get('/danh-muc-phong-tro/{category_id}',[CategoryChuTro::class,'show_category_home']);
+// Route::get('/chi-tiet-phong-tro/{phongtro_id}',[CategoryChuTro::class,'details_phongtro']);
 
 //khachhang
-Route::get('/khachhang-quan-ly','App\Http\Controllers\CategoryKhachHang@show_quanly');
-Route::get('/logoutkh','App\Http\Controllers\CategoryKhachHang@logout');
-Route::post('/khachhang-quan-ly','App\Http\Controllers\CategoryKhachHang@quanly');
+Route::get('/khachhang-quan-ly',[CategoryKhachHang::class,'show_quanly']);
+Route::get('/logoutkh',[CategoryKhachHang::class,'logout']);
+Route::post('/khachhang-quan-ly',[CategoryKhachHang::class,'quanly']);
 
-Route::get('/registerkh','App\Http\Controllers\CategoryKhachHang@registerkh');
-Route::post('/save-category-khachhang','App\Http\Controllers\CategoryKhachHang@save_category_khachhang');
+Route::get('/registerkh',[CategoryKhachHang::class,'registerkh']);
+Route::post('/save-category-khachhang',[CategoryKhachHang::class,'save_category_khachhang']);
 
-Route::get('/edit-khachhang-info/{khachhang_info_id}','App\Http\Controllers\CategoryKhachHang@edit_khachhang_info');
-Route::post('/update-khachhang-info/{khachhang_info_id}','App\Http\Controllers\CategoryKhachHang@update_khachhang_info'); 
+Route::get('/edit-khachhang-info/{khachhang_info_id}',[CategoryKhachHang::class,'edit_khachhang_info']);
+Route::post('/update-khachhang-info/{khachhang_info_id}',[CategoryKhachHang::class,'update_khachhang_info']); 
 
 // chuthue
-Route::get('/chutro-quan-ly','App\Http\Controllers\CategoryChuThue@show_quanly');
-Route::get('/logoutct','App\Http\Controllers\CategoryChuThue@logout');
-Route::post('/chutro-quan-ly','App\Http\Controllers\CategoryChuThue@quanly');
+Route::get('/chutro-quan-ly',[CategoryChuThue::class,'show_quanly']);
+Route::get('/logoutct',[CategoryChuThue::class,'logout']);
+Route::post('/chutro-quan-ly',[CategoryChuThue::class,'quanly']);
 
-Route::get('/registerct','App\Http\Controllers\CategoryChuThue@registerct');
-Route::post('/save-chutro','App\Http\Controllers\CategoryChuThue@save_chutro');
-Route::get('/edit-chutro-info/{chutro_info_id}','App\Http\Controllers\CategoryChuThue@edit_chutro_info');
-Route::post('/update-chutro-info/{chutro_info_id}','App\Http\Controllers\CategoryChuThue@update_chutro_info'); 
+Route::get('/registerct',[CategoryChuThue::class,'registerct']);
+Route::post('/save-chutro',[CategoryChuThue::class,'save_chutro']);
+Route::get('/edit-chutro-info/{chutro_info_id}',[CategoryChuThue::class,'edit_chutro_info']);
+Route::post('/update-chutro-info/{chutro_info_id}',[CategoryChuThue::class,'update_chutro_info']); 
 
-Route::get('/all-khu','App\Http\Controllers\CategoryChuThue@all_khu');
-Route::get('/add-khu','App\Http\Controllers\CategoryChuThue@add_khu');
-Route::post('/save-khu','App\Http\Controllers\CategoryChuThue@save_khu');
-Route::get('/edit-khu/{khu_id}','App\Http\Controllers\CategoryChuThue@edit_khu');
-Route::post('/update-khu/{khu_id}','App\Http\Controllers\CategoryChuThue@update_khu');
-Route::get('/delete-khu/{khu_id}','App\Http\Controllers\CategoryChuThue@delete_khu');
+Route::get('/all-khu',[CategoryChuThue::class,'all_khu']);
+Route::get('/add-khu',[CategoryChuThue::class,'add_khu']);
+Route::post('/save-khu',[CategoryChuThue::class,'save_khu']);
+Route::get('/edit-khu/{khu_id}',[CategoryChuThue::class,'edit_khu']);
+Route::post('/update-khu/{khu_id}',[CategoryChuThue::class,'update_khu']);
+Route::get('/delete-khu/{khu_id}',[CategoryChuThue::class,'delete_khu']);
 
-Route::get('/all-phongct/{khupt_id}','App\Http\Controllers\CategoryChuThue@all_phongct');
-Route::get('/add-phongct','App\Http\Controllers\CategoryChuThue@add_phongct');
-Route::post('/save-phongct','App\Http\Controllers\CategoryChuThue@save_phongct');
-Route::get('/edit-phongct/{phongct_id}','App\Http\Controllers\CategoryChuThue@edit_phongct');
-Route::post('/update-phongct/{phongct_id}','App\Http\Controllers\CategoryChuThue@update_phongct');
-Route::get('/delete-phongct/{phongct_id}','App\Http\Controllers\CategoryChuThue@delete_phongct');
+Route::get('/all-phongct/{khupt_id}',[CategoryChuThue::class,'all_phongct']);
+Route::get('/add-phongct',[CategoryChuThue::class,'add_phongct']);
+Route::post('/save-phongct',[CategoryChuThue::class,'save_phongct']);
+Route::get('/edit-phongct/{phongct_id}',[CategoryChuThue::class,'edit_phongct']);
+Route::post('/update-phongct/{phongct_id}',[CategoryChuThue::class,'update_phongct']);
+Route::get('/delete-phongct/{phongct_id}',[CategoryChuThue::class,'delete_phongct']);
 
 
 
 // Backend
-Route::get('/admin','App\Http\Controllers\AdminController@index');
-Route::get('/dashboard','App\Http\Controllers\AdminController@show_dashboard');
-Route::get('/logout','App\Http\Controllers\AdminController@logout');
-Route::post('/admin-dashboard','App\Http\Controllers\AdminController@dashboard');
+Route::get('/admin',[AdminController::class, 'index']);
+Route::get('/dashboard',[AdminController::class, 'show_dashboard']);
+Route::get('/logout',[AdminController::class, 'logout']);
+Route::post('/admin-dashboard',[AdminController::class, 'dashboard']);
 
 
 //Category danhmuc
-Route::get('/add-category-danhmuc','App\Http\Controllers\CategoryDanhMuc@add_category_danhmuc');
-Route::get('/edit-category-danhmuc/{category_danhmuc_id}','App\Http\Controllers\CategoryDanhMuc@edit_category_danhmuc');
-Route::get('/delete-category-danhmuc/{category_danhmuc_id}','App\Http\Controllers\CategoryDanhMuc@delete_category_danhmuc');
-Route::get('/all-category-danhmuc','App\Http\Controllers\CategoryDanhMuc@all_category_danhmuc');
+Route::get('/add-category-danhmuc',[CategoryDanhMuc::class,'add_category_danhmuc']);
+Route::get('/edit-category-danhmuc/{category_danhmuc_id}',[CategoryDanhMuc::class,'edit_category_danhmuc']);
+Route::get('/delete-category-danhmuc/{category_danhmuc_id}',[CategoryDanhMuc::class,'delete_category_danhmuc']);
+Route::get('/all-category-danhmuc',[CategoryDanhMuc::class,'all_category_danhmuc']);
 
-Route::get('/unactive-category-danhmuc/{category_danhmuc_id}','App\Http\Controllers\CategoryDanhMuc@unactive_category_danhmuc');
-Route::get('/active-category-danhmuc/{category_danhmuc_id}','App\Http\Controllers\CategoryDanhMuc@active_category_danhmuc');
+Route::get('/unactive-category-danhmuc/{category_danhmuc_id}',[CategoryDanhMuc::class,'unactive_category_danhmuc']);
+Route::get('/active-category-danhmuc/{category_danhmuc_id}',[CategoryDanhMuc::class,'active_category_danhmuc']);
 
-Route::post('/save-category-danhmuc','App\Http\Controllers\CategoryDanhMuc@save_category_danhmuc'); 
-Route::post('/update-category-danhmuc/{category_danhmuc_id}','App\Http\Controllers\CategoryDanhMuc@update_category_danhmuc'); 
-
+Route::post('/save-category-danhmuc',[CategoryDanhMuc::class,'save_category_danhmuc']); 
+Route::post('/update-category-danhmuc/{category_danhmuc_id}',[CategoryDanhMuc::class,'update_category_danhmuc']); 
