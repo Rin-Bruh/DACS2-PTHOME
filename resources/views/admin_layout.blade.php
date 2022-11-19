@@ -237,7 +237,11 @@
                 <li class="nav-item navbar-dropdown dropdown-user dropdown">
                   <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
                     <div class="avatar avatar-online">
-                      <img src="{{asset('public/backend/assets/img/avatars/1.png')}}" alt class="w-px-40 h-auto rounded-circle" />
+                    <?php
+                            $image = Session::get('Anh');
+// echo"$image";
+                        ?>
+                      <img src="{{URL::to('public/uploads/khachhang/'.$image)}}" alt class="w-px-40 h-auto rounded-circle" />
                     </div>
                   </a>
                   <ul class="dropdown-menu dropdown-menu-end">
@@ -246,19 +250,26 @@
                         <div class="d-flex">
                           <div class="flex-shrink-0 me-3">
                             <div class="avatar avatar-online">
-                              <img src="{{asset('public/backend/assets/img/avatars/1.png')}}" alt class="w-px-40 h-auto rounded-circle" />
+                            
+                              <img src="{{URL::to('public/uploads/khachhang/'.$image)}}" alt class="w-px-40 h-auto rounded-circle" />
                             </div>
                           </div>
                           <div class="flex-grow-1">
                             <span class="fw-semibold d-block">
-                            <!-- <?php
-                            $name = Session::get('admin_name');
+                            <?php
+                            $name = Session::get('Hoten');
                             if($name){
                               echo $name;
                             }
-                            ?> -->
+                            ?>
                             </span>
-                            <small class="text-muted">Admin</small>
+                            <small class="text-muted"><?php
+                                            $id = Session::get('Manguoidung');
+                                            if($id){
+                                                echo $id;
+                                            }
+                                        ?>
+                            </span></small>
                           </div>
                         </div>
                       </a>

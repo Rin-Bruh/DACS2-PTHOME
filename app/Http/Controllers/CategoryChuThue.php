@@ -191,27 +191,27 @@ class CategoryChuThue extends Controller
         Session::flash('success','Xóa thành công');
         return Redirect::to('all-khu');
     }
-    // public function all_phongct($khupt_id){
-    //     // $id = Session::get('khu_id');
-    //     $result=  DB::table('khu')->where('khu_id',$khupt_id)->first();
-    //     if($result){    
-    //         Session::put('khu_id',$result->khu_id);
-    //     }
+    public function all_phongct($khupt_id){
+        // $id = Session::get('khu_id');
+        $result=  DB::table('khu')->where('Makhu',$khupt_id)->first();
+        if($result){    
+            Session::put('Makhu',$result->Makhu);
+        }
         
-    //     $all_category_phongct = DB::table('tbl_category_phongct')->join('tbl_category_danhmuc','tbl_category_phongct.category_iddanhmuc','=','tbl_category_danhmuc.category_id')->where('tbl_category_phongct.category_idkhu',$khupt_id )->orderby('tbl_category_phongct.phong_id','desc')->get();
+        $all_phongct = DB::table('phongthue')->join('danhmuc','phongthue.Madanhmuc','=','danhmuc.Madanhmuc')->where('phongthue.Makhu',$khupt_id )->orderby('phongthue.Maphongthue','desc')->get();
         
-    //     $manage_category_phongct = view('chutro.all_category_phongct')->with('all_category_phongct',$all_category_phongct);
-    //     return view('chutro_layout')->with('all_category_phongct',$manage_category_phongct);
-    // }
-    // public function add_category_phongct(){
-    //     // $result=  DB::table('tbl_category_khu')->where('khu_id',$khupt_id)->first();
-    //     // if($result){
-    //     //     Session::put('khu_id',$result->khu_id);
-    //     // }
-    //     $cate_phong = DB::table('tbl_category_danhmuc')->orderby('category_id','asc')->get();
+        $manage_phongct = view('chuthue.all_phongct')->with('all_phongct',$all_phongct);
+        return view('chutro_layout')->with('all_phongct',$manage_phongct);
+    }
+    public function add_category_phongct(){
+        // $result=  DB::table('tbl_category_khu')->where('khu_id',$khupt_id)->first();
+        // if($result){
+        //     Session::put('khu_id',$result->khu_id);
+        // }
+        $cate_phong = DB::table('danhmuc')->orderby('Madanhmuc','asc')->get();
         
-    //     return view('chutro.add_category_phongct')->with('cate_phong',$cate_phong);
-    // }
+        return view('chuthue.add_phongct')->with('cate_phong',$cate_phong);
+    }
     // public function save_category_phongct(Request $request){
     //     $data = array();
     //     $textData = "P";

@@ -53,8 +53,8 @@ Route::get('/edit-khu/{khu_id}','App\Http\Controllers\CategoryChuThue@edit_khu')
 Route::post('/update-khu/{khu_id}','App\Http\Controllers\CategoryChuThue@update_khu');
 Route::get('/delete-khu/{khu_id}','App\Http\Controllers\CategoryChuThue@delete_khu');
 
-// Route::get('/all-category-phongct/{khupt_id}','App\Http\Controllers\CategoryChuTro@all_category_phongct');
-// Route::get('/add-category-phongct','App\Http\Controllers\CategoryChuTro@add_category_phongct');
+Route::get('/all-phongct/{khupt_id}','App\Http\Controllers\CategoryChuThue@all_phongct');
+Route::get('/add-phongct','App\Http\Controllers\CategoryChuThue@add_phongct');
 // Route::post('/save-category-phongct','App\Http\Controllers\CategoryChuTro@save_category_phongct');
 // Route::get('/edit-category-phongct/{category_phongct_id}','App\Http\Controllers\CategoryChuTro@edit_category_phongct');
 // Route::post('/update-category-phongct/{category_phongct_id}','App\Http\Controllers\CategoryChuTro@update_category_phongct');
@@ -64,20 +64,20 @@ Route::get('/delete-khu/{khu_id}','App\Http\Controllers\CategoryChuThue@delete_k
 
 // Backend
 Route::get('/admin','App\Http\Controllers\AdminController@index');
-// Route::get('/dashboard','App\Http\Controllers\AdminController@show_dashboard');
-// Route::get('/logout','App\Http\Controllers\AdminController@logout');
-// Route::post('/admin-dashboard','App\Http\Controllers\AdminController@dashboard');
+Route::get('/dashboard','App\Http\Controllers\AdminController@show_dashboard');
+Route::get('/logout','App\Http\Controllers\AdminController@logout');
+Route::post('/admin-dashboard','App\Http\Controllers\AdminController@dashboard');
 
 
 //Category danhmuc
-// Route::get('/add-category-danhmuc','App\Http\Controllers\CategoryDanhMuc@add_category_danhmuc');
-// Route::get('/edit-category-danhmuc/{category_danhmuc_id}','App\Http\Controllers\CategoryDanhMuc@edit_category_danhmuc');
-// Route::get('/delete-category-danhmuc/{category_danhmuc_id}','App\Http\Controllers\CategoryDanhMuc@delete_category_danhmuc');
-// Route::get('/all-category-danhmuc','App\Http\Controllers\CategoryDanhMuc@all_category_danhmuc');
+Route::get('/add-category-danhmuc','App\Http\Controllers\CategoryDanhMuc@add_category_danhmuc');
+Route::get('/edit-category-danhmuc/{category_danhmuc_id}','App\Http\Controllers\CategoryDanhMuc@edit_category_danhmuc');
+Route::get('/delete-category-danhmuc/{category_danhmuc_id}','App\Http\Controllers\CategoryDanhMuc@delete_category_danhmuc');
+Route::get('/all-category-danhmuc','App\Http\Controllers\CategoryDanhMuc@all_category_danhmuc');
 
-// Route::get('/unactive-category-danhmuc/{category_danhmuc_id}','App\Http\Controllers\CategoryDanhMuc@unactive_category_danhmuc');
-// Route::get('/active-category-danhmuc/{category_danhmuc_id}','App\Http\Controllers\CategoryDanhMuc@active_category_danhmuc');
+Route::get('/unactive-category-danhmuc/{category_danhmuc_id}','App\Http\Controllers\CategoryDanhMuc@unactive_category_danhmuc');
+Route::get('/active-category-danhmuc/{category_danhmuc_id}','App\Http\Controllers\CategoryDanhMuc@active_category_danhmuc');
 
-// Route::post('/save-category-danhmuc','App\Http\Controllers\CategoryDanhMuc@save_category_danhmuc'); 
-// Route::post('/update-category-danhmuc/{category_danhmuc_id}','App\Http\Controllers\CategoryDanhMuc@update_category_danhmuc'); 
+Route::post('/save-category-danhmuc','App\Http\Controllers\CategoryDanhMuc@save_category_danhmuc'); 
+Route::post('/update-category-danhmuc/{category_danhmuc_id}','App\Http\Controllers\CategoryDanhMuc@update_category_danhmuc'); 
 

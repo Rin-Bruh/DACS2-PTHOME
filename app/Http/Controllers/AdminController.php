@@ -17,24 +17,26 @@ class AdminController extends Controller
     public function show_dashboard(){
         return view('admin.dashboard');
     }
-    // public function dashboard(Request $request){
-    //     $admin_email = $request->admin_email;
-    //     $admin_password = md5($request->admin_password);
+    public function dashboard(Request $request){
+        $admin_email = $request->Email;
+        $admin_password = md5($request->Matkhau);
 
-    //     $result=  DB::table('tbl_admin')->where('admin_email',$admin_email)->where('admin_password',$admin_password)->first();
-    //     // return view('admin.dashboard');
-    //     if($result){
-    //         Session::put('admin_name',$result->admin_name);
-    //         Session::put('admin_id',$result->admin_id);
-    //         return Redirect::to('/dashboard');
-    //     }else{
-    //         Session::put('message','Tài khoản hoặc mật khẩu không đúng');
-    //         return Redirect::to('/admin');
-    //     }
-    // }
-    // public function logout(){
-    //     Session::put('admin_name',null);
-    //     Session::put('admin_id',null);
-    //     return Redirect::to('/admin');
-    // }
+        $result=  DB::table('nguoidung')->where('Email',$admin_email)->where('Matkhau',$admin_password)->first();
+        // return view('admin.dashboard');
+        if($result){
+            Session::put('Hoten',$result->Hoten);
+            Session::put('Anh',$result->Anh);
+            Session::put('Manguoidung',$result->Manguoidung);
+            return Redirect::to('/dashboard');
+        }else{
+            Session::put('message','Tài khoản hoặc mật khẩu không đúng');
+            return Redirect::to('/admin');
+        }
+    }
+    public function logout(){
+        Session::put('Hoten',null);
+        Session::put('Anh',null);
+        Session::put('Manguoidung',null);
+        return Redirect::to('/admin');
+    }
 }
