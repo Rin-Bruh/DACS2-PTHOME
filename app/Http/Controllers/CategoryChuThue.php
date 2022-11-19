@@ -117,6 +117,7 @@ class CategoryChuThue extends Controller
         return Redirect::to('edit-chutro-info/'.$chutro_info_id);
         }
     }
+    // -----------begin khu-------------------------------
     public function all_khu(){
         $id = Session::get('Manguoidung');
         
@@ -135,7 +136,6 @@ class CategoryChuThue extends Controller
     public function save_khu(Request $request){
         $data = array();
         $textData = "K";
-        // $get_khu_id = $request->input('khu_id', $textData);;
         if($textData){
             $khu_id = $textData.rand(0,99999);
             $data['Makhu'] = $khu_id;
@@ -191,63 +191,68 @@ class CategoryChuThue extends Controller
         Session::flash('success','Xóa thành công');
         return Redirect::to('all-khu');
     }
+    // end khu
+
+    // --------------begin phong cho thuê-----------------------------------
     public function all_phongct($khupt_id){
-        // $id = Session::get('khu_id');
         $result=  DB::table('khu')->where('Makhu',$khupt_id)->first();
         if($result){    
             Session::put('Makhu',$result->Makhu);
-        }
-        
+        }     
+        $details_nguoidung = DB::table('nguoidung')->join('khu','nguoidung.Manguoidung','=','khu.Machuthue')->where('khu.Makhu',$khupt_id)->first();
+        if($details_nguoidung){    
+            Session::put('Manguoidung',$details_nguoidung->Manguoidung);
+        } 
         $all_phongct = DB::table('phongthue')->join('danhmuc','phongthue.Madanhmuc','=','danhmuc.Madanhmuc')->where('phongthue.Makhu',$khupt_id )->orderby('phongthue.Maphongthue','desc')->get();
         
         $manage_phongct = view('chuthue.all_phongct')->with('all_phongct',$all_phongct);
         return view('chutro_layout')->with('all_phongct',$manage_phongct);
     }
-    public function add_category_phongct(){
-        // $result=  DB::table('tbl_category_khu')->where('khu_id',$khupt_id)->first();
-        // if($result){
-        //     Session::put('khu_id',$result->khu_id);
-        // }
+    public function add_phongct(){
         $cate_phong = DB::table('danhmuc')->orderby('Madanhmuc','asc')->get();
         
         return view('chuthue.add_phongct')->with('cate_phong',$cate_phong);
     }
-    // public function save_category_phongct(Request $request){
-    //     $data = array();
-    //     $textData = "P";
-    //     $get_phongct_id = $request->input('category_phongct_id', $textData);;
-    //     if($get_phongct_id){
-    //         $name_phongct = $get_phongct_id.rand(0,99999);
-    //         $data['phong_id'] = $name_phongct;
-    //     }
-    //     $data['category_tieude'] = $request->phongct_tieude;
-    //     $data['nane_phongct'] = $request->phongct_name;
-    //     $data['category_desc'] = $request->phongct_desc;
-    //     $data['category_price'] = $request->phongct_price;
-    //     $data['category_area'] = $request->phongct_area;
-    //     $data['category_iddanhmuc'] = $request->phong_cate;
-    //     $data['category_limitpeople'] = $request->phongct_limitpeople;
-    //     $data['category_idkhu'] = $request->khu_id;
-    //     $data['category_sharedroom'] = '';
-    //     $data['category_presentpeople'] = '';
-    //     $data['category_idrenter'] = '';
-    //     $data['category_status'] = '1';
-    //     $get_image = $request->file('category_image');
-    //     if($get_image){
-    //         $get_name_image = $get_image->getClientOriginalName();
-    //         $name_image = current(explode('.',$get_name_image));
-    //         $new_image = $name_image.rand(0,99).'.'.$get_image->getClientOriginalExtension();
-    //         $get_image->move('public/uploads/phongct',$new_image);
-    //         $data['image_phongct'] = $new_image;
-    //         DB::table('tbl_category_phongct')->insert($data);
-    //     Session::flash('success','Thêm '. $data['nane_phongct'] .' thành công!');
-    //     return Redirect::to('add-category-phongct');
-    //     }
-    //     $data['category_image'] = '';
-    //     DB::table('tbl_category_phongct')->insert($data);
-    //     Session::flash('success', 'Thêm '. $data['category_name'] .' thành công!');
-    //     return Redirect::to('add-category-phongct');
-    // }
+    public function save_phongct(Request $request){
+        $data = array();
+        $get_phongct_id = "P";
+        if($get_phongct_id){
+            $id_phongct = $get_phongct_id.rand(0,99999);
+            $data['Maphongthue'] = $id_phongct;
+        }
+        $data['Tieude'] = $request->Tieude;
+        $data['Tenphong'] = $request->Tenphong;
+        $data['Mota'] = $request->Mota;
+        $data['Gia'] = $request->Gia;
+        $data['Dientich'] = $request->Dientich;
+        $data['Madanhmuc'] = $request->Madanhmucp;
+        $data['Gioihannguoi'] = $request->Gioihannguoi;
+        $data['Makhu'] = $request->Makhu;
+        // $data['Manguoidung'] = $request->Manguoidung;
+        $data['Dangchiase'] = 1;
+        $data['Songuoihientai'] = '1';
+        $data['Trangthai'] = '1';
+        $get_image = $request->file('Anh');
+        if($get_image){
+            $get_name_image = $get_image->getClientOriginalName();
+            $name_image = current(explode('.',$get_name_image));
+            $new_image = $name_image.rand(0,99).'.'.$get_image->getClientOriginalExtension();
+            $get_image->move('public/uploads/phongct',$new_image);
+            $data['Anh'] = $new_image;
+            DB::table('phongthue')->insert($data);
+        Session::flash('success','Thêm '. $data['Tenphong'] .' thành công!');
+        return Redirect::to('add-phongct');
+        }
+        $data['Anh'] = '';
+        DB::table('phongthue')->insert($data);
+        Session::flash('success', 'Thêm '. $data['Tenphong'] .' thành công!');
+        return Redirect::to('add-phongct');
+    }
+    public function delete_phongct($phongct_id){
+        DB::table('phongthue')->where('Maphongthue',$phongct_id)->delete();
+        Session::flash('success','Xóa thành công');
+        return Redirect::to('all-phongct');
+    }
     // //End Function Admin Page
 
 
