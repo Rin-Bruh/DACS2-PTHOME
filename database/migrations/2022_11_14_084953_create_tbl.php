@@ -12,7 +12,9 @@ return new class extends Migration
      * @return void
      */
     public function up()
-    {
+    {   
+
+
         // Create a new migration
         Schema::create('Nguoidung', function (Blueprint $tbl){
             
