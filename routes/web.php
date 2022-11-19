@@ -55,10 +55,10 @@ Route::get('/delete-khu/{khu_id}','App\Http\Controllers\CategoryChuThue@delete_k
 
 Route::get('/all-phongct/{khupt_id}','App\Http\Controllers\CategoryChuThue@all_phongct');
 Route::get('/add-phongct','App\Http\Controllers\CategoryChuThue@add_phongct');
-// Route::post('/save-category-phongct','App\Http\Controllers\CategoryChuTro@save_category_phongct');
-// Route::get('/edit-category-phongct/{category_phongct_id}','App\Http\Controllers\CategoryChuTro@edit_category_phongct');
-// Route::post('/update-category-phongct/{category_phongct_id}','App\Http\Controllers\CategoryChuTro@update_category_phongct');
-// Route::get('/delete-category-phongct/{category_phongct_id}','App\Http\Controllers\CategoryChuTro@delete_category_phongct');
+Route::post('/save-phongct','App\Http\Controllers\CategoryChuThue@save_phongct');
+Route::get('/edit-phongct/{phongct_id}','App\Http\Controllers\CategoryChuThue@edit_phongct');
+Route::post('/update-phongct/{phongct_id}','App\Http\Controllers\CategoryChuThue@update_phongct');
+Route::get('/delete-phongct/{phongct_id}','App\Http\Controllers\CategoryChuThue@delete_phongct');
 
 
 
