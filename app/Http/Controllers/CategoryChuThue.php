@@ -248,6 +248,37 @@ class CategoryChuThue extends Controller
         Session::flash('success', 'Thêm '. $data['Tenphong'] .' thành công!');
         return Redirect::to('add-phongct');
     }
+    public function edit_phongct($phongct_id){
+        $edit_phongct = DB::table('phongthue')->where('Maphongthue',$phongct_id)->get(); 
+
+        $manage_phongct = view('chuthue.edit_phongct')->with('edit_phongct',$edit_phongct);
+        
+        return view('chutro_layout')->with('edit_phongct',$manage_phongct);
+    }
+    public function update_phongct(Request $request, $phongct_id){
+        $data = array();
+        $data['Tieude'] = $request->Tieude;
+        $data['Tenphong'] = $request->Tenphong;
+        $data['Mota'] = $request->Mota;
+        $data['Gia'] = $request->Gia;
+        $data['Dientich'] = $request->Dientich;
+        $data['Madanhmuc'] = $request->Madanhmucp;
+        $data['Gioihannguoi'] = $request->Gioihannguoi;
+        $get_image = $request->file('Anh');
+        if($get_image){
+            $get_name_image = $get_image->getClientOriginalName();
+            $name_image = current(explode('.',$get_name_image));
+            $new_image = $name_image.'.'.$get_image->getClientOriginalExtension();
+            $get_image->move('public/uploads/phongct',$new_image);
+            $data['Anh'] = $new_image;
+        DB::table('phongthue')->where('Maphongthue',$phongct_id)->update($data);
+        Session::flash('success','Cập nhật thành công');
+        return Redirect::to('edit-phongct/'.$phongct_id);
+        }
+        DB::table('phongthue')->where('Maphongthue',$phongct_id)->update($data);
+        Session::flash('success','Cập nhật thành công');
+        return Redirect::to('edit-phongct/'.$phongct_id);
+    }
     public function delete_phongct($phongct_id){
         DB::table('phongthue')->where('Maphongthue',$phongct_id)->delete();
         Session::flash('success','Xóa thành công');
