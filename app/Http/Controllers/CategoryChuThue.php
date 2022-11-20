@@ -287,33 +287,5 @@ class CategoryChuThue extends Controller
     // //End Function Admin Page
 
 
-    // public function show_category_home($category_id){
-
-    //     $cate_phong = DB::table('tbl_category_danhmuc')->where('category_status','1')->orderby('category_id','asc')->get();
-
-    //     $category_by_id = DB::table('tbl_category_phongct')->join('tbl_category_danhmuc','tbl_category_danhmuc.category_id','=','tbl_category_phongct.category_iddanhmuc')->where('tbl_category_phongct.category_iddanhmuc',$category_id)->get();
-
-    //     $category_name = DB::table('tbl_category_danhmuc')->where('tbl_category_danhmuc.category_id',$category_id)->limit(1)->get();
-
-    //     return view('pages.category.show_category')->with('category',$cate_phong)->with('category_by_id',$category_by_id)->with('category_name',$category_name);  
-    // }
-    // public function details_phongtro($phongtro_id){
-    //     $details_phongct = DB::table('tbl_category_phongct')->join('tbl_category_danhmuc','tbl_category_phongct.category_iddanhmuc','=','tbl_category_danhmuc.category_id')->where('tbl_category_phongct.phong_id',$phongtro_id)->get();
-
-    //     $details_khu = DB::table('tbl_category_khu')->join('tbl_category_phongct','tbl_category_khu.khu_id','=','tbl_category_phongct.category_idkhu')->where('tbl_category_phongct.phong_id',$phongtro_id)->get();
-
-    //     foreach($details_khu as $key  => $khu){
-    //         $khu_id = $khu->khu_id;
-    //     }
-
-    //     $details_chutro = DB::table('tbl_chutro')->join('tbl_category_khu','tbl_chutro.chutro_id','=','tbl_category_khu.chutro_id')->where('tbl_category_khu.khu_id',$khu_id)->get();
-
-    //     foreach($details_phongct as $key  => $value){
-    //         $category_id = $value->category_id;
-    //     }
-
-    //     $related_phongct = DB::table('tbl_category_phongct')->join('tbl_category_danhmuc','tbl_category_phongct.category_iddanhmuc','=','tbl_category_danhmuc.category_id')->where('tbl_category_danhmuc.category_id',$category_id)->whereNotIn('tbl_category_phongct.phong_id',[$phongtro_id])->get();
-
-    //     return view('pages.phongct.show_details')->with('phongct_details',$details_phongct)->with('relate',$related_phongct)->with('chutro_details', $details_chutro);
-    // }
+  
 }

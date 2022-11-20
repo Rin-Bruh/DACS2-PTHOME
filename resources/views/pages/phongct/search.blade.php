@@ -32,19 +32,22 @@
                                 @foreach($search_phong as $key => $phong)
                                 <div class="col-sm-6 col-md-4 p0">
                                     <div class="box-two proerty-item">
-                                        <div class="item-thumb selectProduct"  data-title="{{($phong->phong_id)}}" data-id="{{($phong->phong_id)}}" data-size="{{($phong->category_area).' '.'m²'}}" data-weight="Có" data-processor="{{($phong->category_desc)}}" data-battery="{{ number_format($phong->category_price).' '.'đ'}}" data-address="Núi Thành,
+                                        <div class="item-thumb selectProduct"  data-title="{{($phong->Maphongthue)}}" data-id="{{($phong->Maphongthue)}}" data-size="{{($phong->Dientich).' '.'m²'}}" data-weight="Có" data-processor="{{($phong->Mota)}}" data-battery="{{ number_format($phong->Gia).' '.'đ'}}" data-address="Núi Thành,
                                         Hòa Cường Nam, Hải Châu, Đà Nẵng" data-danhgia="⭐⭐⭐⭐⭐">
                                             <a class="w3-btn-floating w3-light-grey addButtonCircular addToCompare">+</a>
-                                            <a href="{{URL::to('/chi-tiet-phong-tro/'.$phong->phong_id)}}" ><img src="{{URL::to('/public/uploads/phongct/'.$phong->image_phongct)}}" class="imgFill productImg"></a>
+                                            <a href="{{URL::to('/chi-tiet-phong-tro/'.$phong->Maphongthue)}}" ><img src="{{URL::to('/public/uploads/phongct/'.$phong->Anh)}}" class="imgFill productImg"></a>
                                         </div>
 
                                         <div class="item-entry overflow">
-                                            <div class="selectProduct w3-padding" data-title="{{($phong->phong_id)}}" data-id="{{($phong->phong_id)}}" data-size="{{($phong->category_area).' '.'m²'}}" data-weight="Có" data-processor="{{($phong->category_desc)}}" data-battery="{{ number_format($phong->category_price).' '.'đ'}}" data-address="Núi Thành, Hòa Cường Nam, Hải Châu, Đà Nẵng" >
-                                            <h5 style="text-transform: none; text-align: justify;"><a href="{{URL::to('/chi-tiet-phong-tro/'.$phong->phong_id)}}"> {{($phong->category_tieude)}} </a></h5>
+                                            <div class="selectProduct w3-padding" data-title="{{($phong->Maphongthue)}}" data-id="{{($phong->Maphongthue)}}" data-size="{{($phong->Dientich).' '.'m²'}}" data-weight="Có" data-processor="{{($phong->Mota)}}" data-battery="{{ number_format($phong->Gia).' '.'đ'}}" data-address="Núi Thành, Hòa Cường Nam, Hải Châu, Đà Nẵng" >
+                                            <h5 style="text-transform: none; text-align: justify; display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;"><a href="{{URL::to('/chi-tiet-phong-tro/'.$phong->Maphongthue)}}"> {{($phong->Tieude)}} </a></h5>
                                             <div class="dot-hr"></div>
-                                            <span class="pull-left"><b> Diện tích :</b>  {{($phong->category_area).' '.'m²'}} </span>
-                                            <span class="proerty-price pull-right"> {{ number_format($phong->category_price).' '.'đ'}}</span>
-                                            <p style="display: none;">{{($phong->category_desc)}}</p>
+                                            <span class="pull-left"><b> Diện tích :</b>  {{($phong->Dientich).' '.'m²'}} </span>
+                                            <span class="proerty-price pull-right"> {{ number_format($phong->Gia).' '.'đ'}}</span>
+                                            <p style="display: none;">{{($phong->Mota)}}</p>
                                             </div>
                                         </div>
                                     </div>                               
@@ -146,7 +149,7 @@
                                                 @foreach($category as $key => $cate)
                                                 <div class="col-xs-12"> 
                                                     <div class="checkbox"> 
-                                                        <label><a href="{{URL::to('/danh-muc-phong-tro/'.$cate->category_id)}}">{{$cate->category_name}}</a></label>
+                                                        <label><a href="{{URL::to('/danh-muc-phong-tro/'.$cate->Madanhmuc)}}">{{$cate->Tendanhmuc}}</a></label>
                                                     </div>
                                                 </div>  
                                                 @endforeach

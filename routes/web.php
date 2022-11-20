@@ -23,15 +23,15 @@ use App\Http\Controllers\CategoryDanhMuc;
 
 Route::get('/', [HomeController::class,'index']);
 Route::get('/home',[HomeController::class,'index']);
-// Route::get('/properties',[HomeController::class,'properties']);
-// Route::post('/search',[HomeController::class,'search');
+Route::get('/properties',[HomeController::class,'properties']);
+Route::post('/search',[HomeController::class,'search']);
 
 Route::get('/loginkh',[HomeController::class,'loginkh']);
 Route::get('/loginct',[HomeController::class,'loginct']);
 
 //Danh mục 
-// Route::get('/danh-muc-phong-tro/{category_id}',[CategoryChuTro::class,'show_category_home']);
-// Route::get('/chi-tiet-phong-tro/{phongtro_id}',[CategoryChuTro::class,'details_phongtro']);
+Route::get('/danh-muc-phong-tro/{category_id}',[HomeController::class,'show_category_home']);
+Route::get('/chi-tiet-phong-tro/{phongtro_id}',[HomeController::class,'details_phongtro']);
 
 //khachhang
 Route::get('/khachhang-quan-ly',[CategoryKhachHang::class,'show_quanly']);

@@ -31,8 +31,8 @@
                                     </div> 
 
                                     <ul id="image-gallery" class="gallery list-unstyled cS-hidden">
-                                        <li data-thumb="{{URL::to('public/uploads/phongct/'.$value->image_phongct)}}"> 
-                                            <img src="{{URL::to('public/uploads/phongct/'.$value->image_phongct)}}" />
+                                        <li data-thumb="{{URL::to('public/uploads/phongct/'.$value->Anh)}}"> 
+                                            <img src="{{URL::to('public/uploads/phongct/'.$value->Anh)}}" />
                                         </li>
                                         <li data-thumb="{{URL::to('public/frontend/images/properties-img-0-2.jpg')}}"> 
                                             <img src="{{URL::to('public/frontend/images/properties-img-0-2.jpg')}}" />
@@ -50,8 +50,8 @@
 
                         <div class="single-property-wrapper">
                             <div class="single-property-header">                                          
-                                <h1 class="property-title pull-left">{{$value->category_tieude}}</h1>
-                                <span class="property-price">{{ number_format($value->category_price).' '.'đ'}}</span>
+                                <h1 class="property-title pull-left">{{$value->Tieude}}</h1>
+                                <span class="property-price">{{ number_format($value->Gia).' '.'đ'}}</span>
                             </div>
 
                             <div class="property-meta entry-meta clearfix ">   
@@ -75,7 +75,7 @@
                             <div class="section">
                                 <h4 class="s-property-title">Mô tả</h4>
                                 <div class="s-property-content">
-                                    <p>{{$value->category_desc}}</p>
+                                    <p>{{$value->Mota}}</p>
                                 </div>
                             </div>
                             <!-- End description area  -->
@@ -87,31 +87,31 @@
                                 <ul class="additional-details-list clearfix">
                                     <li>
                                         <span class="col-xs-6 col-sm-4 col-md-4 add-d-title">Mã phòng</span>
-                                        <span class="col-xs-6 col-sm-8 col-md-8 add-d-entry">{{$value->phong_id}}</span>
+                                        <span class="col-xs-6 col-sm-8 col-md-8 add-d-entry">{{$value->Maphongthue}}</span>
                                     </li>
 
                                     <li>
                                         <span class="col-xs-6 col-sm-4 col-md-4 add-d-title">Tên phòng</span>
-                                        <span class="col-xs-6 col-sm-8 col-md-8 add-d-entry">{{$value->nane_phongct}}</span>
+                                        <span class="col-xs-6 col-sm-8 col-md-8 add-d-entry">{{$value->Tenphong}}</span>
                                     </li>
                                     <li>
                                         <span class="col-xs-6 col-sm-4 col-md-4 add-d-title">Diện tích</span>
-                                        <span class="col-xs-6 col-sm-8 col-md-8 add-d-entry">{{($value->category_area).' '.'m²'}}</span>
+                                        <span class="col-xs-6 col-sm-8 col-md-8 add-d-entry">{{($value->Dientich).' '.'m²'}}</span>
                                     </li>
 
                                     <li>
                                         <span class="col-xs-6 col-sm-4 col-md-4 add-d-title">Giá thuê</span>
-                                        <span class="col-xs-6 col-sm-8 col-md-8 add-d-entry">{{ number_format($value->category_price).' '.'đ'}}</span>
+                                        <span class="col-xs-6 col-sm-8 col-md-8 add-d-entry">{{ number_format($value->Gia).' '.'đ'}}</span>
                                     </li>
 
                                     <li>
                                         <span class="col-xs-6 col-sm-4 col-md-4 add-d-title">Giới hạn người</span>
-                                        <span class="col-xs-6 col-sm-8 col-md-8 add-d-entry">{{($value->category_limitpeople).' '.'người'}}</span>
+                                        <span class="col-xs-6 col-sm-8 col-md-8 add-d-entry">{{($value->Gioihannguoi).' '.'người'}}</span>
                                     </li>
 
                                     <li>
                                         <span class="col-xs-6 col-sm-4 col-md-4 add-d-title">Danh mục</span>
-                                        <span class="col-xs-6 col-sm-8 col-md-8 add-d-entry">{{($value->category_name)}}</span>
+                                        <span class="col-xs-6 col-sm-8 col-md-8 add-d-entry">{{($value->Tendanhmuc)}}</span>
                                     </li> 
 
                                 </ul>
@@ -149,13 +149,13 @@
                                 @foreach($relate as $key => $lienquan)
                                 <div class="box-two proerty-item">
                                     <div class="item-thumb">
-                                        <a href="property-1.html" ><img src="{{URL::to('public/uploads/phongct/'.$lienquan->image_phongct)}}"></a>
+                                        <a href="{{URL::to('/chi-tiet-phong-tro/'.$lienquan->Maphongthue)}}" ><img src="{{URL::to('public/uploads/phongct/'.$lienquan->Anh)}}"></a>
                                     </div>
                                     <div class="item-entry overflow">
-                                        <h5><a href="property-1.html"> {{$lienquan->category_tieude}} </a></h5>
+                                        <h5><a href="{{URL::to('/chi-tiet-phong-tro/'.$lienquan->Maphongthue)}}"> {{$lienquan->Tieude}} </a></h5>
                                         <div class="dot-hr"></div>
-                                        <span class="pull-left"><b> Diện tích :</b> {{($lienquan->category_area).' '.'m²'}} </span>
-                                        <span class="proerty-price pull-right">{{ number_format($lienquan->category_price).' '.'đ'}}</span> 
+                                        <span class="pull-left"><b> Diện tích :</b> {{($lienquan->Dientich).' '.'m²'}} </span>
+                                        <span class="proerty-price pull-right">{{ number_format($lienquan->Gia).' '.'đ'}}</span> 
                                     </div>
                                 </div> 
                                 @endforeach
@@ -178,12 +178,12 @@
                                         <div class="clear">
                                             <div class="col-xs-4 col-sm-4 dealer-face">
                                                 <a href="#">
-                                                    <img src="{{URL::to('public/uploads/chutro/'.$ttchutro->category_image)}}" class="img-circle">
+                                                    <img src="{{URL::to('public/uploads/chutro/'.$ttchutro->Anh)}}" class="img-circle">
                                                 </a>
                                             </div>
                                             <div class="col-xs-8 col-sm-8 ">
                                                 <h3 class="dealer-name">
-                                                    <a href="">{{$ttchutro->chutro_name}}</span>        
+                                                    <a href="">{{$ttchutro->Hoten}}</span>        
                                                 </h3>
                                                 <div class="dealer-social-media">
                                                     <a class="twitter" target="_blank" href="">
@@ -209,8 +209,8 @@
                                         <div class="clear">
                                             <ul class="dealer-contacts">                                       
                                                 <li><i class="pe-7s-map-marker strong"> </i> </li>
-                                                <li><i class="pe-7s-mail strong"> </i> {{$ttchutro->chutro_email}}</li>
-                                                <li><i class="pe-7s-call strong"> </i> {{$ttchutro->chutro_phone}}</li>
+                                                <li><i class="pe-7s-mail strong"> </i> {{$ttchutro->Email}}</li>
+                                                <li><i class="pe-7s-call strong"> </i> {{$ttchutro->SDT}}</li>
                                             </ul>
                                             <!-- <p>Duis mollis  blandit tempus porttitor curabiturDuis mollis  blandit tempus porttitor curabitur , est non…</p> -->
                                         </div>

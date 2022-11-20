@@ -209,7 +209,21 @@
 
                 <div class="row">
                     <div class="proerty-th">
-                    
+                    @foreach($all_phong as $key => $phong)
+                        <div class="col-sm-6 col-md-3 p0">
+                            <div class="box-two proerty-item">
+                                <div class="item-thumb">
+                                    <a href="{{URL::to('/chi-tiet-phong-tro/'.$phong->Maphongthue)}}" ><img src="{{URL::to('/public/uploads/phongct/'.$phong->Anh)}}"></a>
+                                </div>
+                                <div class="item-entry overflow">
+                                    <h5><a href="{{URL::to('/chi-tiet-phong-tro/'.$phong->Maphongthue)}}" >{{($phong->Tieude)}} </a></h5>
+                                    <div class="dot-hr"></div>
+                                    <span class="pull-left"><b>Diện tích :</b> {{($phong->Dientich).' '.'m²'}} </span>
+                                    <span class="proerty-price pull-right">{{ number_format($phong->Gia).' '.'đ'}}</span>
+                                </div>
+                            </div>
+                        </div>
+                        @endforeach    
 
                         
 
