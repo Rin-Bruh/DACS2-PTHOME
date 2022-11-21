@@ -11,17 +11,27 @@ session_start();
 
 class AdminController extends Controller
 {
+    public function AuthLogin(){
+        $id_nguoidung = Session::get('Manguoidung');
+        if($id_nguoidung){
+            return Redirect::to('dashboard');
+        } else {
+            return Redirect::to('admin')->send();
+        }
+    }
     public function index(){
         return view('admin_login');
     }
     public function show_dashboard(){
+        $this->AuthLogin();
         return view('admin.dashboard');
     }
     public function dashboard(Request $request){
         $admin_email = $request->Email;
         $admin_password = md5($request->Matkhau);
+        $vaitro_id = 'AD';
 
-        $result=  DB::table('nguoidung')->where('Email',$admin_email)->where('Matkhau',$admin_password)->first();
+        $result=  DB::table('nguoidung')->where('Email',$admin_email)->where('Matkhau',$admin_password)->where('Mavaitro',$vaitro_id)->first();
         // return view('admin.dashboard');
         if($result){
             Session::put('Hoten',$result->Hoten);
@@ -29,11 +39,12 @@ class AdminController extends Controller
             Session::put('Manguoidung',$result->Manguoidung);
             return Redirect::to('/dashboard');
         }else{
-            Session::put('message','Tài khoản hoặc mật khẩu không đúng');
+            Session::flash('error','Tài khoản hoặc mật khẩu không đúng');
             return Redirect::to('/admin');
         }
     }
     public function logout(){
+        $this->AuthLogin();
         Session::put('Hoten',null);
         Session::put('Anh',null);
         Session::put('Manguoidung',null);

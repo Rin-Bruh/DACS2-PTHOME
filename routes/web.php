@@ -19,7 +19,9 @@ use App\Http\Controllers\CategoryDanhMuc;
 |
 */
 
-
+Route::get('/', function () {
+    abort(404);
+});
 
 Route::get('/', [HomeController::class,'index']);
 Route::get('/home',[HomeController::class,'index']);

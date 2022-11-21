@@ -123,7 +123,12 @@
               <!-- /Logo -->
               <h4 class="mb-2">Chào mừng đến PTHome! 👋</h4>
               <!-- <p class="mb-4">Please sign-in to your account and start the adventure</p> -->
- 
+              @if ( Session::has('error') )
+              <div class="alert alert-danger alert-dismissible" role="alert">
+              <strong>{{ Session::get('error') }}</strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                      </div>
+                      @endif        
               <form id="formAuthentication" class="mb-3" action="{{URL::to('/admin-dashboard')}}" method="post">
                 {{ csrf_field() }}
                 <div class="mb-3">
