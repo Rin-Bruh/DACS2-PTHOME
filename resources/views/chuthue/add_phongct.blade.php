@@ -69,6 +69,9 @@
                                         placeholder="Nhập giá thuê phòng"
                                         aria-describedby="defaultFormControlHelp"
                                         />
+                                        <div id="defaultFormControlHelp" class="form-text">
+                                        Nhập đầy đủ số, ví dụ 1 triệu thì nhập là 1000000
+                                        </div>
                                         </div>
                                         <div class="mb-3">
                                         <label for="defaultFormControlInput" class="form-label">Diện tích</label>
@@ -113,18 +116,14 @@
                                         <div class="mb-3">
                                         <?php
                                         $id = Session::get('Makhu');
-                                        if($id){
-                                          echo $id;
-                                        }
+                                        
                                         ?>
                                         <input type="hidden" name="Makhu" value="<?php echo $id; ?>" >
                                         </div>
                                         <!-- <div class="mb-3">
                                         <?php
                                         $idnn = Session::get('Manguoidung');
-                                        if($idnn){
-                                          echo $idnn;
-                                        }
+                                        
                                         ?>
                                         <input type="hidden" name="Manguoidung" value="<?php echo $idnn; ?>" >
                                         </div> -->

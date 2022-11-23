@@ -25,7 +25,8 @@ class CategoryKhachHang extends Controller
         $khachhang_email = $request->khachhang_email;
         $khachhang_password = ($request->khachhang_password);
 
-        $result=  DB::table('nguoidung')->where('Email',$khachhang_email)->where('Matkhau',$khachhang_password)->first();
+        $vaitro_id = 'KH';
+        $result=  DB::table('nguoidung')->where('Email',$khachhang_email)->where('Matkhau',$khachhang_password)->where('Mavaitro',$vaitro_id)->first();
         
         if($result){
             Session::put('Hoten',$result->Hoten);

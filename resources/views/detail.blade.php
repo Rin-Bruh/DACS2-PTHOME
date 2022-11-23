@@ -89,32 +89,44 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse yamm" id="navigation">
                     <div class="button navbar-right">
-                        <!-- <a class="btn-group nav-button wow bounceInRight login" href="{{URL::to('/login')}}" data-wow-delay="0.45s">Đăng nhập</a> -->
-                        <div class="btn-group">
-                        <button type="button" class="navbar-btn nav-button wow bounceInRight dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-weight: bold">
-                        Đăng nhập <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a href="{{URL::to('/loginkh')}}">Khách hàng</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="{{URL::to('/loginct')}}">Chủ cho thuê</a></li>
-                        </ul>
-                        </div>
-                        <!-- <button class="navbar-btn nav-button wow fadeInRight" onclick=" window.open('submit-property.html')" data-wow-delay="0.48s">Submit</button> -->
-                        <!-- Single button -->
-                        <div class="btn-group">
-                        <button type="button" class="navbar-btn nav-button wow bounceInRight dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-weight: bold">
-                            Đăng kí <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a href="{{URL::to('/registerkh')}}">Khách hàng</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="{{URL::to('/registerct')}}">Chủ cho thuê</a></li>
-                            <!-- <li><a href="#">Something else here</a></li> -->
-                            <!-- <li role="separator" class="divider"></li>
-                            <li><a href="#">Separated link</a></li> -->
-                        </ul>
-                        </div>
+                                        <?php
+                                        $khachhang_id = Session::get('Manguoidung'); 
+                                        
+                                        if($khachhang_id!=NULL){
+                                            ?>  
+                                         <a type="button" class="btn nav-button wow bounceInRight" aria-haspopup="true" aria-expanded="false" style="font-weight: bold" role="button">
+                                         Đăng xuất
+                                        </a>  
+                                        <?php
+                                            }else{
+                                        ?>
+                                        <div class="btn-group">
+                                        <button type="button" class="navbar-btn nav-button wow bounceInRight dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-weight: bold">
+                                        Đăng nhập <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="{{URL::to('/loginkh')}}">Khách hàng</a></li>
+                                            <li role="separator" class="divider"></li>
+                                            <li><a href="{{URL::to('/loginct')}}">Chủ cho thuê</a></li>
+                                        </ul>
+                                        </div>
+                                        
+                                        <!-- Single button -->
+                                        <div class="btn-group">
+                                        <button type="button" class="navbar-btn nav-button wow bounceInRight dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-weight: bold">
+                                            Đăng kí <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="{{URL::to('/registerkh')}}">Khách hàng</a></li>
+                                            <li role="separator" class="divider"></li>
+                                            <li><a href="{{URL::to('/registerct')}}">Chủ cho thuê</a></li>
+                                           
+                                        </ul>
+                                        </div>
+                                        
+                                        <?php
+                                            }
+                                        ?>
                     </div>
                     <ul class="main-nav nav navbar-nav navbar-right">
                     <li class="wow fadeInDown" data-wow-delay="0.2s">

@@ -17,7 +17,7 @@
                     <div class="card-body">
                       <h5 class="card-title">{{  $cate_pro->Tenkhu }}</h5>
                       <h6 class="card-subtitle text-muted">{{  $cate_pro->Diachi }}</h6>
-                      <img class="img-fluid d-flex mx-auto my-4" src="{{URL::to('public/uploads/khu/'.$cate_pro->Anh )}}" alt="Card image cap">
+                      <img class="img-fluid d-flex mx-auto my-4" style="height: 250px;" src="{{URL::to('public/uploads/khu/'.$cate_pro->Anh )}}" alt="Card image cap">
                       <a href="{{URL::to('/all-phongct/'.$cate_pro->Makhu)}}" class="btn btn-outline-success">Danh sách phòng cho thuê</a>
                       <a class="btn btn-outline-danger" href="{{URL::to('/delete-khu/'.$cate_pro->Makhu)}}"><i class="bx bx-trash me-1"></i> Xóa</a>
                     </div>

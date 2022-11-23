@@ -56,19 +56,31 @@
 
                             <div class="property-meta entry-meta clearfix ">   
 
-                                <!-- <div class="col-xs-6 col-sm-3 col-md-3 p-b-15">
-                                    <span class="property-info-icon icon-tag">                                        
-                                        <img src="assets/img/icon/sale-orange.png">
-                                    </span>
-                                    <span class="property-info-entry">
-                                        <span class="property-info-label">Status</span>
-                                        <span class="property-info-value">For Sale</span>
-                                    </span>
+                                <div class="col-xs-5 col-sm-12 col-md-6">
+                                    <div class="property-info-icon icon-tag col-sm-6">    
+                                        <?php
+                                        $khachhang_id = Session::get('Manguoidung'); 
+                                        if($khachhang_id!=NULL){
+                                            ?>  
+                                        <a class="btn btn-primary wow bounceInRight login" role="button" data-wow-delay="0.45s"  href="{{URL::to('/checkout/'.$value->Maphongthue)}}">Đăng kí phòng</a>
+                                        <?php
+                                            }else{
+                                        ?>
+                                        <a class="btn btn-primary wow bounceInRight login" role="button" data-wow-delay="0.45s"  href="{{URL::to('/login-checkout/'.$value->Maphongthue)}}">Đăng kí phòng</a>   
+                                        <?php
+                                            }
+                                        ?>
+                                        
+                                   
+                                    </div>
+                                    <div class="property-info-icon icon-tag col-sm-6">
+                                    <form action="{{URL::to('save-cart')}}" method="POST">
+                                            {{ csrf_field() }}
+                                        <input type="hidden" name="phongid_hidden" value="{{$value->Maphongthue}}">
+                                        <button type="submit" class="btn btn-primary wow bounceInRight login" data-wow-delay="0.45s">Yêu thích</button>
+                                        </form>
+                                    </div>      
                                 </div>
-
-                                -->
-
-
                             </div>
                             <!-- .property-meta -->
 
@@ -118,7 +130,7 @@
                             </div>  
                             <!-- End additional-details area  -->
 
-                            <div class="section property-features">      
+                            <!-- <div class="section property-features">      
 
                                 <h4 class="s-property-title">Features</h4>                            
                                 <ul>
@@ -131,16 +143,16 @@
                                 </ul>
 
                             </div>
-                            <!-- End features area  -->
+                            
 
                             <div class="section property-video"> 
                                 <h4 class="s-property-title">Property Video</h4> 
                                 <div class="video-thumb">
                                     <a class="video-popup" href="yout" title="Virtual Tour">
-                                        <!-- <img src="assets/img/property-video.jpg" class="img-responsive wp-post-image" alt="Exterior">             -->
+                                        <img src="assets/img/property-video.jpg" class="img-responsive wp-post-image" alt="Exterior">            
                                     </a>
                                 </div>
-                            </div>
+                            </div> -->
                             <!-- End video area  -->
                             <div class="similar-post-section padding-top-40">
                             <h4 class="s-property-title">Phòng thuê liên quan</h4>  
@@ -160,7 +172,7 @@
                                 </div> 
                                 @endforeach
                             </div>
-                        </div>
+                            </div>
                             
                         </div>
                     </div>

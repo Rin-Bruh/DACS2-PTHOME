@@ -90,3 +90,16 @@ Route::get('/active-category-danhmuc/{category_danhmuc_id}',[CategoryDanhMuc::cl
 
 Route::post('/save-category-danhmuc',[CategoryDanhMuc::class,'save_category_danhmuc']); 
 Route::post('/update-category-danhmuc/{category_danhmuc_id}',[CategoryDanhMuc::class,'update_category_danhmuc']); 
+
+// yeu thich
+// Route::post('/save-cart','App\Http\Controllers\CartController@save_cart');
+//checkout
+Route::get('/login-checkout/{maphong}','App\Http\Controllers\CheckoutController@login_checkout');
+// Route::get('/login-checkout',[CheckoutController::class,'login_checkout']);
+Route::get('/add-khachhang','App\Http\Controllers\CheckoutController@add_khachhang');
+Route::post('/dangnhap-checkout','App\Http\Controllers\CheckoutController@dangnhap_checkout');
+
+Route::post('/dangxuat-checkout','App\Http\Controllers\CheckoutController@dangxuat_checkout');
+Route::get('/checkout/{maphong}','App\Http\Controllers\CheckoutController@checkout');
+
+Route::post('/add-thongbao/{khachhang_id}','App\Http\Controllers\CheckoutController@add_thongbao');

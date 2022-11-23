@@ -61,7 +61,7 @@
 
         <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
           <div class="app-brand demo">
-            <a href="index.html" class="app-brand-link">
+            <a href="{{URL::to('/properties')}}" class="app-brand-link">
               <span class="app-brand-logo demo">
                 <svg
                   width="25"
@@ -147,11 +147,11 @@
                     <div data-i18n="Without menu">Thông tin người dùng</div>
                   </a>
                 </li>
-                <li class="menu-item">
+                <!-- <li class="menu-item">
                   <a href="{{URL::to('/all-category-danhmuc')}}" class="menu-link">
                     <div data-i18n="Without navbar">Phương thức thanh toán</div>
                   </a>
-                </li>
+                </li> -->
                 
               </ul>
             </li>
@@ -186,8 +186,11 @@
                 <div data-i18n="Boxicons">Vấn đề - Sự cố</div>
               </a>
             </li>
+            <?php
+                                    $id = Session::get('Maphongthue');
+                                ?>
             <li class="menu-item">
-              <a href="icons-boxicons.html" class="menu-link">
+              <a href="{{URL::to('/checkout/'.$id)}}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-crown"></i>
                 <div data-i18n="Boxicons">Khoản thanh toán</div>
               </a>

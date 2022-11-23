@@ -25,7 +25,8 @@ class CategoryChuThue extends Controller
         $chutro_email = $request->chutro_email;
         $chutro_password = ($request->chutro_password);
 
-        $result=  DB::table('nguoidung')->where('Email',$chutro_email)->where('Matkhau',$chutro_password)->first();
+        $vaitro_id = 'CT';
+        $result=  DB::table('nguoidung')->where('Email',$chutro_email)->where('Matkhau',$chutro_password)->where('Mavaitro',$vaitro_id)->first();
         
         if($result){
             Session::put('Hoten',$result->Hoten);
