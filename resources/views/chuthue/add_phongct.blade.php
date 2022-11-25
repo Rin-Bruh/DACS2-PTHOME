@@ -59,8 +59,9 @@
                                             <label for="exampleFormControlTextarea1" class="form-label">Mô tả</label>
                                             <textarea name="Mota" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                                         </div>
-                                        <div class="mb-3">
+                                        <div class="form-password-toggle">
                                         <label for="defaultFormControlInput" class="form-label">Giá thuê</label>
+                                        <div class="input-group">
                                         <input
                                         type="text"
                                         name="Gia"
@@ -69,12 +70,15 @@
                                         placeholder="Nhập giá thuê phòng"
                                         aria-describedby="defaultFormControlHelp"
                                         />
+                                        <span class="input-group-text" id="basic-addon13">đ</span>
+                                        </div>
                                         <div id="defaultFormControlHelp" class="form-text">
                                         Nhập đầy đủ số, ví dụ 1 triệu thì nhập là 1000000
                                         </div>
                                         </div>
-                                        <div class="mb-3">
+                                        <div class="form-password-toggle">
                                         <label for="defaultFormControlInput" class="form-label">Diện tích</label>
+                                        <div class="input-group">
                                         <input
                                         type="text"
                                         name="Dientich"
@@ -83,6 +87,8 @@
                                         placeholder="Nhập diện tích"
                                         aria-describedby="defaultFormControlHelp"
                                         />
+                                        <span class="input-group-text" id="basic-addon13">m²</span>
+                                        </div>
                                         </div>
                                         <div class="mb-3">
                                             <label for="exampleFormControlSelect1" class="form-label">Danh mục</label>
@@ -93,8 +99,9 @@
                                             
                                             </select>
                                         </div>
-                                        <div class="mb-3">
+                                        <div class="form-password-toggle">
                                         <label for="defaultFormControlInput" class="form-label">Giới hạn người</label>
+                                        <div class="input-group">
                                         <input
                                         type="text"
                                         name="Gioihannguoi"
@@ -103,6 +110,8 @@
                                         placeholder="Nhập giới hạn người"
                                         aria-describedby="defaultFormControlHelp"
                                         />
+                                        <span class="input-group-text" id="basic-addon13">người</span>
+                                        </div>
                                         </div>
                                       
                                         <div class="mb-3">

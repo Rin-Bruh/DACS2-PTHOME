@@ -131,7 +131,12 @@
             
 
             <!-- Layouts -->
-            
+            <li class="menu-item">
+              <a href="{{URL::to('/chutro-quan-ly')}}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-crown"></i>
+                <div data-i18n="Boxicons">Dashboard</div>
+              </a>
+            </li>
             <li class="menu-item">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-user me-2"></i>

@@ -94,7 +94,7 @@
                                         
                                         if($khachhang_id!=NULL){
                                             ?>  
-                                         <a type="button" class="btn nav-button wow bounceInRight" aria-haspopup="true" aria-expanded="false" style="font-weight: bold" role="button">
+                                         <a type="button" class="btn nav-button wow bounceInRight" aria-haspopup="true" aria-expanded="false" style="font-weight: bold" role="button" href="{{URL::to('/logoutkh')}}">
                                          Đăng xuất
                                         </a>  
                                         <?php

@@ -22,7 +22,7 @@
                                 <div class="card mb-4">
                                     <!-- <h5 class="card-header">Form Controls</h5> -->
                                     <div class="card-body">
-                                    <form action="{{URL::to('/add-thongbao/'.$edit_value->Manguoidung)}}" method="post" enctype="multipart/form-data">
+                                    <form action="{{URL::to('/add-checkout/'.$edit_value->Manguoidung)}}" method="post" enctype="multipart/form-data">
                                         {{ csrf_field() }}
                                         <div class="mb-3">
                                         @if ( Session::has('success') )
@@ -121,14 +121,24 @@
                                         />
                                         
                                         </div>
+                                        <div class="mb-3">
+                                        <label for="defaultFormControlInput" class="form-label">Ngày bắt đầu thuê</label>
+                                        <input
+                                        type="date"
+                                        name="Ngaybatdau"
+                                        class="form-control"
+                                        id="defaultFormControlInput"
+                                        aria-describedby="defaultFormControlHelp"
+                                        />
+                                        </div>
                                         <div>
                                             <label for="exampleFormControlTextarea1" class="form-label">Nội dung</label>
                                             <textarea name="Noidung" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                                         </div>
                                         <div class="mb-3">
                                           </div>
-                                        <button name="add_thongbao" type="submit" class="btn btn-outline-success">Đăng kí</button>
-                                        <a href="{{URL::to('/khachhang_layout')}}" class="btn btn-outline-danger">Hủy bỏ</a>
+                                        <button name="add_checkout" type="submit" class="btn btn-outline-success">Đăng kí</button>
+                                        <a href="{{URL::to('/all_checkout')}}" class="btn btn-outline-danger">Hủy bỏ</a>
                                     </form>
                                     </div>
                                 </div>

@@ -19,7 +19,12 @@ class CategoryChuThue extends Controller
         return view('pages.register_login.registerct');
     }
     public function show_quanly(){
-        return view('chutro_layout');
+       
+        $num = 1;
+        $thongbao_info = DB::table('thongbao')->join('loaithongbao','thongbao.Loaithongbao','=','loaithongbao.Maloaithongbao')->join('thongbaocho','thongbao.Mathongbao','=','thongbaocho.Mathongbao')->where('thongbaocho.Trangthai',$num)->orderby('thongbao.Thoigian','desc')->get();
+        $thongbao = view('chuthue.dashboard')->with('thongbao_info', $thongbao_info);
+        return view('chutro_layout')->with('thongbao_info',$thongbao);
+
     }
     public function quanly(Request $request){
         $chutro_email = $request->chutro_email;

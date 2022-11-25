@@ -42,6 +42,8 @@ class CategoryKhachHang extends Controller
         Session::put('Hoten',null);
         Session::put('Manguoidung',null);
         Session::put('Anh',null);
+        Session::put('Maphongthue',null);
+        Session::put('Tenphong',null);
         return Redirect::to('/loginkh');
     }
 

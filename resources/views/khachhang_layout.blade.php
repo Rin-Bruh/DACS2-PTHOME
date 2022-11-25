@@ -141,9 +141,9 @@
               <ul class="menu-sub">
                 <li class="menu-item">
                   <?php
-                  $id = Session::get('Manguoidung');
+                  $ndid = Session::get('Manguoidung');
                   ?>
-                  <a href="{{URL::to('/edit-khachhang-info/'.$id)}}" class="menu-link">
+                  <a href="{{URL::to('/edit-khachhang-info/'.$ndid)}}" class="menu-link">
                     <div data-i18n="Without menu">Thông tin người dùng</div>
                   </a>
                 </li>
@@ -190,10 +190,24 @@
                                     $id = Session::get('Maphongthue');
                                 ?>
             <li class="menu-item">
-              <a href="{{URL::to('/checkout/'.$id)}}" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-crown"></i>
-                <div data-i18n="Boxicons">Khoản thanh toán</div>
+              <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons bx bx-layout"></i>
+                <div data-i18n="Layouts">Đăng kí phòng</div>
               </a>
+
+              <ul class="menu-sub">
+                <li class="menu-item">
+                  <a href="{{URL::to('/checkout/'.$id)}}" class="menu-link">
+                    <div data-i18n="Without menu">Đăng kí</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="{{URL::to('/all-checkout/'.$ndid)}}" class="menu-link">
+                    <div data-i18n="Without navbar">Danh sách đăng kí</div>
+                  </a>
+                </li>
+                
+              </ul>
             </li>
             <li class="menu-item">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
@@ -324,7 +338,7 @@
                       <div class="dropdown-divider"></div>
                     </li>
                     <li>
-                      <a class="dropdown-item" href="{{URL::to('/logout')}}">
+                      <a class="dropdown-item" href="{{URL::to('/logoutkh')}}">
                         <i class="bx bx-power-off me-2"></i>
                         <span class="align-middle">Đăng xuất</span>
                       </a>

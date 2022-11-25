@@ -99,7 +99,7 @@ Route::get('/login-checkout/{maphong}','App\Http\Controllers\CheckoutController@
 Route::get('/add-khachhang','App\Http\Controllers\CheckoutController@add_khachhang');
 Route::post('/dangnhap-checkout','App\Http\Controllers\CheckoutController@dangnhap_checkout');
 
-Route::post('/dangxuat-checkout','App\Http\Controllers\CheckoutController@dangxuat_checkout');
 Route::get('/checkout/{maphong}','App\Http\Controllers\CheckoutController@checkout');
+Route::get('/all-checkout/{khachhang_id}','App\Http\Controllers\CheckoutController@all_checkout');
 
-Route::post('/add-thongbao/{khachhang_id}','App\Http\Controllers\CheckoutController@add_thongbao');
+Route::post('/add-checkout/{khachhang_id}','App\Http\Controllers\CheckoutController@add_checkout');
