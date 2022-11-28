@@ -32,7 +32,7 @@ return new class extends Migration
              $table->foreign('NGUOIDUNGTHONGBAO')->references('MANGUOIDUNG')->on('NGUOIDUNG');
          });
         Schema::table('HOPDONG', function (Blueprint $table){
-            $table->foreign('MANGUOIDUNG')->references('MANGUOIDUNG')->on('NGUOIDUNG');
+            $table->foreign('MANGUOITHUE')->references('MANGUOIDUNG')->on('NGUOIDUNG');
             $table->foreign('MAPHONGTHUE')->references('MAPHONGTHUE')->on('PHONGTHUE');
         });
  

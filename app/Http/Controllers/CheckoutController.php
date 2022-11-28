@@ -102,6 +102,8 @@ class CheckoutController extends Controller
         $data['Noidung'] = $request->Noidung;
         $data['Trangthai'] = '1';
         $data['Loaithongbao'] = '1';
+        date_default_timezone_set('Asia/Ho_Chi_Minh');
+        $data['Thoigian'] = date('Y-m-d');
         $data['Nguoitao'] = $request->Manguoidung;
         DB::table('thongbao')->insert($data);
         $Tenphong1 = $request->Tenphong;
@@ -133,11 +135,11 @@ class CheckoutController extends Controller
             $data_hopdong['Mahopdong'] = $name_hopdong;
         }
         date_default_timezone_set('Asia/Ho_Chi_Minh');
-        $data_hopdong['Ngayki'] = date('Y-m-d');
-        $data_hopdong['Trangthai'] = '1';
+        $data_hopdong['Ngayki'] = date('Y-m-d H:i:s');
+        $data_hopdong['Trangthaihd'] = '1';
         $data_hopdong['Ngaybatdau'] = $request->Ngaybatdau;
         $data_hopdong['Maphongthue'] = $Maphongthue1;
-        $data_hopdong['Manguoidung'] = $Manguoitao;
+        $data_hopdong['Manguoithue'] = $Manguoitao;
         DB::table('hopdong')->insert($data_hopdong);
 
         // add thongbaocho
@@ -158,9 +160,9 @@ class CheckoutController extends Controller
 
         $getten = DB::table('nguoidung')->join('khu','nguoidung.Manguoidung','=','khu.Machuthue')->where('nguoidung.Manguoidung',$chut_id)->first();
         if($getten){    
-            Session::put('Manguoidung',$getten->Manguoidung);
+            Session::put('Machutro',$getten->Manguoidung);
         } 
-        $tenchut_id = Session::get('Manguoidung');
+        $tenchut_id = Session::get('Machutro');
 
         $data_tbcho['Nguoidungthongbao'] = $tenchut_id;
         $data_tbcho['Trangthai'] = '1';
@@ -170,12 +172,5 @@ class CheckoutController extends Controller
         Session::flash('success','Đăng kí '. $Tenphong1 .' thành công! Vui lòng chờ chủ thuê phản hồi');
         return Redirect::to('/checkout/'.$request->Maphongthue);
     }
-    public function all_checkout($khachhang_id){
-        Session::put('Maphongthue',null);
-        Session::put('Tenphong',null);
-        $result=  DB::table('thongbao')->where('Nguoitao',$khachhang_id)->orderby('thongbao.Thoigian','desc')->get();
-        
-        $manage_checkout = view('khachhang.showall_checkout')->with('showall_checkout',$result);
-        return view('khachhang_layout')->with('showall_checkout',$manage_checkout);
-    }
+    
 }

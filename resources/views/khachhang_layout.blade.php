@@ -53,7 +53,7 @@
     <script src="{{asset('public/backend/assets/js/config.js')}}"></script>
   </head>
 
-  <body>
+  <body id="body">
     <!-- Layout wrapper -->
     <div class="layout-wrapper layout-content-navbar">
       <div class="layout-container">

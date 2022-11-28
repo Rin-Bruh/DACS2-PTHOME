@@ -1,8 +1,6 @@
 @extends('chutro_layout')
 @section('chutro_content')
 <div class="container-xxl flex-grow-1 container-p-y">
-    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">UI elements /</span> Accordion</h4>
-
     <!-- <div aria-live="polite" aria-atomic="true">
 
         <div class="toast-container top-0 end-0 p-3">
@@ -51,15 +49,14 @@
                                     aria-atomic="true">
                                     <div class="toast-header">
                                         <i class="bx bx-bell me-2"></i>
-                                        <div class="me-auto fw-semibold">{{$info_tb->Tenloaithongbao}}</div>
-                                        <small>11 mins ago</small>
-                                        <!-- <button type="button" class="btn-close" data-bs-dismiss="toast"
-                                            aria-label="Close"></button> -->
+                                        <div class="me-auto fw-semibold">{{$info_tb->Tenloaithongbao}}</div>                                       
+                                        <small>Vài phút trước</small>
+                                        <button type="button" class="btn-close" data-bs-dismiss="toast"
+                                            aria-label="Close"></button>
                                     </div>
-                                    <div class="toast-body">{{$info_tb->Noidung}}<div class="mt-2 pt-2 border-top">
-                                    <button type="button" class="btn btn-primary btn-sm">Xem chi tiết</button>
-                                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="toast">Đóng</button>
-                                    </div>
+                                    <div class="toast-body">{{$info_tb->Tieude}}
+                                      </div>
+                                    <div class="toast-body">{{$info_tb->Noidung}}
                                 </div>
                                 </div>
                                 @endforeach
@@ -67,83 +64,115 @@
                             </div>
                         </div>
                     </div>
+
+                   
+                        
                
             </div>
-</div>
-    </div>
-    <!-- Accordion -->
-    <h5 class="mt-4">Accordion</h5>
-    <div class="row">
-        <div class="col-md mb-4 mb-md-0">
-            <small class="text-light fw-semibold">Basic Accordion</small>
-            <div class="accordion mt-3" id="accordionExample">
-                <div class="card accordion-item active">
-                    <h2 class="accordion-header" id="headingOne">
-                        <button type="button" class="accordion-button" data-bs-toggle="collapse"
-                            data-bs-target="#accordionOne" aria-expanded="true" aria-controls="accordionOne">
-                            Accordion Item 1
-                        </button>
-                    </h2>
-
-                    <div id="accordionOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
-                        <div class="accordion-body">
-                            Lemon drops chocolate cake gummies carrot cake chupa chups muffin topping. Sesame snaps
-                            icing
-                            marzipan gummi bears macaroon dragée danish caramels powder. Bear claw dragée pastry topping
-                            soufflé. Wafer gummi bears marshmallow pastry pie.
-                        </div>
-                    </div>
-                </div>
-                <div class="card accordion-item">
-                    <h2 class="accordion-header" id="headingTwo">
-                        <button type="button" class="accordion-button collapsed" data-bs-toggle="collapse"
-                            data-bs-target="#accordionTwo" aria-expanded="false" aria-controls="accordionTwo">
-                            Accordion Item 2
-                        </button>
-                    </h2>
-                    <div id="accordionTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
-                        data-bs-parent="#accordionExample">
-                        <div class="accordion-body">
-                            Dessert ice cream donut oat cake jelly-o pie sugar plum cheesecake. Bear claw dragée oat
-                            cake
-                            dragée ice cream halvah tootsie roll. Danish cake oat cake pie macaroon tart donut gummies.
-                            Jelly beans candy canes carrot cake. Fruitcake chocolate chupa chups.
-                        </div>
-                    </div>
-                </div>
-                <div class="card accordion-item">
-                    <h2 class="accordion-header" id="headingThree">
-                        <button type="button" class="accordion-button collapsed" data-bs-toggle="collapse"
-                            data-bs-target="#accordionThree" aria-expanded="false" aria-controls="accordionThree">
-                            Accordion Item 3
-                        </button>
-                    </h2>
-                    <div id="accordionThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
-                        data-bs-parent="#accordionExample">
-                        <div class="accordion-body">
-                            Oat cake toffee chocolate bar jujubes. Marshmallow brownie lemon drops cheesecake. Bonbon
-                            gingerbread marshmallow sweet jelly beans muffin. Sweet roll bear claw candy canes oat cake
-                            dragée caramels. Ice cream wafer danish cookie caramels muffin.
-                        </div>
-                    </div>
-                </div>
-                <!-- <div class="bs-toast toast fade show" role="alert" aria-live="assertive" aria-atomic="true">
-                        <div class="toast-header">
-                          <i class="bx bx-bell me-2"></i>
-                          <div class="me-auto fw-semibold">Bootstrap</div>
-                          <small>11 mins ago</small>
-                          <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-                        </div>
-                        <div class="toast-body">
-                          Fruitcake chocolate bar tootsie roll gummies gummies jelly beans cake.
-                        </div>
-                      </div> -->
-            </div>
-
         </div>
-        
     </div>
+    <hr class="my-5" />
+
+              <!-- Bootstrap Table with Header - Light -->
+              <div class="card">
+                <h5 class="card-header">Đăng kí thuê</h5>
+                <div class="table-responsive text-nowrap">
+                  <table class="table">
+                    <thead class="table-light">
+                      <tr>
+                        <th>Mã yêu cầu</th>
+                        <th>Phòng yêu cầu thuê</th>
+                        <th>Ngày bắt đầu thuê</th>
+                        <th>Trạng thái</th>
+                        <th>Hành động</th>
+                      </tr>
+                    </thead>
+                    <tbody class="table-border-bottom-0">
+                    @foreach($ctthongbao as $key => $ct_tb)
+                      <tr>
+                        <td><strong>{{ $ct_tb->Mahopdong }}</strong></td>
+                        <td>{{ $ct_tb->Tenphong }}</td>
+                        <td>
+                        <?php $date = str_replace('/', '-', $ct_tb->Ngaybatdau);
+                                            echo date('d-m-Y', strtotime($date)); ?>
+                        </td>
+                        <td>
+                        <?php
+                                  if($ct_tb->Trangthaihd==1){
+                              ?>
+                                      <span class="badge bg-label-info me-1">Chờ xác nhận</span>
+                              <?php
+                                  }else{
+                              ?>
+                                      <span class="badge bg-label-success me-1">Đã xác nhận</span>
+                              <?php        
+                                  }   
+                              ?>
+                          </td>
+                        <td>
+                        <a class="btn btn-outline-success" href="{{URL::to('/add-hopdong/'.$ct_tb->Mahopdong)}}" role="button">Xác nhận thuê</a>
+                        <a class="btn btn-outline-danger" href="{{URL::to('/delete-hopdong/'.$ct_tb->Mahopdong)}}" role="button"><i class="bx bx-trash me-1"></i> Từ chối</a>
+                        </td>
+                      </tr>
+                      @endforeach
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+
+              <hr class="my-5" />
+
+              <!-- Bootstrap Table with Header - Light -->
+              <div class="card">
+                <h5 class="card-header">Chờ thanh toán</h5>
+                <div class="table-responsive text-nowrap">
+                  <table class="table">
+                    <thead class="table-light">
+                      <tr>
+                        <th>Mã hợp đồng</th>
+                        <th>Phòng yêu cầu thuê</th>
+                        <th>Ngày bắt đầu thuê</th>
+                        <th>Trạng thái</th>
+                        <th>Hành động</th>
+                      </tr>
+                    </thead>
+                    <tbody class="table-border-bottom-0">
+                    @foreach($ctthongbao2 as $key => $ct_tb2)
+                      <tr>
+                        <td><strong>{{ $ct_tb2->Mahopdong }}</strong></td>
+                        <td>{{ $ct_tb2->Tenphong }}</td>
+                        <td>
+                        <?php $date = str_replace('/', '-', $ct_tb2->Ngaybatdau);
+                                            echo date('d-m-Y', strtotime($date)); ?>
+                        </td>
+                        <td>
+                        <?php
+                                  if($ct_tb2->Trangthaihd==2){
+                              ?>
+                                      <span class="badge bg-label-info me-1">Chờ thanh toán</span>
+                              <?php
+                                  }else{
+                              ?>
+                                      <span class="badge bg-label-success me-1"></span>
+                              <?php        
+                                  }   
+                              ?>
+                          </td>
+                        <td>
+                        <a class="btn btn-outline-success" href="{{URL::to('/add-hopdong/'.$ct_tb2->Mahopdong)}}" role="button">Xem lại hợp đồng</a>
+                        <a class="btn btn-outline-danger" href="{{URL::to('/delete-hopdong/'.$ct_tb2->Mahopdong)}}" role="button"><i class="bx bx-trash me-1"></i> Xóa</a>
+                        </td>
+                      </tr>
+                      @endforeach
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              
 </div>
+
+
 <!-- <style>
 .toast-container {
 position: fixed;

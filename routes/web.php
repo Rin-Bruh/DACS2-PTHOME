@@ -93,6 +93,7 @@ Route::post('/update-category-danhmuc/{category_danhmuc_id}',[CategoryDanhMuc::c
 
 // yeu thich
 // Route::post('/save-cart','App\Http\Controllers\CartController@save_cart');
+
 //checkout
 Route::get('/login-checkout/{maphong}','App\Http\Controllers\CheckoutController@login_checkout');
 // Route::get('/login-checkout',[CheckoutController::class,'login_checkout']);
@@ -100,6 +101,11 @@ Route::get('/add-khachhang','App\Http\Controllers\CheckoutController@add_khachha
 Route::post('/dangnhap-checkout','App\Http\Controllers\CheckoutController@dangnhap_checkout');
 
 Route::get('/checkout/{maphong}','App\Http\Controllers\CheckoutController@checkout');
-Route::get('/all-checkout/{khachhang_id}','App\Http\Controllers\CheckoutController@all_checkout');
+Route::get('/all-checkout/{khachhang_id}','App\Http\Controllers\CategoryKhachHang@all_checkout');
 
 Route::post('/add-checkout/{khachhang_id}','App\Http\Controllers\CheckoutController@add_checkout');
+
+// hopdong
+Route::get('/add-hopdong/{hopdong_id}','App\Http\Controllers\HopdongController@add_hopdong');
+Route::post('/save-hopdong','App\Http\Controllers\HopdongController@save_hopdong');
+Route::get('/show-hopdong/{hopdong_id}','App\Http\Controllers\HopdongController@show_hopdong');

@@ -48,6 +48,7 @@ return new class extends Migration
             $tbl->text('Noidung');
             $tbl->dateTime('Thoigiantra');
             $tbl->dateTime('Hanthanhtoan');
+            $tbl->text('Anh');
             $tbl->String('Nguoigui',20);
             $tbl->String('Nguoinhan',20);
         });
@@ -134,10 +135,10 @@ return new class extends Migration
             // $tbl->Integer('STT')->primary();
             $tbl->String('Mahopdong',20)->primary();
             $tbl->dateTime('Ngayki');
-            $tbl->tinyInteger('Trangthai');
+            $tbl->tinyInteger('Trangthaihd');
             $tbl->dateTime('Ngaybatdau');
             $tbl->String('Maphongthue',20);
-            $tbl->String('Manguoidung',20);
+            $tbl->String('Manguoithue',20);
         });
 
 
@@ -165,12 +166,10 @@ return new class extends Migration
         Schema::create('Lichsuhopdong', function (Blueprint $tbl){
             
             $tbl->String('Mahopdong',20);
-            $tbl->Integer('Gia');
+            $tbl->Integer('Giacoc');
             $tbl->tinyInteger('Trangthai');
             $tbl->String('Machuthue',20);
             $tbl->String('Makhachthue',20);
-            $tbl->text('Anh');
-            $tbl->text('Mota');
             $tbl->dateTime('Ngayhethan');
         });  
     }

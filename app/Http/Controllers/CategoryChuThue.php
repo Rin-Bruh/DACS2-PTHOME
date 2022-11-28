@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Requests;
 use App\Models\Product;
 use Session;
+use Carbon\Carbon;
 use Validator;
 use App\Http\Requests\regiterctRequest;
 use Illuminate\Http\Response;
@@ -18,24 +19,20 @@ class CategoryChuThue extends Controller
     public function registerct(){ 
         return view('pages.register_login.registerct');
     }
-    public function show_quanly(){
-       
-        $num = 1;
-        $thongbao_info = DB::table('thongbao')->join('loaithongbao','thongbao.Loaithongbao','=','loaithongbao.Maloaithongbao')->join('thongbaocho','thongbao.Mathongbao','=','thongbaocho.Mathongbao')->where('thongbaocho.Trangthai',$num)->orderby('thongbao.Thoigian','desc')->get();
-        $thongbao = view('chuthue.dashboard')->with('thongbao_info', $thongbao_info);
-        return view('chutro_layout')->with('thongbao_info',$thongbao);
-
-    }
     public function quanly(Request $request){
         $chutro_email = $request->chutro_email;
         $chutro_password = ($request->chutro_password);
 
         $vaitro_id = 'CT';
-        $result=  DB::table('nguoidung')->where('Email',$chutro_email)->where('Matkhau',$chutro_password)->where('Mavaitro',$vaitro_id)->first();
+        $result=  DB::table('nguoidung')
+        ->where('Email',$chutro_email)
+        ->where('Matkhau',$chutro_password)
+        ->where('Mavaitro',$vaitro_id)->first();
         
         if($result){
             Session::put('Hoten',$result->Hoten);
             Session::put('Manguoidung',$result->Manguoidung);
+            Session::put('SDT',$result->SDT);
             Session::put('Anh',$result->Anh);
             return Redirect::to('/chutro-quan-ly');
         }else{ 
@@ -43,9 +40,36 @@ class CategoryChuThue extends Controller
             return Redirect::to('/loginct');
         }
     }
+    public function show_quanly(){
+        $mnd = Session::get('Manguoidung');
+        $num1 = 1;
+        $num2 = 2;
+        $thongbao_info = DB::table('thongbao')
+        ->join('loaithongbao','thongbao.Loaithongbao','=','loaithongbao.Maloaithongbao')
+        ->join('thongbaocho','thongbao.Mathongbao','=','thongbaocho.Mathongbao')
+        ->where('thongbaocho.Trangthai',$num1)
+        ->where('thongbaocho.Nguoidungthongbao',$mnd)
+        ->orderby('thongbao.Thoigian','desc')
+        ->get();
+        
+        $ctthongbao = DB::table('hopdong')
+        ->join('phongthue','hopdong.Maphongthue','=','phongthue.Maphongthue')
+        ->join('khu','phongthue.Makhu','=','khu.Makhu')
+        ->join('nguoidung','khu.Machuthue','=','nguoidung.Manguoidung')
+        ->where('hopdong.Trangthaihd',$num1)->where('nguoidung.Manguoidung',$mnd)->get();
+
+        $ctthongbao2 = DB::table('hopdong')
+        ->join('phongthue','hopdong.Maphongthue','=','phongthue.Maphongthue')
+        ->join('khu','phongthue.Makhu','=','khu.Makhu')
+        ->join('nguoidung','khu.Machuthue','=','nguoidung.Manguoidung')
+        ->where('hopdong.Trangthaihd',$num2)->where('nguoidung.Manguoidung',$mnd)->get();
+
+        return view('chuthue.dashboard')->with('thongbao_info', $thongbao_info)->with('ctthongbao',$ctthongbao)->with('ctthongbao2',$ctthongbao2);
+    }
     public function logout(){
         Session::put('Hoten',null);
         Session::put('Manguoidung',null);
+        Session::put('SDT',null);
         Session::put('Anh',null);
         return Redirect::to('/loginct');
     }
@@ -79,11 +103,11 @@ class CategoryChuThue extends Controller
         if($get_image){
             $data['Anh'] = $get_image;
             DB::table('nguoidung')->insert($data);
-        return Redirect::to('loginkh');
+        return Redirect::to('loginct');
         }
         $data['category_image'] = '';
         DB::table('nguoidung')->insert($data);
-        return Redirect::to('loginkh');
+        return Redirect::to('loginct');
     }
     public function edit_chutro_info($chutro_info_id){
         $edit_chutro_info = DB::table('nguoidung')->where('Manguoidung',$chutro_info_id)->get();

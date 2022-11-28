@@ -148,39 +148,61 @@ return new class extends Migration
         );
 
         // insert table thêm phòng
-        DB::table('Phongthue')->insert(
+        DB::table('phongthue')->insert(
             array(
-                'Maphongthue' => 'P1',
-                'Tenphong' => 'P101',
-                'Tieude'=> 'Phòng trọ....',
-                'Mota' => '',
-                'Madanhmuc' => 'DM47',
-                'Makhu' => 'K36676',
-                'Gia' => '1800000',
-                'Dientich' => '30',
-                'Anh' => 'anh478.jpg',
-                'Dangchiase' => 0,
-                'Gioihannguoi' => 3,
-                'Trangthai' => 0,
-                'Songuoihientai' => 0
-            )
-        );
-
-        BD::table('Phongthue')->insert(
-            array(
-                'Maphongthue' => 'P2',
-                'Tenphong' => 'P102',
-                'Tieude'=> 'Phòng trọ....',
-                'Mota' => '',
+                'Maphongthue' => 'P62240',
+                'Tenphong' => 'Phòng 1',
+                'Tieude'=> 'Cho thuê phòng trọ gần ĐH Việt - Hàn',
+                'Mota' => 'Cho thuê...........',
                 'Madanhmuc' => 'DM47',
                 'Makhu' => 'K36676',
                 'Gia' => '2300000',
                 'Dientich' => '20.5',
-                'Anh' => 'anh478.jpg',
+                'Anh' => '3_16054284358.jpg
+                ',
                 'Dangchiase' => 0,
                 'Gioihannguoi' => 2,
-                'Trangthai' => 0,
+                'Trangthai' => 1,
                 'Songuoihientai' => 0
+            )
+        );
+
+        DB::table('phongthue')->insert(
+            array(
+                'Maphongthue' => 'P34078',
+                'Tenphong' => 'Phòng 2',
+                'Tieude'=> 'Cho thuê phòng trọ gần ĐH Kinh tế',
+                'Mota' => 'Phòng trọ.......',
+                'Madanhmuc' => 'DM47',
+                'Makhu' => 'K36676',
+                'Gia' => '1800000',
+                'Dientich' => '22',
+                'Anh' => 'properties-img-2-165.jpg',
+                'Dangchiase' => 0,
+                'Gioihannguoi' => 3,
+                'Trangthai' => 1,
+                'Songuoihientai' => 0
+            )
+        );
+
+        DB::table('loaikhoanthanhtoan')->insert(
+            array(
+                'Maloaikhoan' => '1',
+                'Tenloaikhoan' => 'Thanh toán tiền mặt'
+            )
+        );
+
+        DB::table('loaikhoanthanhtoan')->insert(
+            array(
+                'Maloaikhoan' => '2',
+                'Tenloaikhoan' => 'Thanh toán chuyển khoản'
+            )
+        );
+
+        DB::table('loaithongbao')->insert(
+            array(
+                'Maloaithongbao' => '1',
+                'Tenloaithongbao' => 'Thông báo thuê'
             )
         );
 

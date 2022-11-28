@@ -31,6 +31,9 @@ class CategoryKhachHang extends Controller
         if($result){
             Session::put('Hoten',$result->Hoten);
             Session::put('Manguoidung',$result->Manguoidung);
+            Session::put('CCCD',$result->CCCD);
+            Session::put('Ngaysinh',$result->Ngaysinh);
+            Session::put('SDT',$result->SDT);
             Session::put('Anh',$result->Anh);
             return Redirect::to('/khachhang-quan-ly');
         }else{
@@ -41,6 +44,8 @@ class CategoryKhachHang extends Controller
     public function logout(){
         Session::put('Hoten',null);
         Session::put('Manguoidung',null);
+        Session::put('CCCD',null);
+        Session::put('Ngaysinh',null);
         Session::put('Anh',null);
         Session::put('Maphongthue',null);
         Session::put('Tenphong',null);
@@ -120,6 +125,19 @@ class CategoryKhachHang extends Controller
         Session::flash('success','Cập nhật thành công');
         return Redirect::to('edit-khachhang-info/'.$khachhang_info_id);
         }
+    }
+    public function all_checkout($khachhang_id){
+        Session::put('Maphongthue',null);
+        Session::put('Tenphong',null);
+        $num1 = 1;
+        $num2 = 2;
+        $result = DB::table('hopdong')
+        ->join('phongthue','hopdong.Maphongthue','=','phongthue.Maphongthue')
+        ->join('khu','phongthue.Makhu','=','khu.Makhu')
+        ->where('hopdong.Trangthaihd',$num1)->orWhere('hopdong.Trangthaihd',$num2)->where('hopdong.Manguoithue',$khachhang_id)->get();
+        
+        $manage_checkout = view('khachhang.showall_checkout')->with('showall_checkout',$result);
+        return view('khachhang_layout')->with('showall_checkout',$manage_checkout);
     }
     
 }

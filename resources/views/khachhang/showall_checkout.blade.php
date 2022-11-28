@@ -23,12 +23,11 @@
                           <thead>
                             <tr>
                               <th>STT</th>
-                              <th>Tiêu đề</th>
-                              <th>Nội dung</th>
-                              <th>Thời gian</th>
+                              <th>Mã yêu cầu</th>
+                              <th>Phòng yêu cầu thuê</th>
+                              <th>Ngày bắt đầu thuê</th>
                               <th>Trạng thái</th>
-                              <th>Loại thông báo</th>
-                              <th>Tính năng</th>
+                              <th>Hành động</th>
                             </tr>
                           </thead>
                           <tbody>
@@ -42,43 +41,44 @@
                                $count++;
                               ?></td>
                               <td>
-                                 <strong>{{  $cate_check->Tieude }}</strong>
+                                 <strong>{{  $cate_check->Mahopdong }}</strong>
                               </td>
                               <td>
-                                 <strong>{{  $cate_check->Noidung }}</strong>
+                                 <strong>{{  $cate_check->Tenphong }}</strong>
                               </td>
                               <td>
-                                 <strong><?php $date = str_replace('/', '-', $cate_check->Thoigian);
-                                            echo date('Y-m-d H:i:s', strtotime($date)); ?></strong>
+                              <?php $date = str_replace('/', '-', $cate_check->Ngaybatdau); ?>
+                                 <strong title="Hạn vào ở là <?php echo date('d-m-Y', strtotime("+7 day", strtotime($date))); ?>">
+                                     <?php echo date('d-m-Y', strtotime($date)); ?></strong>
                               </td>
                               <td>
                                  <strong><?php
-                                  if($cate_check->Trangthai==1){
+                                  if($cate_check->Trangthaihd==1){
                               ?>
                                       <div href="#" title="Đang yêu cầu">Đang yêu cầu</div>
                               <?php
                                   }else{
                               ?>
-                                      <div href="#" title="Chấp nhận yêu cầu">Chấp nhận yêu cầu</div>
+                                      <div href="#" title="Thanh toán trước ngày <?php echo date('d-m-Y', strtotime($date)); ?>">Yêu cầu thanh toán</div>
                               <?php        
                                   }   
                               ?></strong>
                               </td>
-                              <td>
-                                 <strong><?php
-                                  if($cate_check->Loaithongbao==1){
+                              
+                              <td width="10">
+                              <?php
+                                  if($cate_check->Trangthaihd==1){
                               ?>
-                                      <div href="#">Thông báo thuê</div>
+                                      <a class="btn btn-outline-info disabled" href="{{URL::to('/show-hopdong/'.$cate_check->Mahopdong)}}"> Xem hợp đồng</a>
                               <?php
                                   }else{
                               ?>
-                                      <div href="#">Thông báo trả tiền</div>
+                                      <a class="btn btn-outline-info" href="{{URL::to('/show-hopdong/'.$cate_check->Mahopdong)}}"> Xem hợp đồng</a>
                               <?php        
                                   }   
-                              ?></strong>
-                              </td>
-                              <td width="10">
-                                    <a class="btn btn-outline-danger" href="{{URL::to('/delete-category-khu/'.$cate_check->Mathongbao)}}"><i class="bx bx-trash me-1"></i> Xóa</a>
+                              ?>
+                                    
+                                    <a class="btn btn-outline-danger" href="{{URL::to('/delete-category-khu')}}"> Hủy yêu cầu</a>
                               </td>
                             </tr>
                             @endforeach
