@@ -131,13 +131,79 @@ class CategoryKhachHang extends Controller
         Session::put('Tenphong',null);
         $num1 = 1;
         $num2 = 2;
+        $num3 = 3;
         $result = DB::table('hopdong')
         ->join('phongthue','hopdong.Maphongthue','=','phongthue.Maphongthue')
         ->join('khu','phongthue.Makhu','=','khu.Makhu')
-        ->where('hopdong.Trangthaihd',$num1)->orWhere('hopdong.Trangthaihd',$num2)->where('hopdong.Manguoithue',$khachhang_id)->get();
+        ->where('hopdong.Trangthaihd',$num1)->orWhere('hopdong.Trangthaihd',$num2)->orWhere('hopdong.Trangthaihd',$num3)->where('hopdong.Manguoithue',$khachhang_id)->get();
         
         $manage_checkout = view('khachhang.showall_checkout')->with('showall_checkout',$result);
         return view('khachhang_layout')->with('showall_checkout',$manage_checkout);
     }
-    
+    public function pay_tiencoc($hopdong_id){
+        $num2 = 2;
+        $result2 = DB::table('hopdong')
+        ->join('phongthue','hopdong.Maphongthue','=','phongthue.Maphongthue')
+        ->join('khu','phongthue.Makhu','=','khu.Makhu')
+        ->join('nguoidung','khu.Machuthue','=','nguoidung.Manguoidung')
+        ->join('lichsuhopdong','hopdong.Mahopdong','=','lichsuhopdong.Mahopdong')
+        ->where('hopdong.Trangthaihd',$num2)
+        ->where('hopdong.Mahopdong',$hopdong_id)->get();
+
+        $cate_thanhtoan = DB::table('loaikhoanthanhtoan')->orderby('Maloaikhoan','asc')->get();
+        return view('khachhang.thanhtoan_tiencoc')->with('cate_thanhtoan',$cate_thanhtoan)->with('show_pay',$result2);
+    }
+    public function save_thanhtoan(Request $request){
+        // Retrieve the validated input data...
+        // $validated = $request->validated();
+        $dataa = array();
+        $textDataa = "KTT";
+        $get_thanhtoan_id = $request->input('thanhtoan_id', $textDataa);;
+        if($get_thanhtoan_id){
+            $id_khoan = $get_thanhtoan_id.rand(0,9999);
+            $dataa['Makhoan'] = $id_khoan;
+        }
+        $dataa['Mahopdong'] = $request->Mahopdong;
+        $dataa['Makhoanthanhtoan'] = $request->Maloaikhoan;
+        $dataa['Giatri'] = $request->Giatri;
+        $dataa['Trangthai'] = '1';
+        $dataa['Noidung'] = $request->Mota;
+        date_default_timezone_set('Asia/Ho_Chi_Minh');
+        $dataa['Thoigiantra'] = date('Y-m-d H:i:s');
+        $dataa['Hanthanhtoan'] = $request->Hanthanhtoan;
+        $dataa['Nguoigui'] = $request->Nguoigui;
+        $dataa['Nguoinhan'] = $request->Nguoinhan;
+        $idhopdong = $dataa['Mahopdong'];
+        $image = $request->file('Anh');
+        if($image){
+            $get_name_image = $image->getClientOriginalName();
+            $name_image = current(explode('.',$get_name_image));
+            $new_image = $name_image.rand(0,999).'.'.$image->getClientOriginalExtension();
+            $image->move('public/uploads/thanhtoandatcoc',$new_image);
+            $dataa['Anhchungminh'] = $new_image;
+            DB::table('khoanthanhtoan')->insert($dataa);
+
+            $dataaa = array();
+            $dataaa['Trangthaihd'] = '3';
+            DB::table('hopdong')->where('Mahopdong',$idhopdong)->update($dataaa);
+
+            Session::flash('success', 'Thanh toán đặt cọc thành công! Mã khoản: '. $dataa['Makhoan']);
+            return Redirect::to('pay-tiencoc/'.$request->Mahopdong);
+        } else {
+            $info = pathinfo(storage_path().'/uploads/thanhtoandatcoc/tratienmat2.jpg');
+            $get_image = $info['basename'];
+            if($get_image){
+                $dataa['Anhchungminh'] = $get_image;
+                DB::table('khoanthanhtoan')->insert($dataa);
+
+                $dataaa = array();
+                $dataaa['Trangthaihd'] = '3';
+                DB::table('hopdong')->where('Mahopdong',$idhopdong)->update($dataaa);
+
+                Session::flash('success', 'Thanh toán đặt cọc thành công! Mã khoản: '. $dataa['Makhoan']);
+                return Redirect::to('pay-tiencoc/'.$request->Mahopdong);
+            }
+        }
+        
+    }
 }

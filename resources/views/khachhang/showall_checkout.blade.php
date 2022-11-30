@@ -5,18 +5,6 @@
     <!-- Bordered Table -->
     <div class="card">
                     <h5 class="card-header">Danh sách đăng kí</h5>
-                    <!-- <hr class="my-1" /> -->
-                    <!-- <div class="card-body">
-                    <a href="{{URL::to('/add-category-khu')}}" class="btn btn-outline-success">Thêm khu cho thuê</a>
-                    </div> -->
-                    <!-- <div class="card-body">
-                                        @if ( Session::has('success') )
-                                            <div class="alert alert-success alert-dismissible" role="alert">
-                                              <strong>{{ Session::get('success') }}</strong>
-                                              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                            </div>
-                                          @endif
-                      </div> -->
                     <div class="card-body">
                       <div class="table-responsive text-nowrap">
                         <table class="table table-bordered">
@@ -57,9 +45,13 @@
                               ?>
                                       <div href="#" title="Đang yêu cầu">Đang yêu cầu</div>
                               <?php
-                                  }else{
+                                  }else if($cate_check->Trangthaihd==2){
                               ?>
-                                      <div href="#" title="Thanh toán trước ngày <?php echo date('d-m-Y', strtotime($date)); ?>">Yêu cầu thanh toán</div>
+                                      <div href="#" title="Thanh toán trước ngày <?php echo date('d-m-Y', strtotime($date)); ?>">Chờ thanh toán</div>
+                              <?php
+                                  }else if($cate_check->Trangthaihd==3){
+                              ?>
+                                      <div href="#" title="Đang xử lý thanh toán">Đang xử lý</div>
                               <?php        
                                   }   
                               ?></strong>
@@ -70,15 +62,24 @@
                                   if($cate_check->Trangthaihd==1){
                               ?>
                                       <a class="btn btn-outline-info disabled" href="{{URL::to('/show-hopdong/'.$cate_check->Mahopdong)}}"> Xem hợp đồng</a>
+                                      <a class="btn btn-outline-success disabled" href="{{URL::to('/pay-tiencoc/'.$cate_check->Mahopdong)}}"> Thanh toán</a>
+                                      <a class="btn btn-outline-danger" href="{{URL::to('/delete-category-khu')}}"> Hủy yêu cầu</a>
                               <?php
-                                  }else{
+                                  }else if($cate_check->Trangthaihd==2){
                               ?>
                                       <a class="btn btn-outline-info" href="{{URL::to('/show-hopdong/'.$cate_check->Mahopdong)}}"> Xem hợp đồng</a>
+                                      <a class="btn btn-outline-success" href="{{URL::to('/pay-tiencoc/'.$cate_check->Mahopdong)}}"> Thanh toán</a>
+                                      <a class="btn btn-outline-danger" href="{{URL::to('/delete-category-khu')}}"> Hủy yêu cầu</a>
+                                      <?php
+                                  }else if($cate_check->Trangthaihd==3){
+                              ?>
+                                      <a class="btn btn-outline-info" href="{{URL::to('/show-hopdong/'.$cate_check->Mahopdong)}}"> Xem hợp đồng</a>
+                                      <a class="btn btn-outline-success disabled" href="{{URL::to('/pay-tiencoc/'.$cate_check->Mahopdong)}}"> Thanh toán</a>
+                                      <a class="btn btn-outline-danger disabled" href="{{URL::to('/delete-category-khu')}}"> Hủy yêu cầu</a>
                               <?php        
                                   }   
                               ?>
                                     
-                                    <a class="btn btn-outline-danger" href="{{URL::to('/delete-category-khu')}}"> Hủy yêu cầu</a>
                               </td>
                             </tr>
                             @endforeach

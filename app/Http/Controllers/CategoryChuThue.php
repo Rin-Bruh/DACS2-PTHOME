@@ -44,6 +44,7 @@ class CategoryChuThue extends Controller
         $mnd = Session::get('Manguoidung');
         $num1 = 1;
         $num2 = 2;
+        $num3 = 3;
         $thongbao_info = DB::table('thongbao')
         ->join('loaithongbao','thongbao.Loaithongbao','=','loaithongbao.Maloaithongbao')
         ->join('thongbaocho','thongbao.Mathongbao','=','thongbaocho.Mathongbao')
@@ -64,7 +65,13 @@ class CategoryChuThue extends Controller
         ->join('nguoidung','khu.Machuthue','=','nguoidung.Manguoidung')
         ->where('hopdong.Trangthaihd',$num2)->where('nguoidung.Manguoidung',$mnd)->get();
 
-        return view('chuthue.dashboard')->with('thongbao_info', $thongbao_info)->with('ctthongbao',$ctthongbao)->with('ctthongbao2',$ctthongbao2);
+        $ctthongbao3 = DB::table('hopdong')
+        ->join('phongthue','hopdong.Maphongthue','=','phongthue.Maphongthue')
+        ->join('khu','phongthue.Makhu','=','khu.Makhu')
+        ->join('nguoidung','khu.Machuthue','=','nguoidung.Manguoidung')
+        ->where('hopdong.Trangthaihd',$num3)->where('nguoidung.Manguoidung',$mnd)->get();
+
+        return view('chuthue.dashboard')->with('thongbao_info', $thongbao_info)->with('ctthongbao',$ctthongbao)->with('ctthongbao2',$ctthongbao2)->with('ctthongbao3',$ctthongbao3);
     }
     public function logout(){
         Session::put('Hoten',null);
@@ -316,6 +323,37 @@ class CategoryChuThue extends Controller
     }
     // //End Function Admin Page
 
+    public function xacnhan_tt($hopdong_id){
+        $num = 1;
+        $result1 = DB::table('khoanthanhtoan')
+        ->join('hopdong','khoanthanhtoan.Mahopdong','=','hopdong.Mahopdong')
+        ->join('phongthue','hopdong.Maphongthue','=','phongthue.Maphongthue')
+        ->join('khu','phongthue.Makhu','=','khu.Makhu')
+        ->join('nguoidung','khoanthanhtoan.Nguoigui','=','nguoidung.Manguoidung')
+        ->where('khoanthanhtoan.Mahopdong',$hopdong_id)->where('khoanthanhtoan.Makhoanthanhtoan',$num)->get();
 
-  
+        return view('chuthue.xacnhan_thanhtoan')->with('xacnhanthanhtoan',$result1);
+    }
+    public function save_xacnhan(Request $request, $hopdong_id){
+        $num4 = 4;
+        $updatehd = array();
+        $updatehd['Trangthaihd'] = '4';
+        $updatehd['Maphongthue'] = $request->Maphong;
+        DB::table('hopdong')->where('Mahopdong',$hopdong_id)->update($updatehd);
+
+        $idphong = $updatehd['Maphongthue'];
+        $updatephong = array();
+        $updatephong['Trangthai'] = '3';
+        DB::table('phongthue')->where('Maphongthue',$idphong)->update($updatephong);
+        Session::flash('success', 'Xác nhận thanh toán thành công! Mã hợp đồng: '. $hopdong_id);
+            return Redirect::to('xacnhan-tt/'.$hopdong_id);
+    }
+    public function allshow_hopdong(){
+        $num4 = 4;
+        $ctthongbao4 = DB::table('hopdong')
+        ->join('phongthue','hopdong.Maphongthue','=','phongthue.Maphongthue')
+        ->join('khu','phongthue.Makhu','=','khu.Makhu')
+        ->where('hopdong.Trangthaihd',$num4)->get();
+        return view('chuthue.all_showhopdong')->with('ctthongbao4',$ctthongbao4);
+    }
 }

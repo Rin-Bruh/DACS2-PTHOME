@@ -160,7 +160,7 @@
                               ?>
                           </td>
                         <td>
-                        <a class="btn btn-outline-success" href="{{URL::to('/add-hopdong/'.$ct_tb2->Mahopdong)}}" role="button">Xem lại hợp đồng</a>
+                        <a class="btn btn-outline-success" href="{{URL::to('/show-hopdong/'.$ct_tb2->Mahopdong)}}" role="button">Xem lại hợp đồng</a>
                         <a class="btn btn-outline-danger" href="{{URL::to('/delete-hopdong/'.$ct_tb2->Mahopdong)}}" role="button"><i class="bx bx-trash me-1"></i> Xóa</a>
                         </td>
                       </tr>
@@ -169,7 +169,44 @@
                   </table>
                 </div>
               </div>
-              
+              <hr class="my-5" />
+
+              <!-- Bootstrap Table with Header - Light -->
+              <div class="card">
+                <h5 class="card-header">Xác nhận thanh toán</h5>
+                <div class="table-responsive text-nowrap">
+                  <table class="table">
+                    <thead class="table-light">
+                      <tr>
+                        <th>Mã hợp đồng</th>
+                        <th>Phòng yêu cầu thuê</th>
+                        <th>Ngày bắt đầu thuê</th>
+                        <th style="text-align: center;">Trạng thái</th>
+                        <th style="text-align: center;">Hành động</th>
+                      </tr>
+                    </thead>
+                    <tbody class="table-border-bottom-0">
+                    @foreach($ctthongbao3 as $key => $ct_tb3)
+                      <tr>
+                        <td><strong>{{ $ct_tb3->Mahopdong }}</strong></td>
+                        <td>{{ $ct_tb3->Tenphong }}</td>
+                        <td>
+                        <?php $date = str_replace('/', '-', $ct_tb3->Ngaybatdau);
+                                            echo date('d-m-Y', strtotime($date)); ?>
+                        </td>
+                        <td>
+                                      <span class="badge bg-label-info me-1" title="Vui lòng xác nhận thanh toán">Đang xử lý thanh toán</span>
+                          </td>
+                        <td>
+                        <a class="btn btn-outline-info" href="{{URL::to('/show-hopdong/'.$ct_tb3->Mahopdong)}}" role="button">Xem lại hợp đồng</a>
+                        <a class="btn btn-outline-success" href="{{URL::to('/xacnhan-tt/'.$ct_tb3->Mahopdong)}}" role="button"> Xác nhận thanh toán</a>
+                        </td>
+                      </tr>
+                      @endforeach
+                    </tbody>
+                  </table>
+                </div>
+              </div>
 </div>
 
 

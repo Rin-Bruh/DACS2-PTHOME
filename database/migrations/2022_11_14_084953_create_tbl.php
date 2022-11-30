@@ -48,7 +48,7 @@ return new class extends Migration
             $tbl->text('Noidung');
             $tbl->dateTime('Thoigiantra');
             $tbl->dateTime('Hanthanhtoan');
-            $tbl->text('Anh');
+            $tbl->text('Anhchungminh');
             $tbl->String('Nguoigui',20);
             $tbl->String('Nguoinhan',20);
         });

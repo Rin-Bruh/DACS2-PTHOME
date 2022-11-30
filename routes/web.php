@@ -46,6 +46,10 @@ Route::post('/save-category-khachhang',[CategoryKhachHang::class,'save_category_
 Route::get('/edit-khachhang-info/{khachhang_info_id}',[CategoryKhachHang::class,'edit_khachhang_info']);
 Route::post('/update-khachhang-info/{khachhang_info_id}',[CategoryKhachHang::class,'update_khachhang_info']); 
 
+Route::get('/all-checkout/{khachhang_id}','App\Http\Controllers\CategoryKhachHang@all_checkout');
+Route::get('/pay-tiencoc/{hopdong_id}','App\Http\Controllers\CategoryKhachHang@pay_tiencoc');
+Route::post('/save-thanhtoan','App\Http\Controllers\CategoryKhachHang@save_thanhtoan');
+
 // chuthue
 Route::get('/chutro-quan-ly',[CategoryChuThue::class,'show_quanly']);
 Route::get('/logoutct',[CategoryChuThue::class,'logout']);
@@ -70,7 +74,10 @@ Route::get('/edit-phongct/{phongct_id}',[CategoryChuThue::class,'edit_phongct'])
 Route::post('/update-phongct/{phongct_id}',[CategoryChuThue::class,'update_phongct']);
 Route::get('/delete-phongct/{phongct_id}',[CategoryChuThue::class,'delete_phongct']);
 
+Route::get('/xacnhan-tt/{hopdong_id}','App\Http\Controllers\CategoryChuThue@xacnhan_tt');
+Route::post('/save-xacnhan/{hopdong_id}','App\Http\Controllers\CategoryChuThue@save_xacnhan');
 
+Route::get('/allshow-hopdong','App\Http\Controllers\CategoryChuThue@allshow_hopdong');
 
 // Backend
 Route::get('/admin',[AdminController::class, 'index']);
@@ -101,7 +108,7 @@ Route::get('/add-khachhang','App\Http\Controllers\CheckoutController@add_khachha
 Route::post('/dangnhap-checkout','App\Http\Controllers\CheckoutController@dangnhap_checkout');
 
 Route::get('/checkout/{maphong}','App\Http\Controllers\CheckoutController@checkout');
-Route::get('/all-checkout/{khachhang_id}','App\Http\Controllers\CategoryKhachHang@all_checkout');
+
 
 Route::post('/add-checkout/{khachhang_id}','App\Http\Controllers\CheckoutController@add_checkout');
 
