@@ -29,7 +29,7 @@ class CheckoutController extends Controller
         $maaphong = Session::get('Maphongthue');
         if($result){
             Session::put('Hoten',$result->Hoten);
-            Session::put('Anh',$result->Anh);
+            Session::put('Anhnd',$result->Anhnd);
             Session::put('Manguoidung',$result->Manguoidung);
             return Redirect::to('/checkout/'.$maaphong);
         }else{
@@ -64,17 +64,17 @@ class CheckoutController extends Controller
         $info = pathinfo(storage_path().'/uploads/khachhang/listing-agent.jpg');
         $get_image = $info['basename'];
         if($get_image){
-            $data['Anh'] = $get_image;
+            $data['Anhnd'] = $get_image;
             $insert_khachhang = DB::table('nguoidung')->insertGetId($data);
             Session::put('Manguoidung',$insert_khachhang->Manguoidung);
-            Session::put('Anh',$insert_khachhang->Anh);
+            Session::put('Anhnd',$insert_khachhang->Anhnd);
             Session::put('Hoten',$insert_khachhang->Tennguoidung);
             return Redirect::to('/checkout/'.$maaphong);
         }
         $data['category_image'] = '';
         $Manguoidung = DB::table('nguoidung')->insertGetId($data);
             Session::put('Manguoidung',$insert_khachhang->Manguoidung);
-            Session::put('Anh',$insert_khachhang->Anh);
+            Session::put('Anhnd',$insert_khachhang->Anhnd);
             Session::put('Hoten',$insert_khachhang->khachhang_name);
             return Redirect::to('/checkout/'.$maaphong);
     }

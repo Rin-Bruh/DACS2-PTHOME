@@ -1,18 +1,18 @@
-@extends('chutro_layout')
-@section('chutro_content')
+@extends('khachhang_layout')
+@section('khachhang_content')
 
 <div class="container-xxl flex-grow-1 container-p-y">
 <div class="app-title">
           <ul class="app-breadcrumb breadcrumb">
-            <li class="breadcrumb-item"><a href="table-data-phongtro.html">Liệt kê danh mục</a></li>
-            <li class="breadcrumb-item"><a href="form-add-phongtro.html">Thông tin người dùng</a></li>
+            <li class="breadcrumb-item"><a href="table-data-phongtro.html">Danh sách phòng đang thuê</a></li>
+            <li class="breadcrumb-item"><a href="form-add-phongtro.html">Thông tin phòng thuê</a></li>
           </ul>
         </div>
     <div class="row">
                 <div class="col-12">
                   <div class="card">
-                    <h4 class="card-header">Thông tin người dùng</h4>
-                    @foreach($edit_chutro_info as $key => $edit_value)
+                    <h4 class="card-header">Thông tin phòng thuê</h4>
+                    @foreach($info_phongkh as $key => $edit_phong)
                     <div class="card-body demo-vertical-spacing demo-only-element">
                         <div class="row">
                             <div class="col-md-2">
@@ -22,7 +22,7 @@
                                 <div class="card mb-4">
                                     <!-- <h5 class="card-header">Form Controls</h5> -->
                                     <div class="card-body">
-                                    <form action="{{URL::to('/update-chutro-info/'.$edit_value->Manguoidung)}}" method="post" enctype="multipart/form-data">
+                                    <form action="" method="post" enctype="multipart/form-data">
                                         {{ csrf_field() }}
                                         <div class="mb-3">
                                         @if ( Session::has('success') )
@@ -33,93 +33,89 @@
                                           @endif
                                         </div>
                                         <div class="mb-3">
-                                        <label for="defaultFormControlInput" class="form-label">Mã thành viên</label>
+                                        <label for="defaultFormControlInput" class="form-label">Tên phòng</label>
                                         <input
                                         type="text"
-                                        value="{{$edit_value->Manguoidung}}"
-                                        name="Manguoidung"
+                                        name="Tenphong"
+                                        value="{{$edit_phong->Tenphong}}"
                                         class="form-control"
                                         id="defaultFormControlInput"
+                                        placeholder="Nhập tên phòng"
                                         aria-describedby="defaultFormControlHelp"
                                         readonly
                                         />
+                                        
                                         </div>
-                                        <div class="mb-3">
-                                        <label for="defaultFormControlInput" class="form-label">Tên hiển thị</label>
+                                        <div class="form-password-toggle">
+                                        <label for="defaultFormControlInput" class="form-label">Giá thuê</label>
+                                        <div class="input-group">
                                         <input
                                         type="text"
-                                        value="{{$edit_value->Hoten}}"
-                                        name="Hoten"
+                                        name="Gia"
+                                        value="{{$edit_phong->Gia}}"
                                         class="form-control"
                                         id="defaultFormControlInput"
-                                        aria-describedby="defaultFormControlHelp"
-                                        />
-                                        </div>
-                                        <div class="mb-3">
-                                        <label for="defaultFormControlInput" class="form-label">Số điện thoại</label>
-                                        <input
-                                        type="text"
-                                        value="{{$edit_value->SDT}}"
-                                        name="SDT"
-                                        class="form-control"
-                                        id="defaultFormControlInput"
-                                        aria-describedby="defaultFormControlHelp"
-                                        />
-                                        </div>
-                                        <div class="mb-3">
-                                        <label for="defaultFormControlInput" class="form-label">Email</label>
-                                        <input
-                                        type="text"
-                                        value="{{$edit_value->Email}}"
-                                        name="Email"
-                                        class="form-control"
-                                        id="defaultFormControlInput"
+                                        placeholder="Nhập giá thuê phòng"
                                         aria-describedby="defaultFormControlHelp"
                                         readonly
                                         />
+                                        <span class="input-group-text" id="basic-addon13">đ</span>
                                         </div>
-                                        <div class="mb-3">
-                                        <label for="defaultFormControlInput" class="form-label">Ngày sinh</label>
-                                        <input
-                                        type="date"
-                                        value="<?php $date = str_replace('/', '-', $edit_value->Ngaysinh);
-                                            echo date('Y-m-d', strtotime($date)); ?>"
-                                        name="Ngaysinh"
-                                        class="form-control"
-                                        id="defaultFormControlInput"
-                                        aria-describedby="defaultFormControlHelp"
-                                        />
                                         </div>
-                                        <div class="mb-3">
-                                        <label for="defaultFormControlInput" class="form-label">CCCD</label>
+                                        <div class="form-password-toggle">
+                                        <label for="defaultFormControlInput" class="form-label">Diện tích</label>
+                                        <div class="input-group">
                                         <input
                                         type="text"
-                                        value="{{$edit_value->CCCD}}"
-                                        name="CCCD"
+                                        name="Dientich"
+                                        value="{{$edit_phong->Dientich}}"
                                         class="form-control"
                                         id="defaultFormControlInput"
+                                        placeholder="Nhập diện tích"
                                         aria-describedby="defaultFormControlHelp"
+                                        readonly
                                         />
+                                        <span class="input-group-text" id="basic-addon13">m²</span>
+                                        </div>
                                         </div>
                                         <div class="mb-3">
-                                            <label for="defaultSelect" class="form-label">Giới tính</label>
-                                            <select id="defaultSelect" class="form-select" name="Gioitinh">
-                                            
-                                            <option value="0" <?php if($edit_value->Gioitinh==0) echo "selected=\"selected\"";  ?>>Nam</option>
-                                            
-                                            <option value="1" <?php if($edit_value->Gioitinh==1) echo "selected=\"selected\"";  ?>>Nữ</option>
+                                            <label for="exampleFormControlSelect1" class="form-label">Danh mục</label>
+                                            <select name="Madanhmucp" class="form-select" id="exampleFormControlSelect1" aria-label="Default select example" disabled>
+                                           
+                                            <option value="DM47" <?php if($edit_phong->Madanhmuc=='DM47') echo "selected=\"selected\"";  ?>>Phòng trọ</option>
+                                            <option value="DM53" <?php if($edit_phong->Madanhmuc=='DM53') echo "selected=\"selected\"";  ?>>Cho thuê căn hộ</option>
+                                            <option value="DM90" <?php if($edit_phong->Madanhmuc=='DM90') echo "selected=\"selected\"";  ?>>Cho thuê mặt bằng</option>
+                                            <option value="DM94" <?php if($edit_phong->Madanhmuc=='DM94') echo "selected=\"selected\"";  ?>>Cho thuê nguyên căn</option>
+                                          
                                             
                                             </select>
                                         </div>
+                                        <div class="form-password-toggle">
+                                        <label for="defaultFormControlInput" class="form-label">Giới hạn người</label>
+                                        <div class="input-group">
+                                        <input
+                                        type="text"
+                                        name="Gioihannguoi"
+                                        value="{{$edit_phong->Gioihannguoi}}"
+                                        class="form-control"
+                                        id="defaultFormControlInput"
+                                        placeholder="Nhập giới hạn người"
+                                        aria-describedby="defaultFormControlHelp"
+                                        readonly
+                                        />
+                                        <span class="input-group-text" id="basic-addon13">người</span>
+                                        </div>
+                                        </div>
+                                      
                                         <div class="mb-3">
                                           <label for="formFile" class="form-label">Ảnh đại diện</label>
-                                          <input name="Anhnd" class="form-control" accept="image/*" type="file" id="file-input"/>
+                                          
                                           <div class="mb-3">
                                           </div>
-                                          <img class="preview-img" id="img-preview" src="{{URL::to('public/uploads/chutro/'.$edit_value->Anh)}}" />
+                                          <img class="preview-img" id="img-preview" src="{{URL::to('public/uploads/phongct/'.$edit_phong->Anh)}}" />
                                         </div>
-                                        <button name="update_chutro_info" type="submit" class="btn btn-outline-success">Cập nhật</button>
-                                        <a href="{{URL::to('/chutro_layout')}}" class="btn btn-outline-danger">Hủy bỏ</a>
+                                        
+                                        <a href="{{URL::to('/all-phongkh')}}" class="btn btn-outline-danger">Hủy bỏ</a>
                                     </form>
                                     </div>
                                 </div>
@@ -136,7 +132,6 @@
                 </div>
               </div>
               </div>
-
               <style>
                 .preview-img {max-width: 150px;margin: 0 1em 1em 0;padding: 0.5em;border: 1px solid #ccc; border-radius: 3px;}
                 img {

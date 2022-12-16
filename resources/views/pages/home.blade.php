@@ -216,7 +216,10 @@
                                     <a href="{{URL::to('/chi-tiet-phong-tro/'.$phong->Maphongthue)}}" ><img src="{{URL::to('/public/uploads/phongct/'.$phong->Anh)}}"></a>
                                 </div>
                                 <div class="item-entry overflow">
-                                    <h5><a href="{{URL::to('/chi-tiet-phong-tro/'.$phong->Maphongthue)}}" >{{($phong->Tieude)}} </a></h5>
+                                    <h5 style="text-transform: none; text-align: justify; display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;"><a href="{{URL::to('/chi-tiet-phong-tro/'.$phong->Maphongthue)}}" >{{($phong->Tieude)}} </a></h5>
                                     <div class="dot-hr"></div>
                                     <span class="pull-left"><b>Diện tích :</b> {{($phong->Dientich).' '.'m²'}} </span>
                                     <span class="proerty-price pull-right">{{ number_format($phong->Gia).' '.'đ'}}</span>
@@ -252,12 +255,7 @@
                     <div class="col-md-12 Welcome-entry  col-sm-12">
                         <div class="col-md-5 col-md-offset-2 col-sm-6 col-xs-12">
                             <div class="welcome_text wow fadeInLeft" data-wow-delay="0.3s" data-wow-offset="100">
-                                <div class="row">
-                                    <div class="col-md-10 col-md-offset-1 col-sm-12 text-center page-title">
-                                        <!-- /.feature title -->
-                                        <h2>GARO ESTATE </h2>
-                                    </div>
-                                </div>
+                                
                             </div>
                         </div>
                         <div class="col-md-5 col-sm-6 col-xs-12">
@@ -268,7 +266,7 @@
                                             <div class="welcome-icon">
                                                 <i class="pe-7s-home pe-4x"></i>
                                             </div>
-                                            <h3>Any property</h3>
+                                            <h3>Nhiều tin đăng</h3>
                                         </div>
                                     </div>
                                     <div class="col-xs-6 m-padding">
@@ -276,7 +274,7 @@
                                             <div class="welcome-icon">
                                                 <i class="pe-7s-users pe-4x"></i>
                                             </div>
-                                            <h3>More Clients</h3>
+                                            <h3>Nhiều khách hàng</h3>
                                         </div>
                                     </div>
 
@@ -290,7 +288,7 @@
                                             <div class="welcome-icon">
                                                 <i class="pe-7s-notebook pe-4x"></i>
                                             </div>
-                                            <h3>Easy to use</h3>
+                                            <h3>Dễ dàng sử dụng</h3>
                                         </div>
                                     </div>
                                     <div class="col-xs-6 m-padding">
@@ -298,7 +296,7 @@
                                             <div class="welcome-icon">
                                                 <i class="pe-7s-help2 pe-4x"></i>
                                             </div>
-                                            <h3>Any help </h3>
+                                            <h3>Trợ giúp </h3>
                                         </div>
                                     </div>
 
@@ -316,7 +314,7 @@
                 <div class="row">
                     <div class="col-md-10 col-md-offset-1 col-sm-12 text-center page-title">
                         <!-- /.feature title -->
-                        <h2>Our Customers Said  </h2> 
+                        <h2>Phản hồi khách hàng  </h2> 
                     </div>
                 </div>
 
@@ -326,8 +324,8 @@
                             <div id="testimonial-slider">
                                 <div class="item">
                                     <div class="client-text">                                
-                                        <p>Nulla quis dapibus nisl. Suspendisse llam sed arcu ultried arcu ultricies !</p>
-                                        <h4><strong>Ohidul Islam, </strong><i>Web Designer</i></h4>
+                                        <p>Từ khi biết TPHome, mình đã thử đăng tin lên và đánh giá hiệu quả khá cao trong khi chi phí khá thấp, không còn tình trạng phòng trống kéo dài!</p>
+                                        <h4><strong>Chị Huệ, </strong><i>Chủ trọ</i></h4>
                                     </div>
                                     <div class="client-face wow fadeInRight" data-wow-delay=".9s"> 
                                         <img src="assets/img/client-face1.png" alt="">
@@ -335,8 +333,8 @@
                                 </div>
                                 <div class="item">
                                     <div class="client-text">                                
-                                        <p>Nulla quis dapibus nisl. Suspendisse llam sed arcu ultried arcu ultricies !</p>
-                                        <h4><strong>Ohidul Islam, </strong><i>Web Designer</i></h4>
+                                        <p>Đây là trang Web tốt nhất mà tôi đã sử dụng, quản lý được phòng của bản thân dễ dàng, sử dụng nhanh chóng, không giật lag, quản lý giúp đỡ nhiệt tình!</p>
+                                        <h4><strong>Anh Khánh, </strong><i>Khách hàng</i></h4>
                                     </div>
                                     <div class="client-face">
                                         <img src="assets/img/client-face2.png" alt="">
@@ -344,8 +342,8 @@
                                 </div>
                                 <div class="item">
                                     <div class="client-text">                                
-                                        <p>Nulla quis dapibus nisl. Suspendisse llam sed arcu ultried arcu ultricies !</p>
-                                        <h4><strong>Ohidul Islam, </strong><i>Web Designer</i></h4>
+                                        <p>Bản thân tôi cảm thấy ứng dụng tốt, tuy có một vài điểm còn thiếu xót cần sửa chửa nhưng vẫn đem đến những trải nghiệm tốt cho khách hàng!</p>
+                                        <h4><strong>Cô Trang, </strong><i>Chủ trọ</i></h4>
                                     </div>
                                     <div class="client-face">
                                         <img src="assets/img/client-face1.png" alt="">
@@ -353,8 +351,8 @@
                                 </div>
                                 <div class="item">
                                     <div class="client-text">                                
-                                        <p>Nulla quis dapibus nisl. Suspendisse llam sed arcu ultried arcu ultricies !</p>
-                                        <h4><strong>Ohidul Islam, </strong><i>Web Designer</i></h4>
+                                    <p>Từ khi biết TPHome, mình đã thử đăng tin lên và đánh giá hiệu quả khá cao trong khi chi phí khá thấp, không còn tình trạng phòng trống kéo dài!</p>
+                                        <h4><strong>Chị Huệ, </strong><i>Chủ trọ</i></h4>
                                     </div>
                                     <div class="client-face">
                                         <img src="assets/img/client-face2.png" alt="">
@@ -374,7 +372,7 @@
                 <div class="row">
                     <div class="col-md-10 col-md-offset-1 col-sm-12 text-center page-title">
                         <!-- /.feature title -->
-                        <h2>You can trust Us </h2> 
+                        <h2>Tại sao lại chọn PTHome? </h2> 
                     </div>
                 </div>
                 <div class="row">
@@ -386,8 +384,8 @@
                                         <span class="pe-7s-users"></span>
                                     </div>
                                     <div class="chart" data-percent="5000">
-                                        <h2 class="percent" id="counter">0</h2>
-                                        <h5>HAPPY CUSTOMER </h5>
+                                        <h2 class="percent" id="counter">1000</h2>
+                                        <h5>Thành viên </h5>
                                     </div>
                                 </div>
                             </div>
@@ -397,8 +395,8 @@
                                         <span class="pe-7s-home"></span>
                                     </div>
                                     <div class="chart" data-percent="12000">
-                                        <h2 class="percent" id="counter1">0</h2>
-                                        <h5>Properties in stock</h5>
+                                        <h2 class="percent" id="counter1">900</h2>
+                                        <h5>Tin đăng</h5>
                                     </div>
                                 </div> 
                             </div> 
@@ -408,8 +406,8 @@
                                         <span class="pe-7s-flag"></span>
                                     </div>
                                     <div class="chart" data-percent="120">
-                                        <h2 class="percent" id="counter2">0</h2>
-                                        <h5>City registered </h5>
+                                        <h2 class="percent" id="counter2">2000</h2>
+                                        <h5>Lượt truy cập/tháng</h5>
                                     </div>
                                 </div> 
                             </div> 
@@ -420,7 +418,7 @@
                                     </div>
                                     <div class="chart" data-percent="5000">
                                         <h2 class="percent"  id="counter3">5000</h2>
-                                        <h5>DEALER BRANCHES</h5>
+                                        <h5>Lượt xem/tháng</h5>
                                     </div>
                                 </div> 
 
@@ -442,11 +440,11 @@
                                 <span class="fa fa-search"></span>
                             </div>
                             <div class="asks-first-info">
-                                <h2>ARE YOU LOOKING FOR A Property?</h2>
-                                <p> varius od lio eget conseq uat blandit, lorem auglue comm lodo nisl no us nibh mas lsa</p>                                        
+                                <h2>Bạn đang tìm kiếm phòng thuê?</h2>
+                                <p> Khám phá ngay</p>                                        
                             </div>
                             <div class="asks-first-arrow">
-                                <a href="properties.html"><span class="fa fa-angle-right"></span></a>
+                                <a href="{{URL::to('/properties')}}"><span class="fa fa-angle-right"></span></a>
                             </div>
                         </div>
                     </div>
@@ -456,16 +454,16 @@
                                 <span class="fa fa-usd"></span>
                             </div>
                             <div class="asks-first-info">
-                                <h2>DO YOU WANT TO SELL A Property?</h2>
-                                <p> varius od lio eget conseq uat blandit, lorem auglue comm lodo nisl no us nibh mas lsa</p>
+                                <h2>Bạn đang muốn cho thuê phòng?</h2>
+                                <p> Đăng kí ngay</p>
                             </div>
                             <div class="asks-first-arrow">
-                                <a href="properties.html"><span class="fa fa-angle-right"></span></a>
+                                <a href="{{URL::to('/registerct')}}"><span class="fa fa-angle-right"></span></a>
                             </div>
                         </div>
                     </div>
                     <div class="col-xs-12">
-                        <p  class="asks-call">QUESTIONS? CALL US  : <span class="strong"> + 3-123- 424-5700</span></p>
+                        <p  class="asks-call">Câu hỏi? Gọi chúng tôi  : <span class="strong"> (+84) 901 909 404</span></p>
                     </div>
                 </div>
             </div>

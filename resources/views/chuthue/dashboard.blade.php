@@ -160,7 +160,7 @@
                               ?>
                           </td>
                         <td>
-                        <a class="btn btn-outline-success" href="{{URL::to('/show-hopdong/'.$ct_tb2->Mahopdong)}}" role="button">Xem lại hợp đồng</a>
+                        <a class="btn btn-outline-success" href="{{URL::to('/detail-hopdongct/'.$ct_tb2->Mahopdong)}}" role="button">Xem lại hợp đồng</a>
                         <a class="btn btn-outline-danger" href="{{URL::to('/delete-hopdong/'.$ct_tb2->Mahopdong)}}" role="button"><i class="bx bx-trash me-1"></i> Xóa</a>
                         </td>
                       </tr>
@@ -198,7 +198,7 @@
                                       <span class="badge bg-label-info me-1" title="Vui lòng xác nhận thanh toán">Đang xử lý thanh toán</span>
                           </td>
                         <td>
-                        <a class="btn btn-outline-info" href="{{URL::to('/show-hopdong/'.$ct_tb3->Mahopdong)}}" role="button">Xem lại hợp đồng</a>
+                        <a class="btn btn-outline-info" href="{{URL::to('/detail-hopdongct/'.$ct_tb3->Mahopdong)}}" role="button">Xem lại hợp đồng</a>
                         <a class="btn btn-outline-success" href="{{URL::to('/xacnhan-tt/'.$ct_tb3->Mahopdong)}}" role="button"> Xác nhận thanh toán</a>
                         </td>
                       </tr>

@@ -1,5 +1,5 @@
-@extends('chutro_layout')
-@section('chutro_content')
+@extends('khachhang_layout')
+@section('khachhang_content')
 <div class="container-xxl flex-grow-1 container-p-y">
 <!-- Bootstrap Table with Header - Light -->
 <div class="card">
@@ -12,7 +12,6 @@
                         <th>Phòng thuê</th>
                         <th>Thuộc khu</th>
                         <th>Địa chỉ</th>
-                        <th>Trạng thái</th>
                         <th>Hành động</th>
                       </tr>
                     </thead>
@@ -28,10 +27,7 @@
                         {{ $ct_tb4->Diachi }}
                         </td>
                         <td>
-                                      <span class="badge bg-label-info me-1" title="">Khách đang thuê</span>
-                          </td>
-                        <td>
-                        <a class="btn btn-outline-info" href="{{URL::to('/detail-hopdongct/'.$ct_tb4->Mahopdong)}}" role="button">Xem lại hợp đồng</a>
+                        <a class="btn btn-outline-info" href="{{URL::to('/detail-hopdongkh/'.$ct_tb4->Mahopdong)}}" role="button">Xem lại hợp đồng</a>
                         
                         </td>
                       </tr>

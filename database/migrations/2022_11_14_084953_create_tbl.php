@@ -25,7 +25,7 @@ return new class extends Migration
             $tbl->String('Hoten',50);
             $tbl->dateTime('Ngaysinh');
             $tbl->String('Mavaitro',20);
-            $tbl->text('Anh');
+            $tbl->text('Anhnd');
             $tbl->String('CCCD',12);
             $tbl->tinyInteger('Gioitinh');
         });
@@ -146,7 +146,7 @@ return new class extends Migration
             // $tbl->Integer('STT')->primary();
             $tbl->String('Mavande',20)->primary();
             $tbl->String('Masuco',20);
-            $tbl->text('Mota');
+            $tbl->text('Motavd');
             $tbl->text('Anh');
             $tbl->text('Lidotuchoi');
             $tbl->text('Lidochapnhan');

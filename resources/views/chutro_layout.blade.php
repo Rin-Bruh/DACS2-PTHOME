@@ -53,7 +53,7 @@
     <script src="{{asset('public/backend/assets/js/config.js')}}"></script>
   </head>
 
-  <body>
+  <body id="body">
     <!-- Layout wrapper -->
     <div class="layout-wrapper layout-content-navbar">
       <div class="layout-container">
@@ -133,7 +133,7 @@
             <!-- Layouts -->
             <li class="menu-item">
               <a href="{{URL::to('/chutro-quan-ly')}}" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-crown"></i>
+              <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Boxicons">Dashboard</div>
               </a>
             </li>
@@ -152,17 +152,12 @@
                     <div data-i18n="Without menu">Thông tin người dùng</div>
                   </a>
                 </li>
-                <li class="menu-item">
-                  <a href="{{URL::to('/all-category-danhmuc')}}" class="menu-link">
-                    <div data-i18n="Without navbar">Phương thức thanh toán</div>
-                  </a>
-                </li>
                 
               </ul>
             </li>
             <li class="menu-item">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-layout"></i>
+              <i class="menu-icon tf-icons bx bx-dock-top"></i>
                 <div data-i18n="Layouts">Khu cho thuê</div>
               </a>
 
@@ -172,39 +167,24 @@
                     <div data-i18n="Without menu">Danh sách khu cho thuê</div>
                   </a>
                 </li>
-                <!-- <li class="menu-item">
-                  <a href="{{URL::to('/add-category-theogia')}}" class="menu-link">
-                    <div data-i18n="Without menu">Danh sách phòng đã thuê</div>
-                  </a>
-                </li>
-                <li class="menu-item">
-                  <a href="{{URL::to('/all-category-theogia')}}" class="menu-link">
-                    <div data-i18n="Without navbar">Danh sách tin đăng</div>
-                  </a>
-                </li>
-                <li class="menu-item">
-                  <a href="{{URL::to('/all-category-theogia')}}" class="menu-link">
-                    <div data-i18n="Without navbar">Đăng tin</div>
-                  </a>
-                </li> -->
                 
               </ul>
             </li>
             <li class="menu-item">
               <a href="{{URL::to('/allshow-hopdong')}}" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-crown"></i>
+              <i class="menu-icon tf-icons bx bx-detail"></i>
                 <div data-i18n="Boxicons">Hợp đồng</div>
               </a>
             </li>
             <li class="menu-item">
-              <a href="icons-boxicons.html" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-crown"></i>
+              <a href="{{URL::to('/all-vandect')}}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-wrench"></i>
                 <div data-i18n="Boxicons">Vấn đề - Sự cố</div>
               </a>
             </li>
             <li class="menu-item">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-layout"></i>
+                <i class="menu-icon tf-icons bx bx-money"></i>
                 <div data-i18n="Layouts">Khoản thanh toán</div>
               </a>
 
@@ -215,18 +195,12 @@
                   </a>
                 </li>
                 <li class="menu-item">
-                  <a href="{{URL::to('/all-category-dientich')}}" class="menu-link">
+                  <a href="{{URL::to('/all-thanhtoan')}}" class="menu-link">
                     <div data-i18n="Without navbar">Danh sách khoản thanh toán</div>
                   </a>
                 </li>
                 
               </ul>
-            </li>
-            <li class="menu-item">
-              <a href="icons-boxicons.html" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-crown"></i>
-                <div data-i18n="Boxicons">Thông tin liên hệ</div>
-              </a>
             </li>
             <li class="menu-item">
               <a href="{{URL::to('/logoutct')}}" class="menu-link">
@@ -269,7 +243,7 @@
                   <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
                     <div class="avatar avatar-online">
                         <?php
-                            $image = Session::get('Anh');
+                            $image = Session::get('Anhnd');
 // echo"$image";
                         ?>
                       <img src="{{URL::to('public/uploads/chutro/'.$image)}}" alt class="w-px-40 h-auto rounded-circle" />

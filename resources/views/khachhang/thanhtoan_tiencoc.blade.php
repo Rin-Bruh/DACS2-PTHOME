@@ -166,7 +166,7 @@
                                             <textarea name="Mota" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                                         </div>
                                         <button type="submit" class="btn btn-outline-success">Thêm</button>
-                                        <a href="{{URL::to('/all-checkout/'.$id_ng)}}" class="btn btn-outline-danger">Hủy bỏ</a>
+                                        <a href="{{URL::to('/all-checkout')}}" class="btn btn-outline-danger">Hủy bỏ</a>
                                     </form>
                                     </div>
                                 </div>

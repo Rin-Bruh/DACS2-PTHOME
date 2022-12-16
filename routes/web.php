@@ -47,8 +47,18 @@ Route::get('/edit-khachhang-info/{khachhang_info_id}',[CategoryKhachHang::class,
 Route::post('/update-khachhang-info/{khachhang_info_id}',[CategoryKhachHang::class,'update_khachhang_info']); 
 
 Route::get('/all-checkout/{khachhang_id}','App\Http\Controllers\CategoryKhachHang@all_checkout');
+Route::get('/detail-hopdongkh/{hopdong_id}','App\Http\Controllers\CategoryKhachHang@detail_hopdongkh');
 Route::get('/pay-tiencoc/{hopdong_id}','App\Http\Controllers\CategoryKhachHang@pay_tiencoc');
 Route::post('/save-thanhtoan','App\Http\Controllers\CategoryKhachHang@save_thanhtoan');
+Route::get('/allshow-hopdongkh','App\Http\Controllers\CategoryKhachHang@allshow_hopdong');
+Route::get('/all-phongkh','App\Http\Controllers\CategoryKhachHang@all_phongkh');
+Route::get('/info-phongkh/{phong_id}','App\Http\Controllers\CategoryKhachHang@info_phongkh');
+Route::get('/info-chuthue/{phong_id}','App\Http\Controllers\CategoryKhachHang@info_chuthue');
+
+Route::get('/all-vandekh','App\Http\Controllers\CategoryKhachHang@all_vandekh');
+Route::get('/add-vandekh','App\Http\Controllers\CategoryKhachHang@add_vandekh');
+Route::post('/save-vande','App\Http\Controllers\CategoryKhachHang@save_vande');
+Route::get('/delete-vandekh/{vande_id}','App\Http\Controllers\CategoryKhachHang@delete_vandekh');
 
 // chuthue
 Route::get('/chutro-quan-ly',[CategoryChuThue::class,'show_quanly']);
@@ -78,6 +88,11 @@ Route::get('/xacnhan-tt/{hopdong_id}','App\Http\Controllers\CategoryChuThue@xacn
 Route::post('/save-xacnhan/{hopdong_id}','App\Http\Controllers\CategoryChuThue@save_xacnhan');
 
 Route::get('/allshow-hopdong','App\Http\Controllers\CategoryChuThue@allshow_hopdong');
+Route::get('/detail-hopdongct/{hopdong_id}','App\Http\Controllers\CategoryChuThue@detail_hopdongct');
+Route::get('/all-thanhtoan','App\Http\Controllers\CategoryChuThue@all_thanhtoan');
+
+Route::get('/all-vandect','App\Http\Controllers\CategoryChuThue@all_vandect');
+Route::get('/complete-vandect/{suco_id}','App\Http\Controllers\CategoryChuThue@complete_vandect');
 
 // Backend
 Route::get('/admin',[AdminController::class, 'index']);
@@ -115,4 +130,3 @@ Route::post('/add-checkout/{khachhang_id}','App\Http\Controllers\CheckoutControl
 // hopdong
 Route::get('/add-hopdong/{hopdong_id}','App\Http\Controllers\HopdongController@add_hopdong');
 Route::post('/save-hopdong','App\Http\Controllers\HopdongController@save_hopdong');
-Route::get('/show-hopdong/{hopdong_id}','App\Http\Controllers\HopdongController@show_hopdong');

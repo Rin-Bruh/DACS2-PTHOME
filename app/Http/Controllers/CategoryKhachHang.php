@@ -34,7 +34,7 @@ class CategoryKhachHang extends Controller
             Session::put('CCCD',$result->CCCD);
             Session::put('Ngaysinh',$result->Ngaysinh);
             Session::put('SDT',$result->SDT);
-            Session::put('Anh',$result->Anh);
+            Session::put('Anhnd',$result->Anhnd);
             return Redirect::to('/khachhang-quan-ly');
         }else{
             Session::flash('error', 'Tài khoản hoặc mật khẩu không đúng!');
@@ -46,7 +46,7 @@ class CategoryKhachHang extends Controller
         Session::put('Manguoidung',null);
         Session::put('CCCD',null);
         Session::put('Ngaysinh',null);
-        Session::put('Anh',null);
+        Session::put('Anhnd',null);
         Session::put('Maphongthue',null);
         Session::put('Tenphong',null);
         return Redirect::to('/loginkh');
@@ -79,11 +79,10 @@ class CategoryKhachHang extends Controller
         $info = pathinfo(storage_path().'/uploads/khachhang/listing-agent.jpg');
         $get_image = $info['basename'];
         if($get_image){
-            $data['Anh'] = $get_image;
+            $data['Anhnd'] = $get_image;
             DB::table('nguoidung')->insert($data);
         return Redirect::to('loginkh');
         }
-        $data['category_image'] = '';
         DB::table('nguoidung')->insert($data);
         return Redirect::to('loginkh');
     }
@@ -111,7 +110,7 @@ class CategoryKhachHang extends Controller
             $name_image = current(explode('.',$get_name_image));
             $new_image = $name_image.'.'.$get_image->getClientOriginalExtension();
             $get_image->move('public/uploads/khachhang',$new_image);
-            $data['Anh'] = $new_image;
+            $data['Anhnd'] = $new_image;
             DB::table('nguoidung')->where('Manguoidung',$khachhang_info_id)->update($data);
         Session::flash('success','Cập nhật thành công');
         return Redirect::to('edit-khachhang-info/'.$khachhang_info_id);
@@ -119,7 +118,7 @@ class CategoryKhachHang extends Controller
         $info = pathinfo(storage_path().'/uploads/khachhang/listing-agent.jpg');
         $get_image2 = $info['basename'];
         if($get_image2){
-            $data['Anh'] = $get_image2;
+            $data['Anhnd'] = $get_image2;
             
         DB::table('nguoidung')->where('Manguoidung',$khachhang_info_id)->update($data);
         Session::flash('success','Cập nhật thành công');
@@ -139,6 +138,17 @@ class CategoryKhachHang extends Controller
         
         $manage_checkout = view('khachhang.showall_checkout')->with('showall_checkout',$result);
         return view('khachhang_layout')->with('showall_checkout',$manage_checkout);
+    }
+    public function detail_hopdongkh($hopdong_id){
+
+        $ctthongbao = DB::table('hopdong')
+        ->join('phongthue','hopdong.Maphongthue','=','phongthue.Maphongthue')
+        ->join('khu','phongthue.Makhu','=','khu.Makhu')
+        ->join('nguoidung','khu.Machuthue','=','nguoidung.Manguoidung')
+        ->join('lichsuhopdong','hopdong.Mahopdong','=','lichsuhopdong.Mahopdong')
+        ->where('hopdong.Mahopdong',$hopdong_id)->get();
+
+        return view('khachhang.detail_hopdong')->with('detail_hopdong', $ctthongbao);
     }
     public function pay_tiencoc($hopdong_id){
         $num2 = 2;
@@ -205,5 +215,124 @@ class CategoryKhachHang extends Controller
             }
         }
         
+    }
+    public function allshow_hopdong(){
+        $mndkh = Session::get('Manguoidung');
+        $num4 = 4;
+        $ctthongbao4 = DB::table('hopdong')
+        ->join('phongthue','hopdong.Maphongthue','=','phongthue.Maphongthue')
+        ->join('khu','phongthue.Makhu','=','khu.Makhu')
+        ->join('nguoidung','hopdong.Manguoithue','=','nguoidung.Manguoidung')
+        ->where('hopdong.Trangthaihd',$num4)->where('nguoidung.Manguoidung',$mndkh)->get();
+        return view('khachhang.all_showhopdong')->with('ctthongbao4',$ctthongbao4);
+    }
+    public function all_phongkh(){
+        $mndkh = Session::get('Manguoidung');
+        $num4 = 4;
+        $all_phongkh = DB::table('lichsuhopdong')
+        ->join('hopdong','lichsuhopdong.Mahopdong','=','hopdong.Mahopdong')
+        ->join('phongthue','hopdong.Maphongthue','=','phongthue.Maphongthue')    
+        ->join('nguoidung','lichsuhopdong.Machuthue','=','nguoidung.Manguoidung')
+        ->where('hopdong.Trangthaihd',$num4)->where('lichsuhopdong.Makhachthue',$mndkh)->get();
+        return view('khachhang.all_phongkh')->with('all_phongkh',$all_phongkh);
+    }
+    public function info_phongkh($phong_id){
+        $info_phongkh = DB::table('phongthue')->where('Maphongthue',$phong_id)->get(); 
+
+        $manage_phongkh = view('khachhang.info_phongkh')->with('info_phongkh',$info_phongkh);
+        
+        return view('khachhang_layout')->with('info_phongkh',$manage_phongkh);
+    }
+    public function info_chuthue($phong_id){
+        $info_chuthue = DB::table('phongthue')
+        ->join('khu','phongthue.Makhu','=','khu.Makhu')
+        ->join('nguoidung','khu.Machuthue','=','nguoidung.Manguoidung')
+        ->where('phongthue.Maphongthue',$phong_id)->get(); 
+
+        $manage_chuthue = view('khachhang.info_chuthue')->with('info_chuthue',$info_chuthue);
+        
+        return view('khachhang_layout')->with('info_chuthue',$manage_chuthue);
+    }
+    public function all_vandekh(){
+        $mndkh = Session::get('Manguoidung');
+        $num4 = 4;
+        $tt1 = 1;
+        $tt2 = 2;
+        $all_vandekh1 = DB::table('suco')
+        ->join('vande','suco.Masuco','=','vande.Masuco')
+        ->join('hopdong','vande.Mahopdong','=','hopdong.Mahopdong') 
+        ->join('phongthue','hopdong.Maphongthue','=','phongthue.Maphongthue')   
+        ->join('nguoidung','suco.Nguoitao','=','nguoidung.Manguoidung')
+        ->where('hopdong.Trangthaihd',$num4)->where('suco.Nguoitao',$mndkh)->where('suco.Trangthaisc',$tt1)->get();
+        
+        $all_vandekh2 = DB::table('suco')
+        ->join('vande','suco.Masuco','=','vande.Masuco')
+        ->join('hopdong','vande.Mahopdong','=','hopdong.Mahopdong') 
+        ->join('phongthue','hopdong.Maphongthue','=','phongthue.Maphongthue')   
+        ->join('nguoidung','suco.Nguoitao','=','nguoidung.Manguoidung')
+        ->where('hopdong.Trangthaihd',$num4)->where('suco.Nguoitao',$mndkh)->where('suco.Trangthaisc',$tt2)->get(); 
+
+        return view('khachhang.all_vandekh')->with('all_vandekh1',$all_vandekh1)->with('all_vandekh2',$all_vandekh2);
+    }
+    public function add_vandekh(){
+        $mndkh = Session::get('Manguoidung');
+        $num4 = 4;
+        $tt = DB::table('hopdong')
+        ->join('phongthue','hopdong.Maphongthue','=','phongthue.Maphongthue')
+        ->join('khu','phongthue.Makhu','=','khu.Makhu')
+        ->join('nguoidung','hopdong.Manguoithue','=','nguoidung.Manguoidung')
+        ->where('hopdong.Trangthaihd',$num4)->where('nguoidung.Manguoidung',$mndkh)->get();
+        return view('khachhang.add_vandekh')->with('cate_phong',$tt);
+    }
+    public function save_vande(Request $request){
+        $data = array();
+        $textDataa = "MSC";
+        $get_suco_id = $request->input('suco_id', $textDataa);;
+        if($get_suco_id){
+            $id_khoan = $get_suco_id.rand(0,9999);
+            $data['Masuco'] = $id_khoan;
+        }
+        $data['Tensuco'] = $request->Tensuco;
+        $data['Trangthaisc'] = '1';
+        $data['Nguoitao'] = $request->Manguoidung;
+        $idsuco = $data['Masuco'];
+        DB::table('suco')->insert($data);
+
+        $dataaa = array();
+        $textDataaa = "MVD";
+        $get_vande_id = $request->input('vande_id', $textDataaa);;
+        if($get_vande_id){
+            $id_vande = $get_vande_id.rand(0,9999);
+            $dataaa['Mavande'] = $id_vande;
+        }
+        $dataaa['Masuco'] = $idsuco;
+        $dataaa['Lidotuchoi'] = '';
+        $dataaa['Lidochapnhan'] = '';
+        $dataaa['Motavd'] = $request->Motavd;
+        $dataaa['Mahopdong'] = $request->Mahopdong;
+        $image = $request->file('Anh');
+        if($image){
+            $get_name_image = $image->getClientOriginalName();
+            $name_image = current(explode('.',$get_name_image));
+            $new_image = $name_image.rand(0,999).'.'.$image->getClientOriginalExtension();
+            $image->move('public/uploads/vande',$new_image);
+            $dataaa['Anh'] = $new_image;
+            DB::table('vande')->where('Masuco',$idsuco)->insert($dataaa);
+
+            Session::flash('success', 'Tạo vấn đề - sự cố thành công! Mã sự cố: '. $data['Masuco']);
+            return Redirect::to('add-vandekh');
+        }
+        
+    }
+    public function delete_vandekh($vande_id){
+        $getvande = DB::table('vande')->where('Mavande',$vande_id)->first();
+        if($getvande){    
+            Session::put('Masuco',$getvande->Masuco);
+        } 
+        $suco_id = Session::get('Masuco');
+        DB::table('vande')->where('Mavande',$vande_id)->delete();
+        DB::table('suco')->where('Masuco',$suco_id)->delete();
+        Session::flash('success','Xóa thành công! Mã sự cố: ' . $suco_id);
+        return Redirect::to('all-vandekh');
     }
 }

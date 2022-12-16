@@ -22,12 +22,12 @@
                             <div class="light-slide-item">            
                                 <div class="clearfix">
                                     <div class="favorite-and-print">
-                                        <a class="add-to-fav" href="#login-modal" data-toggle="modal">
+                                        <!-- <a class="add-to-fav" href="#login-modal" data-toggle="modal">
                                             <i class="fa fa-star-o"></i>
                                         </a>
                                         <a class="printer-icon " href="javascript:window.print()">
                                             <i class="fa fa-print"></i> 
-                                        </a>
+                                        </a> -->
                                     </div> 
 
                                     <ul id="image-gallery" class="gallery list-unstyled cS-hidden">
@@ -73,13 +73,13 @@
                                         
                                    
                                     </div>
-                                    <div class="property-info-icon icon-tag col-sm-6">
+                                    <!-- <div class="property-info-icon icon-tag col-sm-6">
                                     <form action="{{URL::to('save-cart')}}" method="POST">
                                             {{ csrf_field() }}
                                         <input type="hidden" name="phongid_hidden" value="{{$value->Maphongthue}}">
                                         <button type="submit" class="btn btn-primary wow bounceInRight login" data-wow-delay="0.45s">Yêu thích</button>
                                         </form>
-                                    </div>      
+                                    </div>       -->
                                 </div>
                             </div>
                             <!-- .property-meta -->
@@ -128,32 +128,7 @@
 
                                 </ul>
                             </div>  
-                            <!-- End additional-details area  -->
-
-                            <!-- <div class="section property-features">      
-
-                                <h4 class="s-property-title">Features</h4>                            
-                                <ul>
-                                    <li><a href="properties.html">Swimming Pool</a></li>   
-                                    <li><a href="properties.html">3 Stories</a></li>
-                                    <li><a href="properties.html">Central Cooling</a></li>
-                                    <li><a href="properties.html">Jog Path 2</a></li>
-                                    <li><a href="properties.html">2 Lawn</a></li>
-                                    <li><a href="properties.html">Bike Path</a></li>
-                                </ul>
-
-                            </div>
                             
-
-                            <div class="section property-video"> 
-                                <h4 class="s-property-title">Property Video</h4> 
-                                <div class="video-thumb">
-                                    <a class="video-popup" href="yout" title="Virtual Tour">
-                                        <img src="assets/img/property-video.jpg" class="img-responsive wp-post-image" alt="Exterior">            
-                                    </a>
-                                </div>
-                            </div> -->
-                            <!-- End video area  -->
                             <div class="similar-post-section padding-top-40">
                             <h4 class="s-property-title">Phòng thuê liên quan</h4>  
                             <div id="prop-smlr-slide_0"> 
@@ -164,7 +139,10 @@
                                         <a href="{{URL::to('/chi-tiet-phong-tro/'.$lienquan->Maphongthue)}}" ><img src="{{URL::to('public/uploads/phongct/'.$lienquan->Anh)}}"></a>
                                     </div>
                                     <div class="item-entry overflow">
-                                        <h5><a href="{{URL::to('/chi-tiet-phong-tro/'.$lienquan->Maphongthue)}}"> {{$lienquan->Tieude}} </a></h5>
+                                        <h5 style="text-transform: none; text-align: justify; display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;"><a href="{{URL::to('/chi-tiet-phong-tro/'.$lienquan->Maphongthue)}}"> {{$lienquan->Tieude}} </a></h5>
                                         <div class="dot-hr"></div>
                                         <span class="pull-left"><b> Diện tích :</b> {{($lienquan->Dientich).' '.'m²'}} </span>
                                         <span class="proerty-price pull-right">{{ number_format($lienquan->Gia).' '.'đ'}}</span> 
@@ -190,7 +168,7 @@
                                         <div class="clear">
                                             <div class="col-xs-4 col-sm-4 dealer-face">
                                                 <a href="#">
-                                                    <img src="{{URL::to('public/uploads/chutro/'.$ttchutro->Anh)}}" class="img-circle">
+                                                    <img src="{{URL::to('public/uploads/chutro/'.$ttchutro->Anhnd)}}" class="img-circle">
                                                 </a>
                                             </div>
                                             <div class="col-xs-8 col-sm-8 ">
@@ -220,11 +198,11 @@
                                     
                                         <div class="clear">
                                             <ul class="dealer-contacts">                                       
-                                                <li><i class="pe-7s-map-marker strong"> </i> </li>
+                                                <li><i class="pe-7s-map-marker strong"> </i> {{$ttchutro->Diachi}}</li>
                                                 <li><i class="pe-7s-mail strong"> </i> {{$ttchutro->Email}}</li>
                                                 <li><i class="pe-7s-call strong"> </i> {{$ttchutro->SDT}}</li>
                                             </ul>
-                                            <!-- <p>Duis mollis  blandit tempus porttitor curabiturDuis mollis  blandit tempus porttitor curabitur , est non…</p> -->
+                                            
                                         </div>
                                         
                                     </div>
@@ -232,30 +210,7 @@
                                 </div>
                             </div>
 
-                            <div class="panel panel-default sidebar-menu similar-property-wdg wow fadeInRight animated">
-                                <div class="panel-heading">
-                                    <h3 class="panel-title">Similar Properties</h3>
-                                </div>
-                                <div class="panel-body recent-property-widget">
-                                        <!-- <ul>
-                                        <li>
-                                            <div class="col-md-3 col-sm-3 col-xs-3 blg-thumb p0">
-                                                <a href="single.html"><img src="assets/img/demo/small-property-2.jpg"></a>
-                                                <span class="property-seeker">
-                                                    <b class="b-1">A</b>
-                                                    <b class="b-2">S</b>
-                                                </span>
-                                            </div>
-                                            <div class="col-md-8 col-sm-8 col-xs-8 blg-entry">
-                                                <h6> <a href="single.html">Super nice villa </a></h6>
-                                                <span class="property-price">3000000$</span>
-                                            </div>
-                                        </li>
-                                        
-
-                                    </ul> -->
-                                </div>
-                            </div>                          
+                                             
 
                             <div class="panel panel-default sidebar-menu wow fadeInRight animated">
                                 <!-- <div class="panel-heading">
@@ -268,18 +223,29 @@
 
                             <div class="panel panel-default sidebar-menu wow fadeInRight animated" >
                                 <div class="panel-heading">
-                                    <h3 class="panel-title">Smart search</h3>
+                                    <h3 class="panel-title">Tìm kiếm</h3>
                                 </div>
                                 <div class="panel-body search-widget">
-                                    <form action="" class=" form-inline"> 
-                                        <!-- <fieldset>
+                                <form action="{{URL::to('/search')}}" class=" form-inline" method="post"> 
+                                    {{csrf_field()}}
+                                        <fieldset>
                                             <div class="row">
                                                 <div class="col-xs-12">
-                                                    <input type="text" class="form-control" placeholder="Key word">
+                                                    <input type="text" name="keywords_submit" class="form-control" placeholder="Từ khóa">
                                                 </div>
                                             </div>
                                         </fieldset>
 
+
+                                        <fieldset >
+                                            <div class="row">
+                                                <div class="col-xs-12">  
+                                                    <input class="button btn largesearch-btn" value="Tìm kiếm"  name="search_items" type="submit">
+                                                </div>  
+                                            </div>
+                                        </fieldset> 
+                                </form> 
+<!--
                                         <fieldset>
                                             <div class="row">
                                                 <div class="col-xs-6">

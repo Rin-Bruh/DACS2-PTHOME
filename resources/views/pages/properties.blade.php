@@ -129,7 +129,7 @@
                                         <fieldset>
                                             <div class="row">
                                                 <div class="col-xs-12">
-                                                    <input type="text" name="keywords_submit" class="form-control" placeholder="Tìm kiếm">
+                                                    <input type="text" name="keywords_submit" class="form-control" placeholder="Từ khóa">
                                                 </div>
                                             </div>
                                         </fieldset>
@@ -160,7 +160,7 @@
                                 </div>
                             </div>
 
-                            <div class="panel panel-default sidebar-menu wow fadeInRight animated">
+                            <!-- <div class="panel panel-default sidebar-menu wow fadeInRight animated">
                                 <div class="panel-heading">
                                     <h3 class="panel-title">Mới nhất</h3>
                                 </div>
@@ -222,7 +222,7 @@
 
                                     </ul>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>           

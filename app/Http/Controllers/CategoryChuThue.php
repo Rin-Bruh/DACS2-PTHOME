@@ -33,7 +33,7 @@ class CategoryChuThue extends Controller
             Session::put('Hoten',$result->Hoten);
             Session::put('Manguoidung',$result->Manguoidung);
             Session::put('SDT',$result->SDT);
-            Session::put('Anh',$result->Anh);
+            Session::put('Anhnd',$result->Anhnd );
             return Redirect::to('/chutro-quan-ly');
         }else{ 
             Session::flash('error', 'Tài khoản hoặc mật khẩu không đúng!');
@@ -77,7 +77,7 @@ class CategoryChuThue extends Controller
         Session::put('Hoten',null);
         Session::put('Manguoidung',null);
         Session::put('SDT',null);
-        Session::put('Anh',null);
+        Session::put('Anhnd',null);
         return Redirect::to('/loginct');
     }
 
@@ -108,7 +108,7 @@ class CategoryChuThue extends Controller
         $info = pathinfo(storage_path().'/uploads/khachhang/listing-agent.jpg');
         $get_image = $info['basename'];
         if($get_image){
-            $data['Anh'] = $get_image;
+            $data['Anhnd'] = $get_image;
             DB::table('nguoidung')->insert($data);
         return Redirect::to('loginct');
         }
@@ -139,7 +139,7 @@ class CategoryChuThue extends Controller
             $name_image = current(explode('.',$get_name_image));
             $new_image = $name_image.'.'.$get_image->getClientOriginalExtension();
             $get_image->move('public/uploads/chutro',$new_image);
-            $data['Anh'] = $new_image;
+            $data['Anhnd'] = $new_image;
             DB::table('nguoidung')->where('Manguoidung',$chutro_info_id)->update($data);
         Session::flash('success','Cập nhật thành công');
         return Redirect::to('edit-chutro-info/'.$chutro_info_id);
@@ -147,7 +147,7 @@ class CategoryChuThue extends Controller
         $info = pathinfo(storage_path().'/uploads/chutro/listing-agent.jpg');
         $get_image2 = $info['basename'];
         if($get_image2){
-            $data['Anh'] = $get_image2;
+            $data['Anhnd'] = $get_image2;
             
         DB::table('nguoidung')->where('Manguoidung',$chutro_info_id)->update($data);
         Session::flash('success','Cập nhật thành công');
@@ -349,11 +349,62 @@ class CategoryChuThue extends Controller
             return Redirect::to('xacnhan-tt/'.$hopdong_id);
     }
     public function allshow_hopdong(){
+        $mnd = Session::get('Manguoidung');
         $num4 = 4;
         $ctthongbao4 = DB::table('hopdong')
         ->join('phongthue','hopdong.Maphongthue','=','phongthue.Maphongthue')
         ->join('khu','phongthue.Makhu','=','khu.Makhu')
-        ->where('hopdong.Trangthaihd',$num4)->get();
+        ->join('nguoidung','khu.Machuthue','=','nguoidung.Manguoidung')
+        ->where('hopdong.Trangthaihd',$num4)->where('nguoidung.Manguoidung',$mnd)->get();
         return view('chuthue.all_showhopdong')->with('ctthongbao4',$ctthongbao4);
+    }
+    public function detail_hopdongct($hopdong_id){
+
+        $ctthongbao = DB::table('hopdong')
+        ->join('phongthue','hopdong.Maphongthue','=','phongthue.Maphongthue')
+        ->join('khu','phongthue.Makhu','=','khu.Makhu')
+        ->join('nguoidung','khu.Machuthue','=','nguoidung.Manguoidung')
+        ->join('lichsuhopdong','hopdong.Mahopdong','=','lichsuhopdong.Mahopdong')
+        ->where('hopdong.Mahopdong',$hopdong_id)->get();
+
+        $hopdongdetail = view('chuthue.detail_hopdong')->with('detail_hopdong', $ctthongbao);
+         return view('chutro_layout')->with('detail_hopdong', $hopdongdetail);
+    }
+    public function all_thanhtoan(){
+        $mnd = Session::get('Manguoidung');
+        $num4 = 4;
+        $ctallthanhtoan = DB::table('hopdong')
+        ->join('phongthue','hopdong.Maphongthue','=','phongthue.Maphongthue')
+        ->join('khu','phongthue.Makhu','=','khu.Makhu')
+        ->join('nguoidung','khu.Machuthue','=','nguoidung.Manguoidung')
+        ->where('hopdong.Trangthaihd',$num4)->where('nguoidung.Manguoidung',$mnd)->get();
+        return view('chuthue.all_showthanhtoan')->with('ctthanhtoan',$ctallthanhtoan);
+    }
+
+    public function all_vandect(){
+        $mndct = Session::get('Manguoidung');
+        $num4 = 4;
+        $tt1 = 1;
+        $tt2 = 2;
+        $all_vandect1 = DB::table('suco')
+        ->join('vande','suco.Masuco','=','vande.Masuco')
+        ->join('hopdong','vande.Mahopdong','=','hopdong.Mahopdong')
+        ->join('lichsuhopdong','hopdong.Mahopdong','=','lichsuhopdong.Mahopdong')    
+        ->join('phongthue','hopdong.Maphongthue','=','phongthue.Maphongthue')
+        ->where('hopdong.Trangthaihd',$num4)->where('lichsuhopdong.Machuthue',$mndct)->where('suco.Trangthaisc',$tt1)->get();
+        
+        $all_vandect2 = DB::table('suco')
+        ->join('vande','suco.Masuco','=','vande.Masuco')
+        ->join('hopdong','vande.Mahopdong','=','hopdong.Mahopdong')
+        ->join('lichsuhopdong','hopdong.Mahopdong','=','lichsuhopdong.Mahopdong')    
+        ->join('phongthue','hopdong.Maphongthue','=','phongthue.Maphongthue')
+        ->where('hopdong.Trangthaihd',$num4)->where('lichsuhopdong.Machuthue',$mndct)->where('suco.Trangthaisc',$tt2)->get();
+
+        return view('chuthue.all_vandect')->with('all_vandect1',$all_vandect1)->with('all_vandect2',$all_vandect2);
+    }
+    public function complete_vandect($suco_id){
+        DB::table('suco')->where('Masuco',$suco_id)->update(['Trangthaisc'=>2]);
+        Session::flash('success','Sự cố - vấn đề đã khắc phục!');
+        return Redirect::to('all-vandect');
     }
 }

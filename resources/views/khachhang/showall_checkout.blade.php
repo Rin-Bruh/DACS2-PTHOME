@@ -61,19 +61,19 @@
                               <?php
                                   if($cate_check->Trangthaihd==1){
                               ?>
-                                      <a class="btn btn-outline-info disabled" href="{{URL::to('/show-hopdong/'.$cate_check->Mahopdong)}}"> Xem hợp đồng</a>
+                                      <a class="btn btn-outline-info disabled" href="{{URL::to('/detail-hopdongkh/'.$cate_check->Mahopdong)}}"> Xem hợp đồng</a>
                                       <a class="btn btn-outline-success disabled" href="{{URL::to('/pay-tiencoc/'.$cate_check->Mahopdong)}}"> Thanh toán</a>
                                       <a class="btn btn-outline-danger" href="{{URL::to('/delete-category-khu')}}"> Hủy yêu cầu</a>
                               <?php
                                   }else if($cate_check->Trangthaihd==2){
                               ?>
-                                      <a class="btn btn-outline-info" href="{{URL::to('/show-hopdong/'.$cate_check->Mahopdong)}}"> Xem hợp đồng</a>
+                                      <a class="btn btn-outline-info" href="{{URL::to('/detail-hopdongkh/'.$cate_check->Mahopdong)}}"> Xem hợp đồng</a>
                                       <a class="btn btn-outline-success" href="{{URL::to('/pay-tiencoc/'.$cate_check->Mahopdong)}}"> Thanh toán</a>
                                       <a class="btn btn-outline-danger" href="{{URL::to('/delete-category-khu')}}"> Hủy yêu cầu</a>
                                       <?php
                                   }else if($cate_check->Trangthaihd==3){
                               ?>
-                                      <a class="btn btn-outline-info" href="{{URL::to('/show-hopdong/'.$cate_check->Mahopdong)}}"> Xem hợp đồng</a>
+                                      <a class="btn btn-outline-info" href="{{URL::to('/detail-hopdongkh/'.$cate_check->Mahopdong)}}"> Xem hợp đồng</a>
                                       <a class="btn btn-outline-success disabled" href="{{URL::to('/pay-tiencoc/'.$cate_check->Mahopdong)}}"> Thanh toán</a>
                                       <a class="btn btn-outline-danger disabled" href="{{URL::to('/delete-category-khu')}}"> Hủy yêu cầu</a>
                               <?php        

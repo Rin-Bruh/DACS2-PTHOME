@@ -147,42 +147,31 @@
                     <div data-i18n="Without menu">Thông tin người dùng</div>
                   </a>
                 </li>
-                <!-- <li class="menu-item">
-                  <a href="{{URL::to('/all-category-danhmuc')}}" class="menu-link">
-                    <div data-i18n="Without navbar">Phương thức thanh toán</div>
-                  </a>
-                </li> -->
                 
               </ul>
             </li>
             <li class="menu-item">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-layout"></i>
+              <i class="menu-icon tf-icons bx bx-dock-top"></i>
                 <div data-i18n="Layouts">Phòng của tôi</div>
               </a>
 
               <ul class="menu-sub">
                 <li class="menu-item">
-                  <a href="{{URL::to('/add-category-theogia')}}" class="menu-link">
+                  <a href="{{URL::to('/all-phongkh')}}" class="menu-link">
                     <div data-i18n="Without menu">Thông tin phòng</div>
                   </a>
                 </li>
                 <li class="menu-item">
-                  <a href="{{URL::to('/all-category-theogia')}}" class="menu-link">
+                  <a href="{{URL::to('/allshow-hopdongkh')}}" class="menu-link">
                     <div data-i18n="Without navbar">Hợp đồng</div>
                   </a>
-                </li>
-                <li class="menu-item">
-                  <a href="{{URL::to('/all-category-theogia')}}" class="menu-link">
-                    <div data-i18n="Without navbar">Bài viết chia sẽ phòng</div>
-                  </a>
-                </li>
-                
+                </li>                
               </ul>
             </li>
             <li class="menu-item">
-              <a href="icons-boxicons.html" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-crown"></i>
+              <a href="{{URL::to('/all-vandekh')}}" class="menu-link">
+              <i class="menu-icon tf-icons bx bx-wrench"></i>
                 <div data-i18n="Boxicons">Vấn đề - Sự cố</div>
               </a>
             </li>
@@ -191,7 +180,7 @@
                                 ?>
             <li class="menu-item">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-layout"></i>
+              <i class="menu-icon tf-icons bx bx-detail"></i>
                 <div data-i18n="Layouts">Đăng kí phòng</div>
               </a>
 
@@ -209,7 +198,7 @@
                 
               </ul>
             </li>
-            <li class="menu-item">
+            <!-- <li class="menu-item">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-layout"></i>
                 <div data-i18n="Layouts">Thông báo</div>
@@ -228,13 +217,7 @@
                 </li>
                 
               </ul>
-            </li>
-            <li class="menu-item">
-              <a href="icons-boxicons.html" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-crown"></i>
-                <div data-i18n="Boxicons">Thông tin liên hệ</div>
-              </a>
-            </li>
+            </li> -->
             <li class="menu-item">
               <a href="{{URL::to('/logoutkh')}}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-power-off me-2"></i>
@@ -276,7 +259,7 @@
                   <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
                     <div class="avatar avatar-online">
                         <?php
-                            $image = Session::get('Anh');
+                            $image = Session::get('Anhnd');
 // echo"$image";
                         ?>
                       <img src="{{URL::to('public/uploads/khachhang/'.$image)}}" alt class="w-px-40 h-auto rounded-circle" />
@@ -310,30 +293,7 @@
                         </div>
                       </a>
                     </li>
-                    <li>
-                      <div class="dropdown-divider"></div>
-                    </li>
-                    <li>
-                      <a class="dropdown-item" href="#">
-                        <i class="bx bx-user me-2"></i>
-                        <span class="align-middle">My Profile</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a class="dropdown-item" href="#">
-                        <i class="bx bx-cog me-2"></i>
-                        <span class="align-middle">Settings</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a class="dropdown-item" href="#">
-                        <span class="d-flex align-items-center align-middle">
-                          <i class="flex-shrink-0 bx bx-credit-card me-2"></i>
-                          <span class="flex-grow-1 align-middle">Billing</span>
-                          <span class="flex-shrink-0 badge badge-center rounded-pill bg-danger w-px-20 h-px-20">4</span>
-                        </span>
-                      </a>
-                    </li>
+                   
                     <li>
                       <div class="dropdown-divider"></div>
                     </li>
@@ -370,24 +330,7 @@
                   , made with ❤️ by
                   <a href="https://themeselection.com" target="_blank" class="footer-link fw-bolder">ThemeSelection</a>
                 </div>
-                <div>
-                  <a href="https://themeselection.com/license/" class="footer-link me-4" target="_blank">License</a>
-                  <a href="https://themeselection.com/" target="_blank" class="footer-link me-4">More Themes</a>
-
-                  <a
-                    href="https://themeselection.com/demo/sneat-bootstrap-html-admin-template/documentation/"
-                    target="_blank"
-                    class="footer-link me-4"
-                    >Documentation</a
-                  >
-
-                  <a
-                    href="https://github.com/themeselection/sneat-html-admin-template-free/issues"
-                    target="_blank"
-                    class="footer-link me-4"
-                    >Support</a
-                  >
-                </div>
+                
               </div>
             </footer>
             <!-- / Footer -->

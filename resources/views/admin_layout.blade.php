@@ -238,7 +238,7 @@
                   <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
                     <div class="avatar avatar-online">
                     <?php
-                            $image = Session::get('Anh');
+                            $image = Session::get('Anhnd');
 // echo"$image";
                         ?>
                       <img src="{{URL::to('public/uploads/khachhang/'.$image)}}" alt class="w-px-40 h-auto rounded-circle" />
